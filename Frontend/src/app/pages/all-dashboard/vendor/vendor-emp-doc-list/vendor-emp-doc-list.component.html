@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card w-100">
+
+      <div class="card-header py-1 bg-primary">
+        <div class="row w-100">
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xxl-4 d-flex align-items-center justify-content-between">
+            <h4>Vendor Employee Documents</h4>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xxl-4 d-flex align-items-center justify-content-center">
+            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchTerm"
+              (ngModelChange)="onSearch()" (keyup.enter)="onSearch()" />
+          </div>
+
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xxl-4 d-flex align-items-center justify-content-md-end gap-2">
+            <button class="btn btnheader mx-1" (click)="openUploadForm()">Add New</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive table-invoice">
+          <table id="exportTable" class="table">
+            <thead>
+              <tr>
+                <th>Sr.</th>
+                <th>Emp Code</th>
+                <th>Employee Name</th>
+                <th>Location</th>
+                <th>Vendor Name</th>
+                <th>Vendor Code</th>
+                <th style="min-width: 140px;">Approval Progress</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let row of employeeDocList | paginate : { itemsPerPage: pageSize, currentPage: pageIndex, totalItems: totalCount }; let i = index">
+                <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+                <td>{{ row.empcode || row.empCode || '-' }}</td>
+                <td>{{ row.empname || row.empName || '-' }}</td>
+                <td>{{ row.locationName || row.LocationName || '-' }}</td>
+                <td>{{ row.vendor_Name || row.vendorName || row.Vendor_Name || '-' }}</td>
+                <td>{{ row.vendor_Code || row.vendorCode || row.Vendor_Code || '-' }}</td>
+                <td>
+                  <div class="d-flex flex-column" style="min-width: 130px;">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <small class="fw-semibold text-dark">{{ row.docProgress || row.DocProgress || '0/0' }}</small>
+                      <small class="fw-bold text-success">{{ getProgressPercent(row) }}%</small>
+                    </div>
+                    <div class="progress" style="height: 8px; border-radius: 4px; background-color: #e9ecef;">
+                      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [style.width.%]="getProgressPercent(row)" style="border-radius: 4px;"></div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="badge" [ngClass]="{
+                    'bg-success': getRowStatus(row) === 'Completed',
+                    'bg-danger': getRowStatus(row) === 'Rejected',
+                    'bg-warning text-dark': getRowStatus(row) === 'Pending'
+                  }">
+                    {{ getRowStatus(row) }}
+                  </span>
+                  <div class="small mt-1" *ngIf="(row.rejectedDocs || row.RejectedDocs) > 0">
+                    <span class="text-danger fw-semibold">{{ row.rejectedDocs || row.RejectedDocs }} Rejected</span>
+                  </div>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline" (click)="openUploadForm(row.pk_empid || row.fk_empId || row.empId)" title="Upload / View">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr *ngIf="isLoading">
+                <td colspan="8" class="text-center py-4">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </td>
+              </tr>
+              <tr *ngIf="!isLoading && employeeDocList.length === 0">
+                <td colspan="8" class="text-center py-4 text-muted">No records found.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <pagination-controls *ngIf="employeeDocList.length > 0" (pageChange)="onPageChange($event)">
+          </pagination-controls>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

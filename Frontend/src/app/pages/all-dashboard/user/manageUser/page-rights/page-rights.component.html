@@ -1,0 +1,166 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+   
+    <!--  -->
+    <div class="card-header bg-primary">
+        <div class="row w-100">
+          <!-- Title Section -->
+          <div class="col-sm-7 col-md-7 col-lg-5 d-flex align-items-center justify-content-start"> 
+            <h4 class="text-white">Assign Location & Webpage Rights To The User</h4>
+          </div>
+       
+         
+          <!-- Back Button -->
+          
+          <div class="col-sm-6 col-md-6 col-lg-2 d-flex align-items-center justify-content-end ms-auto gap-2">
+            <!-- <button class="btn btnheader" routerLink="/dash/payroll/payrolldashboard/RestrictedMasterList">
+               Back
+            </button> -->
+          </div>
+        </div>
+      </div>
+   
+    <div class="card-body mt-2  mb-2">
+        <form [formGroup]="Form">
+        <div class="row row-cols-1 row-cols-md-3 g-4 ">
+
+            
+             <!--User name -->
+              <div class="col"><label>User Name<span style="color: red;">*</span></label>
+                <ng-select id="year"  [items]="Userlist" bindLabel="name" bindValue="value"
+                 placeholder="--Select Year--"
+                class="w-100"
+                 formControlName="fk_userId"
+                ></ng-select>
+                <span *ngIf="showError && Form.controls['fk_userId'].invalid" class="text-danger mt-1" style="font-size: 12px;">
+                  Please select user name.
+                </span>
+              </div>
+          <div class="col">
+            <label>Location<span style="color: red;">*</span></label>
+            
+           
+            <ng-select 
+              [items]="Location" 
+              bindLabel="name" 
+              bindValue="value" 
+              [multiple]="true"
+              [closeOnSelect]="false"
+              placeholder="--Select Locations--" 
+              class="w-100 small"
+              formControlName="fk_locid"
+             
+             >  <!-- Disable in update mode -->
+            
+              <!-- Custom Template for Displaying Selected Items -->
+              <ng-template ng-multi-label-tmp>
+                <span>{{ getLocationDisplayText() || "--Select Locations--" }}</span>
+              </ng-template>
+            
+              <!-- Custom Checkbox for Select All -->
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div *ngIf="index === 0">
+                  <input type="checkbox" (change)="toggleSelectAll()" [checked]="isAllSelected()" class="form-check-input fs-6 mx-1" />
+                  <strong>&nbsp;Select All</strong>
+                </div>
+                <div *ngIf="index !== 0">
+                  <input type="checkbox" [checked]="selectedLocations.includes(item.value)"
+                         (change)="toggleLocation(item.value)" class="form-check-input fs-6 mx-1"/>
+                  {{ item.name }}
+                </div>
+              </ng-template>
+            
+            </ng-select> 
+              <span *ngIf="showError && Form.controls['fk_locid'].invalid" class="text-danger mt-1" style="font-size: 12px;">
+                  Please select at least one Location.
+                </span>
+          </div>
+
+          
+    
+                   <div class="col"><label>Modules Name<span style="color: red;">*</span></label>
+            
+                <ng-select id="year" [items]="ModuleList" bindLabel="name" bindValue="value"
+                 placeholder="--Select Year--"
+                class="w-100"
+                 formControlName="fk_moduleId"
+                ></ng-select>
+                <span *ngIf="showError && Form.controls['fk_moduleId'].invalid" class="text-danger mt-1" style="font-size: 12px;">
+                  Please select any module.
+                </span>
+              </div>
+
+                      
+          
+                      
+          
+          
+            
+           
+           
+           </div>
+           
+          </form>
+
+
+    </div>
+
+    <!--table-->
+  <div class="card-body" *ngIf="webpages.length>0">
+        <div>
+       <!-- List of   web page-->
+       <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
+              <p class="text-primary m-0 fw-bold">Assign pages right to user</p>
+            
+            </div>
+              
+                <div class="table-responsive table-invoice scrollable-table">
+                  <table class="table table-bordered">
+                    <thead class="sticky-top table-secondary" style="background-color: rgb(250, 251, 251);top:-2">
+                      <tr class="sticky-top">
+                          <th>Sr.</th>
+                        <th><input type="checkbox" [(ngModel)]="Selected" (change)="AllSelect()" /> &nbsp;All</th>
+        
+                      
+                        <th>Menu Name</th>
+                        <th>Description</th>
+                        <th>Parent Menu</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                       <tr *ngFor="let page of webpages; let i = index">
+                         <td>{{ i + 1 }}</td>
+                        <td><input type="checkbox" [(ngModel)]="page.isSelected" /></td>
+                       
+                        <td>{{ page.menucaption }}</td>
+                        <td>{{ page.pagedescription }}</td>
+                        <td>{{ page.ParentMenu }}</td>
+                      
+                       
+                      </tr> 
+                    </tbody>
+                  </table>
+        
+                </div>
+             
+        
+        
+          
+        
+           <!-- Buttons -->
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-primary mx-1" (click)="submit()">Save</button>
+               <button type="reset" class="btn btn-outline-dark mx-1">Reset</button>
+             
+          </div>
+        
+        </div>
+       </div>
+
+    <!--table-->
+
+</div>
+</div>
+</div>

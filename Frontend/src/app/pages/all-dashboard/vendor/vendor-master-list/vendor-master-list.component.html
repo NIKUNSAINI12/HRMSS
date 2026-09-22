@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card w-100">
+
+      <div class="card-header py-1 bg-primary">
+        <div class="row w-100">
+          <div class="col-sm-12 col-md-3 col-lg-3 col-xxl-3 d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">Vendor Master List</h4>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xxl-4 d-flex align-items-center justify-content-center">
+            <input type="text" class="form-control" placeholder="Search vendors..." [(ngModel)]="searchTerm"
+              (ngModelChange)="onSearch()" (keyup.enter)="onSearch()" />
+          </div>
+
+          <div class="col-sm-12 col-md-5 col-lg-5 col-xxl-5 d-flex align-items-center justify-content-md-end gap-2 flex-wrap">
+            <button type="button" class="btn bg-white text-primary shadow-sm" (click)="downloadVendorVerificationExcel()"
+              title="Download Vendor Excel with Verification Links">
+              <i class="fa fa-download me-1"></i>Download VerificationLink Sheet
+            </button>
+            <button type="button" class="btn bg-white text-primary shadow-sm" (click)="exportToExcel()"
+              title="Export to Excel">
+              <i class="fa fa-download me-1"></i>Download
+            </button>
+            <button class="btn btnheader mx-1"
+              routerLink="/dash/vendor_management/vendor_managementdashboard/vendor_master_form">Add New</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive table-invoice">
+          <table id="exportTable" class="table">
+            <thead>
+              <tr>
+                <th>Sr.</th>
+                <th>Vendor Code</th>
+                <th>Vendor Name</th>
+                <th>Contact No</th>
+                <th>Bank Name</th>
+                <th>Account no</th>
+                <!-- <th>Model</th> -->
+                <th>Verification Status</th>
+                <th>Reg. Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let data of vendorList | paginate : { itemsPerPage: pageSize, currentPage: pageIndex, totalItems: totalItems }; let i = index">
+                <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+                <td>{{ data.vendor_Code || '' }}</td>
+                <td>{{ data.vendor_Name }}</td>
+                <td>{{ data.vendor_ContactNo }}</td>
+                <td>{{ data.vendor_BankName || '' }}</td>
+                <td>{{ data.vendor_AccountNo || '' }}</td>
+                <!-- <td>{{ getModelName(data.vendor_FK_ModelId) }}</td> -->
+                <td>
+                  <span class="badge rounded-pill"
+                    [ngClass]="data.vendor_Status === 'Verified' ? 'bg-success-subtle text-success border border-success' : 'bg-danger-subtle text-danger border border-danger'">
+                    {{ data.vendor_Status || 'Not Verified' }}
+                  </span>
+                </td>
+                <td>{{ data.vendor_RegistrationDate | date: 'dd-MM-yyyy' }}</td>
+                <td>
+                  <button class="btn btn-sm btn-outline" (click)="editVendor(data.pk_recId)" title="Edit">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline"
+                    (click)="sendOnboardingEmail(data.pk_recId, data.vendor_Name || '')" title="Send Onboarding Email"
+                    [disabled]="isSendingEmail && sendingEmailForId === data.pk_recId">
+                    <span *ngIf="isSendingEmail && sendingEmailForId === data.pk_recId"
+                      class="spinner-border spinner-border-sm"></span>
+                    <i *ngIf="!(isSendingEmail && sendingEmailForId === data.pk_recId)"
+                      class="fa-regular fa-envelope"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline" (click)="viewVendor(data.pk_recId)" title="View">
+                    <i class="fa-regular fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="vendorList.length === 0">
+                <td colspan="10" class="text-center py-4 text-muted">No records found.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <pagination-controls *ngIf="vendorList.length > 0" (pageChange)="onPageChange($event)">
+          </pagination-controls>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

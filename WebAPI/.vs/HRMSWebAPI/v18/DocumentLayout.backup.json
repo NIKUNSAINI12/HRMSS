@@ -1,0 +1,170 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Solutions\\HrBook\\WebAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|d:\\solutions\\hrbook\\webapi\\models\\candidatemastermst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|solutionrelative:models\\candidatemastermst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|d:\\solutions\\hrbook\\webapi\\controllers\\vendorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|solutionrelative:controllers\\vendorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|d:\\solutions\\hrbook\\webapi\\controllers\\exportreportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|solutionrelative:controllers\\exportreportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|d:\\solutions\\hrbook\\webapi\\models\\vendormodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|solutionrelative:models\\vendormodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|d:\\solutions\\hrbook\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|d:\\solutions\\hrbook\\webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|d:\\solutions\\hrbook\\webapi\\models\\vendorlitemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|solutionrelative:models\\vendorlitemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|d:\\solutions\\hrbook\\webapi\\repository\\ivendorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD643868-5F71-46EC-B1BE-3C1057C288A5}|HRMSWebAPI.csproj|solutionrelative:repository\\ivendorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CandidateMasterMst.cs",
+              "DocumentMoniker": "D:\\Solutions\\HrBook\\WebAPI\\Models\\CandidateMasterMst.cs",
+              "RelativeDocumentMoniker": "Models\\CandidateMasterMst.cs",
+              "ToolTip": "D:\\Solutions\\HrBook\\WebAPI\\Models\\CandidateMasterMst.cs",
+              "RelativeToolTip": "Models\\CandidateMasterMst.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAmwFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-18T06:51:13.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ExportReportController.cs",
+              "DocumentMoniker": "D:\\Solutions\\HrBook\\WebAPI\\Controllers\\ExportReportController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ExportReportController.cs",
+              "ToolTip": "D:\\Solutions\\HrBook\\WebAPI\\Controllers\\ExportReportController.cs",
+              "RelativeToolTip": "Controllers\\ExportReportController.cs",
+              "ViewState": "AgIAAHQIAAAAAAAAAAAcwIAIAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-18T06:48:52.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VendorModel.cs",
+              "DocumentMoniker": "D:\\Solutions\\HrBook\\WebAPI\\Models\\VendorModel.cs",
+              "RelativeDocumentMoniker": "Models\\VendorModel.cs",
+              "ToolTip": "D:\\Solutions\\HrBook\\WebAPI\\Models\\VendorModel.cs",
+              "RelativeToolTip": "Models\\VendorModel.cs",
+              "ViewState": "AgIAAKsBAAAAAAAAAAAqwLIBAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-17T11:39:03.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IVendorRepository.cs",
+              "DocumentMoniker": "D:\\Solutions\\HrBook\\WebAPI\\Repository\\IVendorRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\IVendorRepository.cs",
+              "ToolTip": "D:\\Solutions\\HrBook\\WebAPI\\Repository\\IVendorRepository.cs",
+              "RelativeToolTip": "Repository\\IVendorRepository.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAswDkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-17T11:05:52.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VendorController.cs",
+              "DocumentMoniker": "D:\\Solutions\\HrBook\\WebAPI\\Controllers\\VendorController.cs",
+              "RelativeDocumentMoniker": "Controllers\\VendorController.cs",
+              "ToolTip": "D:\\Solutions\\HrBook\\WebAPI\\Controllers\\VendorController.cs",
+              "RelativeToolTip": "Controllers\\VendorController.cs",
+              "ViewState": "AgIAACIMAAAAAAAAAAAvwC0MAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-17T11:02:42.3Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Solutions\\HrBook\\WebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Solutions\\HrBook\\WebAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAACkBAAAAAAAAAAAcwEYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-18T05:26:59.293Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VendorLiteModel.cs",
+              "DocumentMoniker": "D:\\Solutions\\HrBook\\WebAPI\\Models\\VendorLiteModel.cs",
+              "RelativeDocumentMoniker": "Models\\VendorLiteModel.cs",
+              "ToolTip": "D:\\Solutions\\HrBook\\WebAPI\\Models\\VendorLiteModel.cs",
+              "RelativeToolTip": "Models\\VendorLiteModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-18T05:15:57.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Solutions\\HrBook\\WebAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\Solutions\\HrBook\\WebAPI\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-18T05:21:19.182Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 23,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
