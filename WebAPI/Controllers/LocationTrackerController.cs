@@ -149,32 +149,30 @@ namespace HRMSWebAPI.Controllers
 
         /// <summary>
         /// GET /api/v1/LocationTracker/history?userId={userId}&date={yyyy-MM-dd}
-        /// Calls USP_LocationTracker_GetLocationHistory to fetch all entries for a date
+        /// GET /api/Location/history
+        /// Calls USP_LocationTracker_GetLocationHistory to fetch entries for a date (or all users if userId is null/all)
         /// </summary>
         [HttpGet("history")]
+        [HttpGet("/api/Location/history")]
         [AllowAnonymous]
-        public IActionResult GetLocationHistory([FromQuery] string userId, [FromQuery] string? date)
+        public IActionResult GetLocationHistory([FromQuery] string? userId, [FromQuery] string? date)
         {
             var modelResponse = new ModelResponse();
             try
             {
-                if (string.IsNullOrWhiteSpace(userId))
-                {
-                    modelResponse.IsSuccess = false;
-                    modelResponse.Message = "UserId is required.";
-                    modelResponse.StatusCode = 400;
-                    return Ok(modelResponse);
-                }
-
                 DateTime? targetDate = null;
                 if (!string.IsNullOrWhiteSpace(date) && DateTime.TryParse(date, out var parsedDate))
                 {
                     targetDate = parsedDate.Date;
                 }
 
+                var effectiveUserId = string.IsNullOrWhiteSpace(userId) || userId.Equals("all", StringComparison.OrdinalIgnoreCase)
+                    ? null
+                    : userId.Trim();
+
                 var list = DataBaseFactory.QuerySP<LocationRecordDto>(
                     "USP_LocationTracker_GetLocationHistory",
-                    new { UserId = userId, TargetDate = targetDate }
+                    new { UserId = effectiveUserId, TargetDate = targetDate }
                 ).ToList();
 
                 modelResponse.IsSuccess = true;

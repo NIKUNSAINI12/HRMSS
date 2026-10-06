@@ -1,0 +1,190 @@
+<div class="location-tracking-container container-fluid p-3 p-md-4">
+  <!-- Header Section -->
+  <div class="row mb-4 align-items-center">
+    <div class="col-12 col-md-7">
+      <h3 class="page-title fw-bold text-dark mb-1">
+        <i class="fas fa-map-marker-alt text-primary me-2"></i>My Location Tracking & Privacy
+      </h3>
+      <p class="text-muted small mb-0">
+        Control your continuous background GPS location tracking permissions for attendance & field duties.
+      </p>
+    </div>
+    <div class="col-12 col-md-5 text-md-end mt-3 mt-md-0">
+      <button class="btn btn-outline-primary btn-sm me-2" (click)="refresh()" [disabled]="isLoading || isToggling">
+        <i class="fas fa-sync-alt me-1" [class.fa-spin]="isLoading"></i> Refresh Status
+      </button>
+      <span class="badge" [ngClass]="isTrackingEnabled ? 'bg-success' : 'bg-danger'" style="font-size: 0.9rem; padding: 0.5rem 0.85rem;">
+        <i class="fas" [ngClass]="isTrackingEnabled ? 'fa-satellite text-white me-1' : 'fa-power-off text-white me-1'"></i>
+        {{ isTrackingEnabled ? 'Tracking ACTIVE' : 'Tracking DISABLED' }}
+      </span>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Main Control Card -->
+    <div class="col-12 col-lg-7">
+      <div class="card shadow-sm border-0 h-100 rounded-3">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center justify-content-between pb-3 border-bottom mb-4">
+            <div>
+              <h5 class="fw-bold mb-1 text-dark">Background GPS Switch</h5>
+              <p class="text-muted small mb-0">Enable or disable background location updates sent to HRBook</p>
+            </div>
+            <!-- Interactive Switch -->
+            <div class="form-check form-switch tracking-switch-wrapper mb-0">
+              <input 
+                class="form-check-input tracking-switch" 
+                type="checkbox" 
+                role="switch" 
+                id="locationToggleSwitch"
+                [checked]="isTrackingEnabled"
+                [disabled]="isToggling"
+                (change)="onSwitchChange($event)"
+              />
+            </div>
+          </div>
+
+          <!-- Dynamic Status Banner -->
+          <div class="alert rounded-3 p-3 mb-4 d-flex align-items-start" [ngClass]="isTrackingEnabled ? 'alert-success border-success' : 'alert-secondary border-secondary'">
+            <div class="status-icon me-3 mt-1">
+              <i class="fas fa-2x" [ngClass]="isTrackingEnabled ? 'fa-check-circle text-success' : 'fa-pause-circle text-secondary'"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1" [ngClass]="isTrackingEnabled ? 'text-success' : 'text-dark'">
+                {{ isTrackingEnabled ? 'Location Tracking is Enabled' : 'Location Tracking is Paused' }}
+              </h6>
+              <p class="small mb-0 text-muted" *ngIf="isTrackingEnabled">
+                Your mobile background service and web client will capture and sync authentic GPS coordinates.
+              </p>
+              <p class="small mb-0 text-muted" *ngIf="!isTrackingEnabled">
+                No location updates will be stored in HRBook. The mobile app background worker will self-stop to conserve battery.
+              </p>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="d-flex flex-wrap gap-2 pt-2">
+            <button 
+              type="button" 
+              class="btn btn-success px-4" 
+              [disabled]="isTrackingEnabled || isToggling"
+              (click)="toggleTracking(true)">
+              <i class="fas fa-play me-1"></i> Turn ON Tracking
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-outline-danger px-4" 
+              [disabled]="!isTrackingEnabled || isToggling"
+              (click)="toggleTracking(false)">
+              <i class="fas fa-stop me-1"></i> Turn OFF Tracking
+            </button>
+          </div>
+
+          <div class="mt-4 pt-3 border-top text-muted small">
+            <i class="fas fa-clock me-1 text-primary"></i> Last configuration update: 
+            <strong>{{ formatDate(lastUpdated) }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Employee Profile & Meta Info Card -->
+    <div class="col-12 col-lg-5">
+      <div class="card shadow-sm border-0 h-100 rounded-3">
+        <div class="card-header bg-light border-0 py-3">
+          <h6 class="fw-bold mb-0 text-dark">
+            <i class="fas fa-id-badge text-primary me-2"></i>Employee Information
+          </h6>
+        </div>
+        <div class="card-body p-4">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2 border-0">
+              <span class="text-muted small"><i class="fas fa-user text-secondary me-2"></i>Employee Name</span>
+              <span class="fw-semibold text-dark">{{ userName }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2 border-0">
+              <span class="text-muted small"><i class="fas fa-hashtag text-secondary me-2"></i>Employee ID / User</span>
+              <span class="badge bg-light text-dark border px-2 py-1 font-monospace">{{ userId || 'Not Detected' }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2 border-0">
+              <span class="text-muted small"><i class="fas fa-building text-secondary me-2"></i>Organization</span>
+              <span class="fw-semibold text-dark">{{ companyName }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2 border-0">
+              <span class="text-muted small"><i class="fas fa-shield-alt text-secondary me-2"></i>Status In Database</span>
+              <span class="badge" [ngClass]="isTrackingEnabled ? 'bg-success' : 'bg-secondary'">
+                {{ isTrackingEnabled ? 'Tracking Allowed (1)' : 'Tracking Blocked (0)' }}
+              </span>
+            </li>
+          </ul>
+
+          <div class="mt-3 p-3 bg-light rounded-3">
+            <h6 class="small fw-bold text-dark mb-1">
+              <i class="fas fa-info-circle text-primary me-1"></i> How it works with Mobile App:
+            </h6>
+            <p class="small text-muted mb-0">
+              When you turn tracking <strong>OFF</strong>, the server informs your Android Foreground Service on its next ping. The background worker terminates automatically, dismissing the status bar notification.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Telemetry / Last Location Record Card -->
+    <div class="col-12">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+          <h6 class="fw-bold mb-0 text-dark">
+            <i class="fas fa-satellite-dish text-primary me-2"></i>Last Recorded Location Ping
+          </h6>
+          <button class="btn btn-sm btn-light border" (click)="fetchLiveLocation()">
+            <i class="fas fa-sync-alt me-1"></i> Refresh Location
+          </button>
+        </div>
+        <div class="card-body p-4">
+          <div *ngIf="hasLocationData && liveLocation; else noLocationBlock" class="row g-3">
+            <div class="col-12 col-md-3">
+              <div class="p-3 bg-light rounded-3 text-center">
+                <span class="text-muted small d-block mb-1">Latitude</span>
+                <span class="fw-bold fs-5 text-dark font-monospace">{{ liveLocation.latitude | number:'1.5-5' }}</span>
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div class="p-3 bg-light rounded-3 text-center">
+                <span class="text-muted small d-block mb-1">Longitude</span>
+                <span class="fw-bold fs-5 text-dark font-monospace">{{ liveLocation.longitude | number:'1.5-5' }}</span>
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div class="p-3 bg-light rounded-3 text-center">
+                <span class="text-muted small d-block mb-1">Accuracy</span>
+                <span class="fw-bold fs-5 text-primary">±{{ liveLocation.accuracy }}m</span>
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div class="p-3 bg-light rounded-3 text-center">
+                <span class="text-muted small d-block mb-1">Timestamp (IST)</span>
+                <span class="fw-semibold text-dark small d-block mt-1">{{ formatDate(liveLocation.serverReceivedAt) }}</span>
+              </div>
+            </div>
+            <div class="col-12 mt-3">
+              <div class="small text-muted">
+                <i class="fas fa-mobile-alt me-1"></i> Device Info: <strong>{{ liveLocation.deviceInfo || 'Android / Browser' }}</strong> | 
+                <i class="fas fa-battery-half ms-2 me-1"></i> Battery Level: <strong>{{ liveLocation.batteryLevel ? (liveLocation.batteryLevel + '%') : 'N/A' }}</strong> |
+                <i class="fas fa-shield-alt ms-2 me-1"></i> Mode: <strong>{{ liveLocation.isBackground ? 'Background Service' : 'Foreground App' }}</strong>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #noLocationBlock>
+            <div class="text-center py-4 text-muted">
+              <i class="fas fa-map-marked-alt fa-3x text-secondary opacity-50 mb-3 d-block"></i>
+              <h6 class="fw-semibold text-dark mb-1">No Recent Location Found</h6>
+              <p class="small mb-0">When your mobile app transmits its first valid GPS fix, it will appear here in real time.</p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

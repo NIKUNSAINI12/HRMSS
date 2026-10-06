@@ -102,7 +102,11 @@ export const routes: Routes = [
             path: 'chatboat',
             loadComponent: () => import('../attendance/chatboat/chatboat.component').then( (m) => m.ChatboatComponent),
             title: 'HRMS - chatboat'
-
+},
+{
+            path: 'my-location-tracking',
+            loadComponent: () => import('./emp-location-tracking/emp-location-tracking.component').then( (m) => m.EmpLocationTrackingComponent),
+            title: 'HRMS - My Location Tracking'
 },
 
         ]

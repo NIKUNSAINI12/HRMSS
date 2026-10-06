@@ -1,0 +1,39 @@
+.location-tracking-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tracking-switch-wrapper {
+  transform: scale(1.35);
+  margin-right: 0.5rem;
+}
+
+.tracking-switch {
+  cursor: pointer;
+  background-color: #cbd5e1;
+  border-color: #94a3b8;
+  transition: all 0.25s ease-in-out;
+
+  &:checked {
+    background-color: #10b981;
+    border-color: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.25);
+  }
+}
+
+.card {
+  transition: box-shadow 0.2s ease-in-out;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08) !important;
+  }
+}
+
+.font-monospace {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}

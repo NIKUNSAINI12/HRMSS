@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Solutions\\HrBook\\WebAPI\\HRMSWebAPI.csproj": {}
+    "C:\\Users\\USER\\Desktop\\location-tracker-poc\\HRBook_5Oct_Code\\WebAPI\\HRMSWebAPI.csproj": {}
   },
   "projects": {
-    "D:\\Solutions\\HrBook\\WebAPI\\HRMSWebAPI.csproj": {
+    "C:\\Users\\USER\\Desktop\\location-tracker-poc\\HRBook_5Oct_Code\\WebAPI\\HRMSWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Solutions\\HrBook\\WebAPI\\HRMSWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\Desktop\\location-tracker-poc\\HRBook_5Oct_Code\\WebAPI\\HRMSWebAPI.csproj",
         "projectName": "HRMSWebAPI",
-        "projectPath": "D:\\Solutions\\HrBook\\WebAPI\\HRMSWebAPI.csproj",
-        "packagesPath": "C:\\Users\\V15\\.nuget\\packages\\",
-        "outputPath": "D:\\Solutions\\HrBook\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\USER\\Desktop\\location-tracker-poc\\HRBook_5Oct_Code\\WebAPI\\HRMSWebAPI.csproj",
+        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\USER\\Desktop\\location-tracker-poc\\HRBook_5Oct_Code\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\V15\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

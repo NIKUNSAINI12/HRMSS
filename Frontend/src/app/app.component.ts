@@ -2,13 +2,14 @@
 
 import { Component, HostListener, OnInit, inject, Inject, PLATFORM_ID } from '@angular/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { IdleService } from './idle.service';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import { AuthService } from './authentication/service/auth.service';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { Capacitor } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
+import { LocationTrackerService } from './shared/services/location-tracker.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
   idleService = inject(IdleService);
   authService = inject(AuthService);
   router = inject(Router);
+  locationTracker = inject(LocationTrackerService);
   private idleSubscription?: Subscription;
   title = 'hrms-app';
 
@@ -58,9 +60,29 @@ export class AppComponent implements OnInit {
             this.router.navigate(['/dash/employee-dashboard']);
           }
         }
+
+        // Auto-start Native Background Location Tracking if employee session is present
+        const activeUserId = 
+          sessionStorage.getItem('UserId') || 
+          sessionStorage.getItem('userId') || 
+          sessionStorage.getItem('username');
+
+        if (activeUserId && activeUserId.trim().length > 0) {
+          this.locationTracker.startTracking('native', activeUserId.trim());
+        }
       } catch (error) {
         console.error('Login logic error:', error);
       }
+
+      // Check on navigation in case session was set post-login
+      this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+        if (!this.locationTracker.isTracking$.value) {
+          const empId = sessionStorage.getItem('UserId') || sessionStorage.getItem('userId') || sessionStorage.getItem('username');
+          if (empId && empId.trim().length > 0) {
+            this.locationTracker.startTracking('native', empId.trim());
+          }
+        }
+      });
     }
 
     if (!Capacitor.isNativePlatform()) {
