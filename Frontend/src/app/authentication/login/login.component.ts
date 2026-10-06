@@ -242,6 +242,20 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('userId', userId);
           sessionStorage.setItem('Otp', documentNo);
 
+          if (response.data.companyId) {
+            sessionStorage.setItem('companyId', response.data.companyId);
+            localStorage.setItem('companyId', response.data.companyId);
+          }
+          if (response.data.isVendor !== undefined) {
+            sessionStorage.setItem('isVendor', response.data.isVendor ? 'true' : 'false');
+            localStorage.setItem('isVendor', response.data.isVendor ? 'true' : 'false');
+          }
+          if (response.data.fk_vendorId) {
+            sessionStorage.setItem('fk_vendorId', response.data.fk_vendorId);
+            sessionStorage.setItem('ats_active_vendor_id', response.data.fk_vendorId);
+            localStorage.setItem('fk_vendorId', response.data.fk_vendorId);
+          }
+
           const companyName = response.data.companyName || response.data.CompanyName || response.data.compname || '';
           sessionStorage.setItem('companyName', companyName);
           sessionStorage.setItem('financialDate1', response.data.financialDate1 || response.data.finStartDate || response.data.date1 || '01 Apr 2025');

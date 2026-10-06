@@ -38,6 +38,8 @@ export class DashboardSidebarComponent implements OnInit {
   HRReportsList: any[] = [];
   RecruitmentMasterList: any[] = [];
   RecruitmentTransactionList: any[] = [];
+  AtsSuiteList: any[] = [];
+  RecruitmentReportsList: any[] = [];
   TrainingMasterList: any[] = [];
   TrainingTransactionList: any[] = [];
   AppraisalMasterList: any[] = [];
@@ -124,6 +126,8 @@ Isuser:boolean=false
 
       { key: 'RecruitmentMasterList', parent: 'Recruitment Masters' },
       { key: 'RecruitmentTransactionList', parent: 'Recruitment Transactions' },
+      { key: 'AtsSuiteList', parent: 'ATS Talent Suite' },
+      { key: 'RecruitmentReportsList', parent: 'Recruitment Reports' },
 
       { key: 'TrainingMasterList', parent: 'Training Master' },
       { key: 'TrainingTransactionList', parent: 'Training Transaction' },
@@ -146,7 +150,11 @@ Isuser:boolean=false
 
     //  Dynamically generate lists based on config
     menuMappings.forEach(mapping => {
-      const parentId = menu.find(item => item.menucaption === mapping.parent)?.pk_webpageId;
+      let parent = menu.find(item => item.menucaption === mapping.parent);
+      if (!parent && mapping.key === 'RecruitmentReportsList') {
+        parent = menu.find(item => (item.menucaption === 'Recruitment Reports' || item.menucaption === 'Reports') && item.fk_moduleId === 5);
+      }
+      const parentId = parent?.pk_webpageId;
       (this as any)[mapping.key] = parentId
         ? menu.filter(item => item.parentId === parentId && item.isAssigned === 1)
         : [];

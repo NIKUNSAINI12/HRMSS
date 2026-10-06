@@ -107,7 +107,11 @@ builder.Services.AddScoped<IExitInterviewRepository, ExitInterviewRepository>();
 builder.Services.AddScoped<INoDueDeclarationRepository, NoDueDeclarationRepository>();
 builder.Services.AddScoped<IDueClearanceRepository, DueClearanceRepository>();
 builder.Services.AddScoped<IExitDashboardRepository, ExitDashboardRepository>();
-
+builder.Services.AddScoped<IVendorReportRepository, VendorReportRepository>();
+builder.Services.AddScoped<ILocationReportRepository, LocationReportRepository>();
+builder.Services.AddScoped<IJobReportRepository, JobReportRepository>();
+builder.Services.AddScoped<IMrfReportRepository, MrfReportRepository>();
+builder.Services.AddScoped<ICandidateReportRepository, CandidateReportRepository>();
 builder.Services.AddScoped<ILevelRepository, LevelRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IOperationalDivisionRepository, OperationalDivisionRepository>();
@@ -391,21 +395,36 @@ var app = builder.Build();
 app.UseCors(SignalRCors);
 
 app.UseStaticFiles();
+try
+{
+    var uploadsDir = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+    if (!Directory.Exists(uploadsDir)) Directory.CreateDirectory(uploadsDir);
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(uploadsDir),
+        RequestPath = "/Uploads"
+    });
+}
+catch { }
 // Initialize ConnectionString with IConfiguration
 ConnectionString.Initialize(app.Configuration);
 
-// Use the middleware
-app.UseMiddleware<JsonExceptionHandlingMiddleware>();
-app.UseMiddleware<TokenValidationMiddleware>();
-app.UseMiddleware<CandidateKeyValidationMiddleware>();
-
+// 2. Swagger documentation (must be BEFORE token and validation middlewares)
 app.UseSwagger();
-//app.UseSwaggerUI();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "HRMS WebAPI V1");
 });
-app.UseHttpsRedirection();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
+// 3. Custom Application Middlewares
+app.UseMiddleware<JsonExceptionHandlingMiddleware>();
+app.UseMiddleware<TokenValidationMiddleware>();
+app.UseMiddleware<CandidateKeyValidationMiddleware>();
 // ? CRITICAL: CORS must come BEFORE authentication
 //app.UseCors("AllowAngular");
 
@@ -416,4 +435,5 @@ app.MapControllers();
 
 // 2. Map the SignalR Hub endpoint
 app.MapHub<ChatHub>("/chatHub");
+// ATS Full Recruitment Lifecycle & Workflow Enabled
 app.Run();

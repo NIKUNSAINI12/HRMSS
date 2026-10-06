@@ -31,6 +31,7 @@ export const environment = {
     ModuleList: '/General/ModuleList',
     get_Webpage: '/PageRights',
     add_pageRight: '/PageRights',
+    GetUserAccessRights: '/PageRights/GetUserAccessRights',
     validateCompanyCode: '/User/validateCompanyCode',
     GetLocationByOfficeType: '/User/GetLocationByOfficeType',
     HrmsLogin: '/User/login',
@@ -1531,9 +1532,40 @@ UploadVendorFHRIDMappingExcel: '/Vendor/UploadVendorFHRIDMappingExcel',
     SaveExitAuthority: '/exitformauthority',
 
   },
+  RecruitmentReports: {
+    // Job Report
+    JobReport_GetMasterData: '/JobReport/GetReportMasterData',
+    JobReport_Get: '/JobReport/GetJobReport',
+    JobReport_DownloadExcel: '/JobReport/DownloadJobReportExcel',
+
+    // MRF Report
+    MrfReport_GetMasterData: '/MrfReport/GetReportMasterData',
+    MrfReport_Get: '/MrfReport/GetMrfReport',
+    MrfReport_DownloadExcel: '/MrfReport/DownloadMrfReportExcel',
+
+    // Candidate Report
+    CandidateReport_GetMasterData: '/CandidateReport/GetReportMasterData',
+    CandidateReport_Get: '/CandidateReport/GetCandidateReport',
+    CandidateReport_DownloadExcel: '/CandidateReport/DownloadCandidateReportExcel',
+
+    // Location Report
+    LocationReport_GetMasterData: '/LocationReport/GetReportMasterData',
+    LocationReport_Get: '/LocationReport/GetLocationReport',
+    LocationReport_GetLocationWiseJobs: '/LocationReport/GetLocationWiseJobsReport',
+    LocationReport_DownloadExcel: '/LocationReport/DownloadLocationReportExcel',
+    LocationReport_DownloadLocationWiseJobsExcel: '/LocationReport/DownloadLocationWiseJobsReportExcel',
+
+    // Vendor Report
+    VendorReport_GetMasterData: '/VendorReport/GetReportMasterData',
+    VendorReport_Get: '/VendorReport/GetVendorReport',
+    VendorReport_GetVendorWise: '/VendorReport/GetVendorWiseReport',
+    VendorReport_DownloadExcel: '/VendorReport/DownloadVendorReportExcel',
+    VendorReport_DownloadVendorWiseExcel: '/VendorReport/DownloadVendorWiseReportExcel'
+  },
 
    BranchMst:'/Branch',
    dealerOutlet:'/DealerOutlet',
    
 
 };
+

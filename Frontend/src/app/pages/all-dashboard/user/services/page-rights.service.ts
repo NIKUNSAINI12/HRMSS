@@ -30,4 +30,9 @@ export class PageRightsService {
       const view_url = `${environment.baseURL1}${environment.Authentication.add_pageRight}`;
       return this.http.post<any>(view_url,data);  // Returning any type
     }
+
+    getUserAccessRights(userId: string, moduleId: number): Observable<any> {
+      const view_url = `${environment.baseURL1}${environment.Authentication.GetUserAccessRights}?userId=${userId}&moduleId=${moduleId}`;
+      return this.http.get<any>(view_url);
+    }
 }

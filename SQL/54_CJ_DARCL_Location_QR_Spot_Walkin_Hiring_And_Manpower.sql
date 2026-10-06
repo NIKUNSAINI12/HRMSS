@@ -1,0 +1,600 @@
+-- ============================================================================
+-- CJ DARCL Logistics - Recruitment Architecture (Step 1 Master)
+-- File: 54_CJ_DARCL_Location_QR_Spot_Walkin_Hiring_And_Manpower.sql
+-- Purpose: Location QR Code Spot Walk-In Hiring, Hub Public Open Requisitions,
+--          Aadhaar/Mobile Duplicate Verification, and Manpower Buffer Tracking
+-- Date: 2026-10-03
+-- ============================================================================
+
+USE [HRBook_22];
+GO
+
+-- ============================================================================
+-- 1. SP: dbo.usp_REC_GetLocationManpowerList
+-- ============================================================================
+CREATE OR ALTER PROCEDURE dbo.usp_REC_GetLocationManpowerList
+(
+    @CompanyId VARCHAR(50) = NULL
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        l.pk_locid AS locationId,
+        l.locname  AS locationName,
+        ISNULL(l.locationCode, ISNULL(l.code, 'HUB')) AS locationCode,
+        ISNULL(c.cityname, ISNULL(s.description, 'Operational Hub')) AS state,
+        ISNULL(z.zoneDescription, 'General Zone') AS zone,
+        ISNULL(l.BaseDemand, 0) AS baseRequired,
+        ISNULL(l.BufferPercent, 0.00) AS bufferPercentage,
+        ISNULL(l.BufferHeads, 0) AS bufferHeadcount,
+        ISNULL(l.TargetCapacity, 0) AS totalTargetCapacity,
+        ISNULL((SELECT COUNT(1) FROM dbo.SAL_Employee_Mst e WITH (NOLOCK) WHERE e.fk_locid = l.pk_locid), 0) AS currentOccupied,
+        l.fk_companyId AS companyId,
+        ISNULL(ccd.compname, 'HRMS Portal') AS companyName,
+        ISNULL(cfg.Company_LogoPath, ccd.complogo) AS companyLogo
+    FROM dbo.Location_Mst l WITH (NOLOCK)
+    LEFT JOIN dbo.SAL_City_Mst c WITH (NOLOCK) ON c.pk_cityid = l.fk_cityid
+    LEFT JOIN dbo.SAL_State_Mst s WITH (NOLOCK) ON s.pk_stateid = l.fk_stateid
+    LEFT JOIN dbo.SAL_Zone_Mst z WITH (NOLOCK) ON z.pk_zoneId = l.fk_zoneId
+    LEFT JOIN dbo.Common_Client_Details ccd WITH (NOLOCK) ON (
+        ccd.fk_companyId = l.fk_companyId 
+        OR CAST(ccd.pk_clientid AS VARCHAR(50)) = l.fk_companyId
+        OR (@CompanyId IS NOT NULL AND (ccd.fk_companyId = @CompanyId OR CAST(ccd.pk_clientid AS VARCHAR(50)) = @CompanyId))
+    )
+    LEFT JOIN dbo.SAL_Company_Config cfg WITH (NOLOCK) ON (
+        cfg.pk_companyId = l.fk_companyId 
+        OR cfg.pk_companyId = ccd.fk_companyId
+        OR (@CompanyId IS NOT NULL AND cfg.pk_companyId = @CompanyId)
+    )
+    WHERE (@CompanyId IS NULL OR l.fk_companyId = @CompanyId)
+    ORDER BY l.locname;
+END;
+GO
+
+-- ============================================================================
+-- 2. SP: dbo.usp_REC_GetPublicLocationJobsAndVendors
+-- Fetches:
+--   1. Location & Company details (name, logo, hub code)
+--   2. Dynamic Open Job Requisitions from REC_JobRequisition_Mst filtered by companyId / locationId
+--   3. Unique Sourcing Vendors from REC_Candidate_Details (IsVendor = 1)
+-- ============================================================================
+CREATE OR ALTER PROCEDURE dbo.usp_REC_GetPublicLocationJobsAndVendors
+    @LocationId VARCHAR(100),
+    @CompanyId VARCHAR(100) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- 1. Dynamic Company Code & Client ID Resolution
+    DECLARE @CompanyCode VARCHAR(50) = NULL;
+    DECLARE @ClientPkId VARCHAR(50) = NULL;
+
+    IF @CompanyId IS NOT NULL AND @CompanyId <> ''
+    BEGIN
+        SELECT TOP 1 
+            @CompanyCode = fk_companyId,
+            @ClientPkId = CAST(pk_clientid AS VARCHAR(50))
+        FROM dbo.Common_Client_Details WITH (NOLOCK)
+        WHERE fk_companyId = @CompanyId OR CAST(pk_clientid AS VARCHAR(50)) = @CompanyId;
+
+        IF @CompanyCode IS NULL
+        BEGIN
+            SET @CompanyCode = @CompanyId;
+        END;
+    END;
+
+    -- Fallback: deduce company from Location record if companyId wasn't passed directly
+    IF (@CompanyCode IS NULL OR @CompanyCode = '') AND @LocationId IS NOT NULL AND @LocationId <> ''
+    BEGIN
+        SELECT TOP 1 @CompanyCode = loc.fk_companyId
+        FROM dbo.Location_Mst loc WITH (NOLOCK)
+        WHERE loc.pk_locid = @LocationId OR loc.code = @LocationId OR loc.locationCode = @LocationId;
+
+        IF @CompanyCode IS NOT NULL
+        BEGIN
+            SELECT TOP 1 @ClientPkId = CAST(pk_clientid AS VARCHAR(50))
+            FROM dbo.Common_Client_Details WITH (NOLOCK)
+            WHERE fk_companyId = @CompanyCode;
+        END;
+    END;
+
+    -- 2. Location Details with Company Name & Logo
+    SELECT 
+        loc.pk_locid AS locationId,
+        loc.locname AS locationName,
+        ISNULL(loc.locationCode, loc.code) AS locationCode,
+        ISNULL(st.description, 'Operational Hub') AS state,
+        ISNULL(zn.zoneDescription, 'General Zone') AS zone,
+        ISNULL(ccd.compname, 'HRMS Portal') AS companyName,
+        ISNULL(cfg.Company_LogoPath, ccd.complogo) AS companyLogo
+    FROM dbo.Location_Mst loc WITH (NOLOCK)
+    LEFT JOIN dbo.SAL_State_Mst st WITH (NOLOCK) ON TRY_CAST(loc.fk_stateid AS SMALLINT) = st.pk_stateid
+    LEFT JOIN dbo.SAL_Zone_Mst zn WITH (NOLOCK) ON TRY_CAST(loc.fk_zoneId AS BIGINT) = zn.pk_zoneId
+    LEFT JOIN dbo.Common_Client_Details ccd WITH (NOLOCK) ON (
+        ccd.fk_companyId = @CompanyCode 
+        OR CAST(ccd.pk_clientid AS VARCHAR(50)) = @ClientPkId
+        OR ccd.fk_companyId = loc.fk_companyId
+    )
+    LEFT JOIN dbo.SAL_Company_Config cfg WITH (NOLOCK) ON (
+        cfg.pk_companyId = ccd.fk_companyId 
+        OR cfg.pk_companyId = @CompanyCode 
+        OR cfg.pk_companyId = loc.fk_companyId
+    )
+    WHERE (
+        (@LocationId IS NOT NULL AND @LocationId <> '' AND (loc.pk_locid = @LocationId OR loc.code = @LocationId OR loc.locationCode = @LocationId))
+        OR ((@LocationId IS NULL OR @LocationId = '') AND (@CompanyCode IS NOT NULL AND loc.fk_companyId = @CompanyCode))
+    );
+
+    -- 3. Dynamic Job Requisitions from REC_JobRequisition_Mst (Strict Company Scoping)
+    SELECT 
+        req.pk_reqid AS jobId,
+        req.Mrfcode AS mrfCode,
+        req.jobtitle AS jobTitle,
+        ISNULL(dept.description, '') AS department,
+        ISNULL(desg.designation, req.jobtitle) AS designation,
+        'On-Site' AS workplaceType,
+        'Full-Time' AS employmentType,
+        ISNULL(req.No_of_post, 1) AS openPositions,
+        ISNULL(req.Experience_From, 0) AS expMin,
+        ISNULL(req.Experience_To, 5) AS expMax,
+        ISNULL(req.CTC_From, 0) AS ctcMin,
+        ISNULL(req.CTC_To, 0) AS ctcMax,
+        ISNULL(req.Technical_Skills, '') AS primarySkills,
+        CONVERT(VARCHAR(10), req.dated, 120) AS targetStartDate
+    FROM dbo.REC_JobRequisition_Mst req WITH (NOLOCK)
+    LEFT JOIN dbo.Department_Mst dept WITH (NOLOCK) ON req.fk_deptid = dept.pk_deptid
+    LEFT JOIN dbo.SAL_Designation_Mst desg WITH (NOLOCK) ON req.fk_desgid = desg.pk_desgid
+    WHERE (
+        (@CompanyCode IS NULL AND @ClientPkId IS NULL)
+        OR (req.fk_companyId = @CompanyCode OR req.fk_companyId = @ClientPkId OR req.fk_companyId = @CompanyId)
+    )
+    AND (
+        @LocationId IS NULL OR @LocationId = ''
+        OR req.fk_locid = @LocationId
+        OR req.fk_locid IN (
+            SELECT pk_locid FROM dbo.Location_Mst WITH (NOLOCK) WHERE pk_locid = @LocationId OR code = @LocationId OR locationCode = @LocationId
+        )
+        OR req.fk_locid IS NULL OR req.fk_locid = ''
+    )
+    ORDER BY req.dated DESC;
+
+    -- 4. Sourcing Vendors (Strict Company Scoping: IsVendor = 1 for the specific Company)
+    SELECT 
+        MIN(pk_recId) AS vendorId,
+        Vendor_Name AS vendorName,
+        ISNULL(MIN(Vendor_Code), '') AS vendorCode
+    FROM dbo.REC_Candidate_Details WITH (NOLOCK)
+    WHERE IsVendor = 1 
+      AND Vendor_Name IS NOT NULL 
+      AND LTRIM(RTRIM(Vendor_Name)) <> ''
+      AND (
+          (@CompanyCode IS NULL AND @ClientPkId IS NULL)
+          OR (
+              fk_companyId = @CompanyCode 
+              OR fk_companyId = @ClientPkId 
+              OR fk_companyId = @CompanyId
+              OR CompanyId = @CompanyCode 
+              OR CompanyId = @ClientPkId 
+              OR CompanyId = @CompanyId
+          )
+      )
+    GROUP BY Vendor_Name
+    ORDER BY Vendor_Name ASC;
+END;
+GO
+
+-- =========================================================================
+-- 3. SP: dbo.usp_REC_CheckCandidateAadhaarStatus
+-- =========================================================================
+CREATE OR ALTER PROCEDURE dbo.usp_REC_CheckCandidateAadhaarStatus
+    @AadhaarNo NVARCHAR(50),
+    @CompanyId VARCHAR(100) = NULL,
+    @LocationId VARCHAR(100) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SET @AadhaarNo = REPLACE(REPLACE(LTRIM(RTRIM(@AadhaarNo)), '-', ''), ' ', '');
+
+    -- Check in REC_Candidate_Applications first
+    DECLARE @AppCandidateName NVARCHAR(200);
+    DECLARE @AppStage NVARCHAR(100);
+    DECLARE @AppInterviewStatus NVARCHAR(100);
+    DECLARE @AppJobTitle NVARCHAR(200);
+
+    SELECT TOP 1
+        @AppCandidateName = CandidateName,
+        @AppStage = Stage,
+        @AppInterviewStatus = InterviewStatus,
+        @AppJobTitle = Designation
+    FROM REC_Candidate_Applications
+    WHERE REPLACE(REPLACE(AadhaarNo, '-', ''), ' ', '') = @AadhaarNo
+    ORDER BY pk_appId DESC;
+
+    IF @AppCandidateName IS NOT NULL
+    BEGIN
+        -- If candidate is already in active interview or selected or hired
+        IF @AppInterviewStatus IN ('Selected', 'Interview Scheduled', 'L1 Cleared', 'L2 Cleared', 'HR Cleared', 'Offer Released', 'Joined')
+           OR @AppStage IN ('Interview', 'Selected', 'Offer', 'Onboarding', 'Hired')
+        BEGIN
+            SELECT 
+                1 AS ExistsStatus,
+                0 AS CanProceed,
+                @AppCandidateName AS CandidateName,
+                ISNULL(@AppInterviewStatus, @AppStage) AS CurrentStatus,
+                ISNULL(@AppJobTitle, 'Walk-In Role') AS JobTitle,
+                'Candidate is already in active interview / selection process (' + ISNULL(@AppInterviewStatus, @AppStage) + '). New application cannot be submitted.' AS Message;
+            RETURN;
+        END
+        ELSE IF @AppInterviewStatus IN ('Rejected', 'Dropped')
+        BEGIN
+            SELECT 
+                1 AS ExistsStatus,
+                1 AS CanProceed,
+                @AppCandidateName AS CandidateName,
+                @AppInterviewStatus AS CurrentStatus,
+                ISNULL(@AppJobTitle, 'Walk-In Role') AS JobTitle,
+                'Candidate record found (Previous Status: ' + @AppInterviewStatus + '). Re-application allowed.' AS Message;
+            RETURN;
+        END
+        ELSE
+        BEGIN
+            SELECT 
+                1 AS ExistsStatus,
+                0 AS CanProceed,
+                @AppCandidateName AS CandidateName,
+                ISNULL(@AppInterviewStatus, 'Under Review') AS CurrentStatus,
+                ISNULL(@AppJobTitle, 'Walk-In Role') AS JobTitle,
+                'An application with this Aadhaar number is already pending review.' AS Message;
+            RETURN;
+        END
+    END
+
+    -- Check in REC_Candidate_Details (Vendor_AaddharNo)
+    DECLARE @DetCandidateName NVARCHAR(200);
+    DECLARE @DetStatus NVARCHAR(100);
+    DECLARE @DetJobTitle NVARCHAR(200);
+
+    SELECT TOP 1
+        @DetCandidateName = candidate_name,
+        @DetStatus = status,
+        @DetJobTitle = designation
+    FROM REC_Candidate_Details
+    WHERE REPLACE(REPLACE(Vendor_AaddharNo, '-', ''), ' ', '') = @AadhaarNo
+    ORDER BY pk_recId DESC;
+
+    IF @DetCandidateName IS NOT NULL
+    BEGIN
+        IF @DetStatus IN ('Selected', 'Final Selected', 'Joined', 'Onboarding')
+        BEGIN
+            SELECT 
+                1 AS ExistsStatus,
+                0 AS CanProceed,
+                @DetCandidateName AS CandidateName,
+                @DetStatus AS CurrentStatus,
+                ISNULL(@DetJobTitle, 'Walk-In Role') AS JobTitle,
+                'Candidate already exists in onboarding/selection (' + @DetStatus + '). New submission blocked.' AS Message;
+            RETURN;
+        END
+    END
+
+    -- If no duplicate or blocking record found
+    SELECT 
+        0 AS ExistsStatus,
+        1 AS CanProceed,
+        '' AS CandidateName,
+        'New' AS CurrentStatus,
+        '' AS JobTitle,
+        'Aadhaar number verified. Candidate eligible to apply.' AS Message;
+END;
+GO
+
+-- =========================================================================
+-- 4. SP: dbo.usp_REC_SubmitWalkInCandidate (With Mobile & Aadhaar Duplicate Check)
+-- =========================================================================
+CREATE OR ALTER PROCEDURE dbo.usp_REC_SubmitWalkInCandidate
+    @CandidateName NVARCHAR(200),
+    @MobileNumber NVARCHAR(50),
+    @AadhaarNo NVARCHAR(50) = NULL,
+    @VendorId VARCHAR(100) = NULL,
+    @VendorName NVARCHAR(200) = NULL,
+    @JobId VARCHAR(100) = NULL,
+    @JobTitle NVARCHAR(200) = NULL,
+    @LocationId VARCHAR(100) = NULL,
+    @CompanyId VARCHAR(100) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Sanitize Mobile Number
+    SET @MobileNumber = REPLACE(REPLACE(REPLACE(REPLACE(LTRIM(RTRIM(@MobileNumber)), '+91', ''), '-', ''), ' ', ''), '+', '');
+    IF LEN(@MobileNumber) > 10
+    BEGIN
+        SET @MobileNumber = RIGHT(@MobileNumber, 10);
+    END
+
+    -- Sanitize Aadhaar Number (if provided)
+    SET @AadhaarNo = CASE 
+        WHEN @AadhaarNo IS NOT NULL AND LTRIM(RTRIM(@AadhaarNo)) <> '' 
+        THEN REPLACE(REPLACE(LTRIM(RTRIM(@AadhaarNo)), '-', ''), ' ', '') 
+        ELSE NULL 
+    END;
+
+    SET @CandidateName = LTRIM(RTRIM(@CandidateName));
+
+    -- ── 1. DUPLICATE MOBILE NUMBER CHECK (REC_Candidate_Applications) ──────
+    DECLARE @ExistingAppName NVARCHAR(200);
+    DECLARE @ExistingAppStatus NVARCHAR(100);
+    DECLARE @ExistingAppJob NVARCHAR(200);
+
+    SELECT TOP 1
+        @ExistingAppName = CandidateName,
+        @ExistingAppStatus = ISNULL(InterviewStatus, Stage),
+        @ExistingAppJob = Designation
+    FROM REC_Candidate_Applications
+    WHERE RIGHT(REPLACE(REPLACE(REPLACE(REPLACE(Mobile, '+91', ''), '-', ''), ' ', ''), '+', ''), 10) = @MobileNumber
+      AND ISNULL(InterviewStatus, '') NOT IN ('Rejected', 'Dropped')
+    ORDER BY pk_appId DESC;
+
+    IF @ExistingAppName IS NOT NULL
+    BEGIN
+        SELECT 
+            0 AS Success,
+            '' AS ApplicationRef,
+            @ExistingAppName AS CandidateName,
+            ISNULL(@ExistingAppJob, 'Spot Candidate') AS JobTitle,
+            'Mobile Number ' + @MobileNumber + ' already exists (' + @ExistingAppName + ' - ' + ISNULL(@ExistingAppStatus, 'Active') + '). Duplicate mobile numbers are not allowed.' AS Message;
+        RETURN;
+    END
+
+    -- ── 2. DUPLICATE MOBILE NUMBER CHECK (REC_Candidate_Details) ───────────
+    DECLARE @ExistingDetName NVARCHAR(200);
+    DECLARE @ExistingDetStatus NVARCHAR(100);
+
+    SELECT TOP 1
+        @ExistingDetName = candidate_name,
+        @ExistingDetStatus = status
+    FROM REC_Candidate_Details
+    WHERE (IsVendor = 0 OR IsVendor IS NULL)
+      AND (
+        RIGHT(REPLACE(REPLACE(REPLACE(REPLACE(mobile, '+91', ''), '-', ''), ' ', ''), '+', ''), 10) = @MobileNumber
+        OR RIGHT(REPLACE(REPLACE(REPLACE(REPLACE(phone, '+91', ''), '-', ''), ' ', ''), '+', ''), 10) = @MobileNumber
+      )
+    ORDER BY pk_recId DESC;
+
+    IF @ExistingDetName IS NOT NULL
+    BEGIN
+        SELECT 
+            0 AS Success,
+            '' AS ApplicationRef,
+            @ExistingDetName AS CandidateName,
+            'Spot Candidate' AS JobTitle,
+            'Mobile Number ' + @MobileNumber + ' is already registered under ' + @ExistingDetName + '. Duplicate mobile numbers are not allowed.' AS Message;
+        RETURN;
+    END
+
+    -- ── 3. DUPLICATE AADHAAR NUMBER CHECK (If Provided) ────────────────────
+    IF @AadhaarNo IS NOT NULL AND LEN(@AadhaarNo) = 12
+    BEGIN
+        DECLARE @AadhaarDupName NVARCHAR(200);
+        DECLARE @AadhaarDupStatus NVARCHAR(100);
+
+        SELECT TOP 1 
+            @AadhaarDupName = CandidateName,
+            @AadhaarDupStatus = ISNULL(InterviewStatus, Stage)
+        FROM REC_Candidate_Applications
+        WHERE REPLACE(REPLACE(AadhaarNo, '-', ''), ' ', '') = @AadhaarNo
+          AND ISNULL(InterviewStatus, '') NOT IN ('Rejected', 'Dropped')
+        ORDER BY pk_appId DESC;
+
+        IF @AadhaarDupName IS NOT NULL
+        BEGIN
+            SELECT 
+                0 AS Success,
+                '' AS ApplicationRef,
+                @AadhaarDupName AS CandidateName,
+                'Spot Candidate' AS JobTitle,
+                'Aadhaar Number already exists with active application (' + @AadhaarDupName + ' - ' + ISNULL(@AadhaarDupStatus, 'Active') + '). Duplicate application not allowed.' AS Message;
+            RETURN;
+        END
+    END
+
+    -- ── 4. RESOLVE VENDOR DETAILS ──────────────────────────────────────────
+    DECLARE @IsVendorSelected BIT = 0;
+    IF @VendorId IS NOT NULL AND @VendorId <> '' AND @VendorId <> 'DIRECT' AND @VendorId <> 'V-DIR-01'
+    BEGIN
+        SET @IsVendorSelected = 1;
+        IF @VendorName IS NULL OR @VendorName = '' OR @VendorName = 'Direct Walk-In'
+        BEGIN
+            SELECT TOP 1 @VendorName = Vendor_Name 
+            FROM REC_Candidate_Details 
+            WHERE (pk_recId = @VendorId OR Vendor_Code = @VendorId) AND IsVendor = 1;
+        END
+    END
+    ELSE
+    BEGIN
+        SET @VendorName = 'Direct Walk-In / Self';
+    END
+
+    -- ── 5. GENERATE APPLICATION NUMBER & RESOLVE LOCATION ──────────────────
+    DECLARE @AppNo NVARCHAR(50) = 'APP/WLK/' + FORMAT(GETDATE(), 'yyyy') + '/' + RIGHT(CAST(ABS(CHECKSUM(NEWID())) AS NVARCHAR(20)), 4);
+    DECLARE @LocName NVARCHAR(200) = 'Hub';
+
+    SELECT TOP 1 @LocName = locname FROM Location_Mst WHERE pk_locid = @LocationId OR code = @LocationId OR locationCode = @LocationId;
+
+    DECLARE @ValidReqId BIGINT = 0;
+    IF @JobId IS NOT NULL AND TRY_CAST(@JobId AS BIGINT) IS NOT NULL
+    BEGIN
+        SET @ValidReqId = CAST(@JobId AS BIGINT);
+    END
+
+    DECLARE @ValidLegacyJobId VARCHAR(50) = NULL;
+    IF @JobId IS NOT NULL AND EXISTS (SELECT 1 FROM REC_Open_Newjob WHERE pk_JobId = @JobId)
+    BEGIN
+        SET @ValidLegacyJobId = @JobId;
+    END
+
+    DECLARE @DefaultUserId VARCHAR(50) = (SELECT TOP 1 pk_userId FROM UM_Users_Mst);
+
+    -- ── 6. INSERT INTO REC_Candidate_Applications ──────────────────────────
+    INSERT INTO REC_Candidate_Applications (
+        ApplicationNo,
+        fk_reqid,
+        CandidateName,
+        Mobile,
+        AadhaarNo,
+        OperatingHub,
+        Designation,
+        SourceType,
+        fk_vendorId,
+        VendorName,
+        Stage,
+        InterviewStatus,
+        fk_companyId,
+        CreatedDate,
+        CreatedBy
+    ) VALUES (
+        @AppNo,
+        @ValidReqId,
+        @CandidateName,
+        @MobileNumber,
+        @AadhaarNo,
+        @LocName,
+        ISNULL(@JobTitle, 'Spot Walk-In Candidate'),
+        CASE WHEN @IsVendorSelected = 1 THEN 'Vendor Sourced' ELSE 'Location QR - Walk-In' END,
+        CASE WHEN @IsVendorSelected = 1 THEN @VendorId ELSE NULL END,
+        @VendorName,
+        'Applied',
+        'Walk-In Applied',
+        @CompanyId,
+        GETDATE(),
+        'Location QR Portal'
+    );
+
+    -- ── 7. INSERT INTO REC_Candidate_Details ───────────────────────────────
+    DECLARE @NewRecId VARCHAR(50) = 'REC-' + CAST(ABS(CHECKSUM(NEWID())) AS VARCHAR(20));
+
+    INSERT INTO REC_Candidate_Details (
+        pk_recId,
+        fk_jobId,
+        candidate_name,
+        mobile,
+        Vendor_AaddharNo,
+        Vendor_Name,
+        Vendor_Code,
+        fk_locid,
+        designation,
+        source,
+        status,
+        IsVendor,
+        online_submit,
+        fk_companyId,
+        InsDate,
+        fk_insUserID
+    ) VALUES (
+        @NewRecId,
+        @ValidLegacyJobId,
+        @CandidateName,
+        @MobileNumber,
+        @AadhaarNo,
+        @VendorName,
+        CASE WHEN @IsVendorSelected = 1 THEN @VendorId ELSE NULL END,
+        @LocationId,
+        ISNULL(@JobTitle, 'Spot Walk-In Candidate'),
+        CASE WHEN @IsVendorSelected = 1 THEN 'Vendor Sourced' ELSE 'Location QR - Walk-In' END,
+        '1',
+        0,
+        1,
+        @CompanyId,
+        GETDATE(),
+        @DefaultUserId
+    );
+
+    SELECT 
+        1 AS Success,
+        @AppNo AS ApplicationRef,
+        @CandidateName AS CandidateName,
+        ISNULL(@JobTitle, 'Spot Walk-In Candidate') AS JobTitle,
+        'Application submitted successfully! Your Reference ID is ' + @AppNo AS Message;
+END;
+GO
+
+-- ============================================================================
+-- 5. SP: dbo.Location_Update_Manpower_Buffer
+-- ============================================================================
+CREATE OR ALTER PROCEDURE dbo.Location_Update_Manpower_Buffer
+(
+    @pk_locid VARCHAR(50),
+    @BaseDemand INT,
+    @BufferPercent DECIMAL(5,2),
+    @ModifiedBy VARCHAR(50) = 'Admin'
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @BufferHeads INT = CEILING(@BaseDemand * (@BufferPercent / 100.0));
+    DECLARE @TargetCapacity INT = @BaseDemand + @BufferHeads;
+
+    -- Validate or resolve fk_updUserID against UM_Users_Mst to satisfy Foreign Key constraint FK_Location_Mst_UM_Users_Mst1
+    DECLARE @ValidUserId VARCHAR(50) = NULL;
+
+    SELECT TOP 1 @ValidUserId = pk_userId
+    FROM dbo.UM_Users_Mst WITH (NOLOCK)
+    WHERE pk_userId = @ModifiedBy OR loginName = @ModifiedBy;
+
+    -- Retrieve old values for audit logging
+    DECLARE @OldBaseDemand INT = 0, @OldBufferPercent DECIMAL(5,2) = 0.00;
+    SELECT TOP 1 @OldBaseDemand = ISNULL(BaseDemand, 0), @OldBufferPercent = ISNULL(BufferPercent, 0.00)
+    FROM dbo.Location_Mst WITH (NOLOCK)
+    WHERE pk_locid = @pk_locid OR locationCode = @pk_locid OR code = @pk_locid;
+
+    -- Update existing Location_Mst record
+    UPDATE dbo.Location_Mst
+    SET BaseDemand = @BaseDemand,
+        BufferPercent = @BufferPercent,
+        BufferHeads = @BufferHeads,
+        TargetCapacity = @TargetCapacity,
+        fk_updUserID = ISNULL(@ValidUserId, fk_updUserID)
+    WHERE pk_locid = @pk_locid OR locationCode = @pk_locid OR code = @pk_locid;
+
+    -- Record in existing CL_UpdateAudit_Log table (wrapped in TRY-CATCH to ensure update transaction completes)
+    BEGIN TRY
+        IF (@OldBufferPercent <> @BufferPercent)
+        BEGIN
+            INSERT INTO dbo.CL_UpdateAudit_Log
+            (
+                DocumentId, DocumentCode, DocumentName, FieldName, 
+                PreviousValue, CurrentValue, EntryBy, EntryDate
+            )
+            VALUES
+            (
+                0, @pk_locid, 'Location_Mst_Buffer', 'BufferPercent',
+                CAST(@OldBufferPercent AS VARCHAR(50)), CAST(@BufferPercent AS VARCHAR(50)),
+                @ModifiedBy, GETDATE()
+            );
+        END
+
+        IF (@OldBaseDemand <> @BaseDemand)
+        BEGIN
+            INSERT INTO dbo.CL_UpdateAudit_Log
+            (
+                DocumentId, DocumentCode, DocumentName, FieldName, 
+                PreviousValue, CurrentValue, EntryBy, EntryDate
+            )
+            VALUES
+            (
+                0, @pk_locid, 'Location_Mst_Buffer', 'BaseDemand',
+                CAST(@OldBaseDemand AS VARCHAR(50)), CAST(@BaseDemand AS VARCHAR(50)),
+                @ModifiedBy, GETDATE()
+            );
+        END
+    END TRY
+    BEGIN CATCH
+    END CATCH;
+
+    SELECT 1 AS Status, 'Location manpower and buffer updated successfully.' AS Message;
+END;
+GO

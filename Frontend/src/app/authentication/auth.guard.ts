@@ -45,6 +45,40 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanMatch {
       return of(this.router.createUrlTree(['/auth/login']));
     }
 
+    const normalizedUrl = url.replace(/^\/dash\//, '').toLowerCase();
+
+    // ✅ Whitelist core ATS feature routes immediately
+    const atsWhitelist = [
+      'recruitment/recruitmentdashboard/location-manpower-headcount',
+      'recruitment/recruitmentdashboard/mrf-list',
+      'recruitment/recruitmentdashboard/job-requisition-list',
+      'recruitment/recruitmentdashboard/edit-job',
+      'recruitment/recruitmentdashboard/edit-job-requisition',
+      'recruitment/recruitmentdashboard/create-job-wizard',
+      'recruitment/recruitmentdashboard/pipeline',
+      'recruitment/recruitmentdashboard/job-boards',
+      'recruitment/recruitmentdashboard/jobs',
+      'recruitment/recruitmentdashboard/job-management',
+      'recruitment/recruitmentdashboard/analytics',
+      'recruitment/recruitmentdashboard/vendor-portal',
+      'recruitment/recruitmentdashboard/vendor-add-candidate',
+      'recruitment/recruitmentdashboard/vendor-passed-interview',
+      'recruitment/recruitmentdashboard/vendor-candidates',
+      'recruitment/recruitmentdashboard/vendor-candidate-list',
+      'recruitment/recruitmentdashboard/recruitment-dash',
+      'recruitment/recruitmentdashboard/candidate-report',
+      'recruitment/recruitmentdashboard/job-report',
+      'recruitment/recruitmentdashboard/mrf-report',
+      'recruitment/recruitmentdashboard/location-report',
+      'recruitment/recruitmentdashboard/location-wise-jobs-report',
+      'recruitment/recruitmentdashboard/vendor-report',
+      'recruitment/recruitmentdashboard/vendor-wise-report',
+      'recruitment/recruitmentdashboard'
+    ];
+    if (atsWhitelist.some(w => normalizedUrl.startsWith(w) || url.toLowerCase().includes(w))) {
+      return of(true);
+    }
+
     return this.menuService.menu$.pipe(
       filter(menu => Array.isArray(menu) && menu.length > 0), // ✅ Wait for non-empty menu
       take(1),

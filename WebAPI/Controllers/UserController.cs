@@ -1,4 +1,4 @@
-﻿using HRMSWebAPI.Helper;
+using HRMSWebAPI.Helper;
 using HRMSWebAPI.Models;
 using HRMSWebAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -211,6 +211,24 @@ namespace HRMSWebAPI.Controllers
 
 
 
+                // Query isVendor and fk_vendorId via stored procedure
+                bool isUserVendor = false;
+                string userVendorId = "";
+                try
+                {
+                    using var conn = DataBaseFactory.ConnString();
+                    var vInfo = await conn.QueryFirstOrDefaultAsync<dynamic>(
+                        "dbo.usp_UM_GetUserVendorProfile",
+                        new { UserId = result.UserId, CompanyId = result.CompanyId?.ToString() },
+                        commandType: CommandType.StoredProcedure);
+                    if (vInfo != null)
+                    {
+                        isUserVendor = Convert.ToBoolean(vInfo.isVendor);
+                        userVendorId = (string)vInfo.vendorId;
+                    }
+                }
+                catch { }
+
                 modelResponse.IsSuccess = true;
                 modelResponse.Message = "Successfully logged in";
                 modelResponse.StatusCode = 200;
@@ -219,13 +237,15 @@ namespace HRMSWebAPI.Controllers
                     financialDate1 = result.Date1,
                     financialDate2 = result.Date2,
                     result.UserName,
+                    result.UserId,
+                    result.CompanyId,
                     result.contractor_LabelName,
                     result.ContractorApplicable,
                     result.CompanyName,
+                    isVendor = isUserVendor,
+                    fk_vendorId = userVendorId,
                     accessToken,
                     refreshToken,
-
-
                 };
 
 

@@ -1,4 +1,4 @@
-﻿using HRMSWebAPI.Models;
+using HRMSWebAPI.Models;
 using HRMSWebAPI.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -175,6 +175,36 @@ namespace HRMSWebAPI.Controllers
                 modelResponse.Message = ex.Message;
                 modelResponse.StatusCode = 500;
 
+                return Ok(modelResponse);
+            }
+        }
+
+        /// <summary>
+        /// Returns aggregated L1/L2/L3, CanRaiseRequisition, CanEditManpower flags
+        /// plus the list of location IDs assigned to this user for the given module.
+        /// USP: dbo.UM_SP_GetUserAccessRights
+        /// </summary>
+        [HttpGet("GetUserAccessRights")]
+        [Authorize]
+        public async Task<IActionResult> GetUserAccessRights(
+            [FromQuery] string userId,
+            [FromQuery] int    moduleId)
+        {
+            ModelResponse modelResponse = new ModelResponse();
+            try
+            {
+                var result = await pageRightsRepository.GetUserAccessRightsAsync(userId, moduleId);
+                modelResponse.IsSuccess  = true;
+                modelResponse.Message    = "User access rights retrieved successfully.";
+                modelResponse.Data       = result;
+                modelResponse.StatusCode = 200;
+                return Ok(modelResponse);
+            }
+            catch (Exception ex)
+            {
+                modelResponse.IsSuccess  = false;
+                modelResponse.Message    = ex.Message;
+                modelResponse.StatusCode = 500;
                 return Ok(modelResponse);
             }
         }

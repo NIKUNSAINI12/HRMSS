@@ -1,0 +1,473 @@
+<div class="ats-wizard-page">
+
+  <!-- ── 1. CORPORATE HEADER STRIP (Clean, Immutable MRF Badge, Action Buttons) ────── -->
+  <div class="header-strip d-flex flex-wrap justify-content-between align-items-center mb-2 p-2 px-3 bg-white rounded border border-slate-300 shadow-xs">
+    <div class="d-flex align-items-center gap-2">
+      <a routerLink="/dash/recruitment/recruitmentdashboard/mrf-list" class="btn-back rounded d-flex align-items-center justify-content-center text-dark text-decoration-none" title="Back to Requisitions Directory">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+        <span class="page-title text-dark fw-bold" style="font-size: 14px;">Edit Manpower Requisition</span>
+        <span class="badge-chip bg-primary text-white border shadow-sm">
+          <i class="bi bi-lock-fill me-1"></i> MRF: {{ mrfCode }}
+        </span>
+        <span class="badge-chip bg-slate-100 text-slate-800 border border-slate-300" style="color: #0f172a; background-color: #f1f5f9;">CJ DARCL Logistics</span>
+        <span class="badge-chip" [ngClass]="originalStatus === 'Active' ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-warning-subtle text-warning border border-warning-subtle'">
+          {{ originalStatus }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Header Action Controls -->
+    <div class="d-flex align-items-center gap-1.5 mt-1 mt-md-0">
+      <button type="button" class="btn btn-outline-dark btn-sm fw-bold" (click)="updateRequisition(true)" [disabled]="isSubmitting || isLoading" style="font-size: 11px; padding: 3px 10px;">
+        <i class="bi bi-file-earmark me-1"></i> Save as Draft
+      </button>
+
+      <button type="button" class="btn btn-primary-action fw-semibold shadow-sm" (click)="updateRequisition(false)" [disabled]="isSubmitting || isLoading || isHeadcountExceeded">
+        <i class="bi bi-check2-circle me-1" *ngIf="!isSubmitting"></i>
+        <i class="fa fa-spinner fa-spin me-1" *ngIf="isSubmitting"></i>
+        {{ isSubmitting ? 'Saving Changes...' : (isRejected ? 'Save & Resubmit to ' + (rejectedByLevel || 'Workflow') : 'Save & Update Requisition') }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="p-4 text-center bg-white rounded border border-slate-300 my-2">
+    <div class="spinner-border text-primary" role="status" style="width: 1.8rem; height: 1.8rem;"></div>
+    <div class="mt-2 text-dark fw-bold" style="font-size: 12px;">Loading Requisition Details for {{ mrfCode || 'MRF' }}...</div>
+  </div>
+
+  <!-- Rejection Alert Banner (If Rejected at L1, L2, or L3) -->
+  <div *ngIf="!isLoading && isRejected" class="alert alert-danger border border-danger-subtle rounded p-3 mb-2 shadow-xs bg-danger-subtle text-dark">
+    <div class="d-flex align-items-start gap-3">
+      <i class="bi bi-exclamation-triangle-fill text-danger fs-4 mt-0.5"></i>
+      <div class="flex-grow-1" style="font-size: 12px;">
+        <div class="fw-bold text-danger fs-6 d-flex align-items-center gap-2">
+          <span>Requisition Returned for Revision</span>
+          <span class="badge bg-danger text-white">Rejected at {{ rejectedByLevel || 'Approval Stage' }}</span>
+        </div>
+        <div class="mt-1" *ngIf="rejectedByName">
+          <strong>Reviewer:</strong> {{ rejectedByName }}
+          <span class="text-muted ms-2" *ngIf="rejectedByDate">Date: {{ rejectedByDate | date:'dd-MM-yyyy, hh:mm:ss a' }}</span>
+        </div>
+        <div class="mt-2 p-2 bg-white rounded border border-danger-subtle text-dark" *ngIf="rejectionRemarks">
+          <strong class="text-danger">Reviewer Remarks:</strong> {{ rejectionRemarks }}
+        </div>
+        <div class="mt-2 text-dark fw-semibold" style="font-size: 11.5px;">
+          <i class="bi bi-info-circle-fill text-primary me-1"></i> Make your necessary corrections below. When you click <strong>Save & Resubmit</strong>, this MRF will automatically be submitted back directly to <strong>{{ rejectedByLevel }}</strong> for approval without requiring prior approved stages to approve again.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. MAIN WORKFLOW GRID ────────────────────────────────────────────── -->
+  <div class="row g-2" *ngIf="!isLoading">
+    
+    <!-- Left Column: Editable Form Details -->
+    <div class="col-12 col-xl-8">
+
+      <!-- Card 1: Core Requisition Mandate (Service Type, Designation, Skill, Numbers, Location) -->
+      <div class="bento-box mb-2 bg-white rounded border border-slate-300 shadow-xs">
+        <div class="bento-header d-flex justify-content-between align-items-center p-2 px-3 border-bottom bg-white">
+          <div class="d-flex align-items-center gap-2">
+            <span class="step-num-badge">1</span>
+            <span class="fw-bold text-dark" style="font-size: 12px; color: #0f172a;">Core Requisition Mandate</span>
+          </div>
+          <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-0.5 fw-semibold" style="font-size: 9.5px;">All Fields Editable</span>
+        </div>
+
+        <div class="p-3">
+          <div class="row g-2">
+            
+            <!-- Job Title / Role Name -->
+            <div class="col-12">
+              <label class="form-label required fw-bold text-dark" style="color: #0f172a;">Requisition / Job Title</label>
+              <input type="text" class="form-control form-control-sm fw-semibold text-dark" [(ngModel)]="jobData.jobTitle" placeholder="e.g. Senior Fleet Operations Supervisor" required>
+            </div>
+
+            <!-- Service Type -->
+            <div class="col-12 col-md-6">
+              <label class="form-label required fw-bold text-dark" style="color: #0f172a;">Service Type</label>
+              <select class="form-select form-select-sm fw-semibold text-dark" [(ngModel)]="jobData.serviceType" required>
+                <option value="" disabled>-- Select Logistics Service Division --</option>
+                <option *ngFor="let s of serviceTypeList" [value]="s">{{ s }}</option>
+              </select>
+            </div>
+
+            <!-- Designation (Synced from SAL_Designation_Mst) -->
+            <div class="col-12 col-md-6">
+              <label class="form-label required fw-bold text-dark" style="color: #0f172a;">Designation</label>
+              <input type="text" class="form-control form-control-sm fw-semibold text-dark" list="editDesignationList" [(ngModel)]="jobData.designation" placeholder="Type or select designation" required>
+              <datalist id="editDesignationList">
+                <option *ngFor="let d of designationList" [value]="d.name">{{ d.name }}</option>
+              </datalist>
+            </div>
+
+            <!-- Skill Category -->
+            <div class="col-12 col-md-6">
+              <label class="form-label required fw-bold text-dark" style="color: #0f172a;">Skill Category</label>
+              <select class="form-select form-select-sm fw-semibold text-dark" [(ngModel)]="jobData.skillCategory" required>
+                <option value="" disabled>-- Select Skill Category --</option>
+                <option *ngFor="let sk of skillCategoryList" [value]="sk">{{ sk }}</option>
+              </select>
+            </div>
+
+            <!-- Numbers / Headcount -->
+            <div class="col-12 col-md-6">
+              <label class="form-label required d-flex justify-content-between align-items-center fw-bold text-dark" style="color: #0f172a;">
+                <span>Numbers / Headcount</span>
+                <span class="text-danger fw-bold" *ngIf="isHeadcountExceeded" style="font-size: 10.5px;">
+                  Exceeds Capacity (Max {{ locAvailableTotal }})
+                </span>
+                <span class="text-warning fw-bold" *ngIf="isBufferUtilized" style="font-size: 10.5px;">
+                  Buffer Activated ({{ bufferHeadsUtilized }} heads)
+                </span>
+                <span class="text-success fw-bold" *ngIf="isWithinBase" style="font-size: 10.5px;">
+                  Within Base ({{ locAvailableBase }} left)
+                </span>
+              </label>
+              <div class="input-group input-group-sm">
+                <input type="number" min="1" class="form-control fw-bold text-dark" [(ngModel)]="jobData.openPositions" placeholder="e.g. 5" [class.is-invalid]="isHeadcountExceeded" required>
+                <span class="input-group-text bg-slate-100 text-dark fw-bold border-slate-300" style="font-size: 11px; background-color: #f1f5f9; color: #0f172a;">Positions</span>
+              </div>
+            </div>
+
+            <!-- Operating Location / Hub -->
+            <div class="col-12">
+              <label class="form-label required d-flex justify-content-between fw-bold text-dark" style="color: #0f172a;">
+                <span>Operating Location / Hub</span>
+                <span class="text-slate-700 fw-bold" *ngIf="selectedLocationObj" style="font-size: 10.5px; color: #334155;">
+                  Zone: {{ selectedLocationObj.zone }} • Base Demand: {{ selectedLocationObj.baseDemand }} heads
+                </span>
+              </label>
+              <select class="form-select form-select-sm fw-semibold text-dark" [(ngModel)]="jobData.location" required>
+                <option value="" disabled>-- Select Operating Hub / Branch --</option>
+                <option *ngFor="let loc of authorizedLocationList" [value]="loc.name">
+                  {{ loc.displayName || loc.name }}
+                </option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Organization Hierarchy & Cost Center -->
+      <div class="bento-box mb-2 bg-white rounded border border-slate-300 shadow-xs">
+        <div class="bento-header d-flex justify-content-between align-items-center p-2 px-3 border-bottom bg-white">
+          <div class="d-flex align-items-center gap-2">
+            <span class="step-num-badge">2</span>
+            <span class="fw-bold text-dark" style="font-size: 12px; color: #0f172a;">Organization Hierarchy & Cost Centre</span>
+          </div>
+          <span class="badge bg-slate-100 text-dark border border-slate-300 px-2 py-0.5 fw-semibold" style="font-size: 9.5px; background-color: #f1f5f9; color: #0f172a;">Master Aligned</span>
+        </div>
+
+        <div class="p-3">
+          <div class="row g-2">
+            
+            <!-- Department -->
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark" style="color: #0f172a;">Department</label>
+              <input type="text" class="form-control form-control-sm fw-semibold text-dark" list="editDeptList" [(ngModel)]="jobData.department" placeholder="e.g. Fleet Operations">
+              <datalist id="editDeptList">
+                <option *ngFor="let dept of departmentList" [value]="dept.name">{{ dept.name }}</option>
+              </datalist>
+            </div>
+
+            <!-- Business Vertical -->
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark" style="color: #0f172a;">Business Vertical</label>
+              <input type="text" class="form-control form-control-sm fw-semibold text-dark" [(ngModel)]="jobData.businessVertical" placeholder="e.g. Full Truck Load (FTL) / Express Cargo">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Hiring Modality & Diversity Program -->
+      <div class="bento-box mb-2 bg-white rounded border border-slate-300 shadow-xs">
+        <div class="bento-header d-flex justify-content-between align-items-center p-2 px-3 border-bottom bg-white">
+          <div class="d-flex align-items-center gap-2">
+            <span class="step-num-badge">3</span>
+            <span class="fw-bold text-dark" style="font-size: 12px; color: #0f172a;">Hiring Modality & Diversity Program</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <!-- Reason of Requirement (New vs Replacement) -->
+          <div class="mb-3">
+            <label class="form-label required fw-bold text-dark" style="color: #0f172a;">Reason of Requirement</label>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-sm flex-fill fw-bold" [class.btn-primary]="jobData.hiringType === 'New'" [class.btn-outline-dark]="jobData.hiringType !== 'New'" (click)="setHiringType('New')">
+                <i class="bi bi-plus-circle me-1"></i> New Position (Expansion)
+              </button>
+              <button type="button" class="btn btn-sm flex-fill fw-bold" [class.btn-primary]="jobData.hiringType === 'Replacement'" [class.btn-outline-dark]="jobData.hiringType !== 'Replacement'" (click)="setHiringType('Replacement')">
+                <i class="bi bi-arrow-repeat me-1"></i> Replacement
+              </button>
+            </div>
+          </div>
+
+
+          <!-- Diversity Hiring Toggle & Category -->
+          <div class="p-3 border rounded bg-white border-slate-300 shadow-xs">
+            <div class="form-check form-switch d-flex align-items-center gap-2 mb-2">
+              <input class="form-check-input ms-0" type="checkbox" id="editDiversityToggle" [(ngModel)]="jobData.isDiversityHiring">
+              <label class="form-check-label fw-bold text-dark cursor-pointer mb-0" for="editDiversityToggle" style="font-size: 12px; color: #0f172a;">
+                Enable Diversity & Inclusion Hiring Initiative
+              </label>
+            </div>
+
+            <div *ngIf="jobData.isDiversityHiring" class="mt-2 pt-2 border-top">
+              <label class="form-label required fw-bold text-purple" style="color: #6d28d9;">Diversity Category / Program</label>
+              <select class="form-select form-select-sm fw-semibold text-dark" [(ngModel)]="jobData.diversityCategory">
+                <option value="" disabled>-- Select Diversity Focus Category --</option>
+                <option *ngFor="let d of diversityCategoryList" [value]="d">{{ d }}</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Card 4: Role Specifications & Compensation -->
+      <div class="bento-box mb-2 bg-white rounded border border-slate-300 shadow-xs">
+        <div class="bento-header d-flex justify-content-between align-items-center p-2 px-3 border-bottom bg-white">
+          <div class="d-flex align-items-center gap-2">
+            <span class="step-num-badge">4</span>
+            <span class="fw-bold text-dark" style="font-size: 12px; color: #0f172a;">Role Specifications & Compensation</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <div class="row g-2">
+            
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-bold text-dark">Workplace Type</label>
+              <select class="form-select form-select-sm fw-semibold text-dark" [(ngModel)]="jobData.workplaceType">
+                <option *ngFor="let w of workplaceTypeList" [value]="w">{{ w }}</option>
+              </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-bold text-dark">Employment Type</label>
+              <select class="form-select form-select-sm fw-semibold text-dark" [(ngModel)]="jobData.employmentType">
+                <option *ngFor="let e of employmentTypeList" [value]="e">{{ e }}</option>
+              </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-bold text-dark">Priority</label>
+              <select class="form-select form-select-sm fw-semibold text-dark" [(ngModel)]="jobData.priority">
+                <option *ngFor="let p of priorityList" [value]="p">{{ p }}</option>
+              </select>
+            </div>
+
+            <!-- Experience Range -->
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark">Experience Range (Years)</label>
+              <div class="d-flex align-items-center gap-1">
+                <input type="number" min="0" step="0.5" class="form-control form-control-sm fw-semibold text-dark" [(ngModel)]="jobData.experienceMin" placeholder="Min (e.g. 2)">
+                <span class="fw-bold text-slate-700 px-1" style="font-size: 11px; color: #334155;">to</span>
+                <input type="number" min="0" step="0.5" class="form-control form-control-sm fw-semibold text-dark" [(ngModel)]="jobData.experienceMax" placeholder="Max (e.g. 5)">
+              </div>
+            </div>
+
+            <!-- CTC Range -->
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark">Annual CTC Budget (LPA)</label>
+              <div class="d-flex align-items-center gap-1">
+                <input type="number" min="0" step="0.1" class="form-control form-control-sm fw-semibold text-dark" [(ngModel)]="jobData.ctcMin" placeholder="Min (e.g. 3.5)">
+                <span class="fw-bold text-slate-700 px-1" style="font-size: 11px; color: #334155;">to</span>
+                <input type="number" min="0" step="0.1" class="form-control form-control-sm fw-semibold text-dark" [(ngModel)]="jobData.ctcMax" placeholder="Max (e.g. 6.0)">
+                <span class="input-group-text bg-slate-100 text-dark fw-bold border-slate-300 py-0 px-2" style="font-size: 10.5px; background-color: #f1f5f9; color: #0f172a;">{{ jobData.currency }}</span>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark">Target Start Date</label>
+              <input type="date" class="form-control form-control-sm fw-semibold text-dark" [(ngModel)]="jobData.targetStartDate">
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark">Notice Period (Max Days)</label>
+              <input type="number" min="0" class="form-control form-control-sm fw-semibold text-dark" [(ngModel)]="jobData.noticePeriodMaxDays" placeholder="e.g. 30">
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark">Education Level</label>
+              <select class="form-select form-select-sm fw-semibold text-dark" [(ngModel)]="jobData.educationLevel">
+                <option value="">-- Any / Not Specified --</option>
+                <option *ngFor="let ed of educationLevelList" [value]="ed">{{ ed }}</option>
+              </select>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark">Primary Skills</label>
+              <input type="text" class="form-control form-control-sm fw-semibold text-dark" [(ngModel)]="jobData.primarySkills" placeholder="e.g. Fleet Dispatch, Driver Management, GPS Tracking">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Job Description & Details -->
+      <div class="bento-box mb-2 bg-white rounded border border-slate-300 shadow-xs">
+        <div class="bento-header d-flex justify-content-between align-items-center p-2 px-3 border-bottom bg-white">
+          <div class="d-flex align-items-center gap-2">
+            <span class="step-num-badge">5</span>
+            <span class="fw-bold text-dark" style="font-size: 12px; color: #0f172a;">Job Description & Responsibilities</span>
+          </div>
+          <button type="button" class="btn btn-outline-primary btn-sm py-0 px-2 fw-bold" (click)="generateAiDescription()" [disabled]="isAiGenerating" style="font-size: 10.5px;">
+            <i class="bi bi-stars me-1"></i> {{ isAiGenerating ? 'Drafting...' : 'AI Enhance' }}
+          </button>
+        </div>
+
+        <div class="p-3">
+          <div class="mb-2">
+            <label class="form-label fw-bold text-dark">Job Summary</label>
+            <textarea class="form-control form-control-sm fw-normal text-dark" rows="3" [(ngModel)]="jobData.jobDescription" placeholder="Enter high-level job overview..." style="color: #0f172a; line-height: 1.5;"></textarea>
+          </div>
+
+          <div class="row g-2">
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark">Roles & Responsibilities</label>
+              <textarea class="form-control form-control-sm fw-normal text-dark" rows="3" [(ngModel)]="jobData.responsibilities" placeholder="Key deliverables and shift duties..." style="color: #0f172a; line-height: 1.5;"></textarea>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold text-dark">Qualifications & Requirements</label>
+              <textarea class="form-control form-control-sm fw-normal text-dark" rows="3" [(ngModel)]="jobData.qualifications" placeholder="Certifications, licensing, years of experience..." style="color: #0f172a; line-height: 1.5;"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Real-Time Capacity & Buffer Gauges -->
+    <div class="col-12 col-xl-4">
+
+      <!-- Hub Capacity & Headcount Buffer Card (Live Reactive) -->
+      <div class="bento-box mb-2 bg-white rounded border border-slate-300 shadow-xs">
+        <div class="bento-header p-2 px-3 border-bottom d-flex justify-content-between align-items-center bg-white">
+          <span class="fw-bold text-dark" style="font-size: 12px; color: #0f172a;">Hub Capacity & Buffer Monitor</span>
+          <span class="badge bg-primary text-white border shadow-xs fw-bold" style="font-size: 9.5px;">
+            Live Tracking
+          </span>
+        </div>
+
+        <div class="p-3">
+          <div *ngIf="selectedLocationObj; else noLocationSelected">
+            
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="fw-bold text-dark" style="font-size: 13px; color: #0f172a;">{{ selectedLocationObj.name }}</span>
+              <span class="badge bg-slate-100 text-slate-900 border border-slate-300 fw-bold" style="font-size: 10px; background-color: #f1f5f9; color: #0f172a;">{{ selectedLocationObj.code }}</span>
+            </div>
+
+            <!-- Capacity Metrics Grid -->
+            <div class="row g-1 mb-2 text-center">
+              <div class="col-4">
+                <div class="p-2 bg-white rounded border border-slate-300 shadow-xs">
+                  <div class="fw-bold text-slate-700" style="font-size: 10px; color: #334155;">Base Demand</div>
+                  <div class="fw-bold text-dark" style="font-size: 14px; color: #0f172a;">{{ locBaseDemand }}</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-2 bg-white rounded border border-slate-300 shadow-xs">
+                  <div class="fw-bold text-slate-700" style="font-size: 10px; color: #334155;">Occupied</div>
+                  <div class="fw-bold text-primary" style="font-size: 14px;">{{ locCurrentOccupied }}</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-2 bg-white rounded border border-slate-300 shadow-xs">
+                  <div class="fw-bold text-slate-700" style="font-size: 10px; color: #334155;">Buffer Pool</div>
+                  <div class="fw-bold text-warning" style="font-size: 14px;">+{{ locBufferHeads }}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Capacity Headroom Indicator -->
+            <div class="p-2.5 rounded mb-2 border" [ngClass]="{
+              'bg-danger-subtle border-danger text-danger': isCapacityExhausted || isHeadcountExceeded,
+              'bg-warning-subtle border-warning text-dark': isBufferUtilized && !isCapacityExhausted,
+              'bg-success-subtle border-success text-success': isWithinBase && !isCapacityExhausted,
+              'bg-light text-secondary border-secondary-subtle': isHeadcountZeroOrNegative && !isCapacityExhausted
+            }">
+              <div class="d-flex align-items-center gap-1.5 fw-bold" style="font-size: 11.5px;">
+                <i class="bi" [ngClass]="{
+                  'bi-x-octagon-fill text-danger': isCapacityExhausted || isHeadcountExceeded,
+                  'bi-exclamation-triangle-fill text-warning': isBufferUtilized && !isCapacityExhausted,
+                  'bi-check-circle-fill text-success': isWithinBase && !isCapacityExhausted,
+                  'bi-info-circle-fill text-primary': isHeadcountZeroOrNegative && !isCapacityExhausted
+                }"></i>
+                <span>
+                  {{ isCapacityExhausted ? 'Location Capacity Exhausted (0 Available)' :
+                     (isHeadcountExceeded ? 'Headcount Exceeds Hard Ceiling' : 
+                     (isBufferUtilized ? 'Utilizing Standby Buffer Pool' : 
+                     (isWithinBase ? 'Within Standard Operating Ceiling' : 'Specify Headcount (Minimum 1)'))) }}
+                </span>
+              </div>
+              <div class="mt-1 fw-semibold" style="font-size: 10.5px; color: #1e293b;">
+                <span *ngIf="isCapacityExhausted" class="text-danger">
+                  Location capacity is completely filled (Active Occupied: {{ locCurrentOccupied }} / Total Cap: {{ locTargetCapacity }} heads). No headroom available.
+                </span>
+                <span *ngIf="!isCapacityExhausted && isHeadcountExceeded" class="text-danger">
+                  Requested {{ requestedCount }} positions exceeds maximum ceiling of {{ locAvailableTotal }} allowable heads for this hub.
+                </span>
+                <span *ngIf="!isCapacityExhausted && isBufferUtilized" class="text-dark">
+                  Standard remaining: <strong>{{ locAvailableBase }} heads</strong>. Utilizing <strong>{{ bufferHeadsUtilized }} heads</strong> from buffer pool.
+                </span>
+                <span *ngIf="!isCapacityExhausted && isWithinBase" class="text-success">
+                  <strong>{{ locAvailableBase }} standard capacity positions</strong> remain available at this location.
+                </span>
+                <span *ngIf="!isCapacityExhausted && isHeadcountZeroOrNegative" class="text-secondary">
+                  Please enter at least 1 position to evaluate headroom (Available base: {{ locAvailableBase }} heads, Standby buffer: +{{ locBufferHeads }} heads).
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <ng-template #noLocationSelected>
+            <div class="text-center py-4 text-dark" style="font-size: 11.5px;">
+              <i class="bi bi-geo-alt-fill text-primary d-block mb-1" style="font-size: 1.8rem;"></i>
+              <div class="fw-bold text-dark">No Hub Location Selected</div>
+              <div class="text-slate-700 mt-1" style="font-size: 11px; color: #334155;">Select an Operating Location / Hub to view real-time headcount capacity and buffer metrics.</div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <!-- Immutable Requisition Metadata Card -->
+      <div class="bento-box bg-white rounded border border-slate-300 shadow-xs">
+        <div class="bento-header p-2 px-3 border-bottom bg-white">
+          <span class="fw-bold text-dark" style="font-size: 12px; color: #0f172a;">Audit & Record Details</span>
+        </div>
+        <div class="p-3" style="font-size: 11.5px;">
+          <div class="d-flex justify-content-between py-1.5 border-bottom">
+            <span class="fw-bold text-slate-700" style="color: #334155;">MRF Identifier</span>
+            <span class="fw-bold text-primary font-monospace">{{ mrfCode }}</span>
+          </div>
+          <div class="d-flex justify-content-between py-1.5 border-bottom">
+            <span class="fw-bold text-slate-700" style="color: #334155;">Created By</span>
+            <span class="fw-bold text-dark">{{ originalSubmittedBy }}</span>
+          </div>
+          <div class="d-flex justify-content-between py-1.5 border-bottom">
+            <span class="fw-bold text-slate-700" style="color: #334155;">Created Date</span>
+            <span class="fw-bold text-dark">{{ createdDate | date:'dd-MM-yyyy, hh:mm:ss a' }}</span>
+          </div>
+          <div class="d-flex justify-content-between py-1.5 border-bottom">
+            <span class="fw-bold text-slate-700" style="color: #334155;">Workflow Status</span>
+            <span class="badge bg-slate-100 text-slate-900 border border-slate-300 fw-bold" style="background-color: #f1f5f9; color: #0f172a;">{{ originalWorkflowStatus }}</span>
+          </div>
+          <div class="mt-2 text-slate-700 fw-medium" style="font-size: 10.5px; color: #334155;">
+            <i class="bi bi-info-circle-fill text-primary me-1"></i> The MRF code is a fixed unique reference and cannot be altered during edits. All operational parameters can be updated.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

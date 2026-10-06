@@ -1,4 +1,4 @@
-﻿using System.Xml.Serialization;
+using System.Xml.Serialization;
 
 namespace HRMSWebAPI.Models
 {
@@ -22,11 +22,17 @@ namespace HRMSWebAPI.Models
     }
     public class UM_UserPageRights_INs
     {
-        public int? fk_webpageId { get; set; }
-        public bool? AllowAdd { get; set; }      // if you pass actions
-        public bool? AllowUpdate { get; set; }
-        public bool? AllowDelete { get; set; }
-        public bool? AllowView { get; set; }
+        public int?  fk_webpageId        { get; set; }
+        public bool? AllowAdd            { get; set; }
+        public bool? AllowUpdate         { get; set; }
+        public bool? AllowDelete         { get; set; }
+        public bool? AllowView           { get; set; }
+        // CJ DARCL Level & Functional Access Rights
+        public bool? L1_Access           { get; set; }
+        public bool? L2_Access           { get; set; }
+        public bool? L3_Access           { get; set; }
+        public bool? CanRaiseRequisition { get; set; }
+        public bool? CanEditManpower     { get; set; }
     }
 
 

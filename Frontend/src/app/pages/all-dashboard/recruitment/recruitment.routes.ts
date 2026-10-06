@@ -23,6 +23,119 @@ export const routes: Routes = [
             loadComponent: () => import('./recruitment-dash/recruitment-dash.component').then( (m) => m.RecruitmentDashComponent),
             title: 'HRMS - recruitmentdash'
           },
+          {
+            path: 'recruitment-dash',
+            loadComponent: () => import('./recruitment-dash/recruitment-dash.component').then( (m) => m.RecruitmentDashComponent),
+            title: 'HRMS - recruitmentdash'
+          },
+          {
+            path: 'location-manpower-headcount',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./location-manpower-headcount/location-manpower-headcount.component').then((m) => m.LocationManpowerHeadcountComponent),
+            title: 'HRMS - Location Manpower & Buffer Manager'
+          },
+          {
+            path: 'pipeline',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./candidate-pipeline/candidate-pipeline.component').then((m) => m.CandidatePipelineComponent),
+            title: 'HRMS - ATS Candidate Pipeline'
+          },
+          {
+            path: 'job-boards',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./job-boards-manager/job-boards-manager.component').then((m) => m.JobBoardsManagerComponent),
+            title: 'HRMS - Job Boards Syndication'
+          },
+          {
+            path: 'jobs',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./job-management/job-management.component').then((m) => m.JobManagementComponent),
+            title: 'HRMS - Enterprise Job Management'
+          },
+          {
+            path: 'job-management',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./job-management/job-management.component').then((m) => m.JobManagementComponent),
+            title: 'HRMS - Enterprise Job Management'
+          },
+          {
+            path: 'mrf-list',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./job-requisition-list/job-requisition-list.component').then((m) => m.JobRequisitionListComponent),
+            title: 'HRMS - Manpower Requisitions Directory'
+          },
+          {
+            path: 'job-requisition-list',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./job-requisition-list/job-requisition-list.component').then((m) => m.JobRequisitionListComponent),
+            title: 'HRMS - Manpower Requisitions Directory'
+          },
+          {
+            path: 'create-job-wizard',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./create-job-wizard/create-job-wizard.component').then((m) => m.CreateJobWizardComponent),
+            title: 'HRMS - Create MRF'
+          },
+          {
+            path: 'edit-job/:id',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./edit-job-requisition/edit-job-requisition.component').then((m) => m.EditJobRequisitionComponent),
+            title: 'HRMS - Edit Job Requisition'
+          },
+          {
+            path: 'edit-job-requisition/:id',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./edit-job-requisition/edit-job-requisition.component').then((m) => m.EditJobRequisitionComponent),
+            title: 'HRMS - Edit Job Requisition'
+          },
+          {
+            path: 'analytics',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./hiring-analytics/hiring-analytics.component').then((m) => m.HiringAnalyticsComponent),
+            title: 'HRMS - Hiring Analytics'
+          },
+          {
+            path: 'vendor-portal',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./vendor-portal/vendor-portal.component').then((m) => m.VendorPortalComponent),
+            title: 'HRMS - Vendor Sourcing & Onboarding Portal'
+          },
+          {
+            path: 'vendor-add-candidate',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./vendor-add-candidate/vendor-add-candidate.component').then((m) => m.VendorAddCandidateComponent),
+            title: 'HRMS - Vendor Candidate Sourcing'
+          },
+          {
+            path: 'vendor-add-candidate/:reqId',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./vendor-add-candidate/vendor-add-candidate.component').then((m) => m.VendorAddCandidateComponent),
+            title: 'HRMS - Vendor Candidate Sourcing'
+          },
+          {
+            path: 'vendor-passed-interview',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./vendor-passed-interview/vendor-passed-interview.component').then((m) => m.VendorPassedInterviewComponent),
+            title: 'HRMS - Vendor Passed Interview Candidates'
+          },
+          {
+            path: 'vendor-passed-interview/:appId',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./vendor-passed-interview/vendor-passed-interview.component').then((m) => m.VendorPassedInterviewComponent),
+            title: 'HRMS - Vendor Passed Interview Candidates'
+          },
+          {
+            path: 'vendor-candidates',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./vendor-candidate-list/vendor-candidate-list.component').then((m) => m.VendorCandidateListComponent),
+            title: 'HRMS - Vendor Candidate List & Talent Bench'
+          },
+          {
+            path: 'vendor-candidate-list',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./vendor-candidate-list/vendor-candidate-list.component').then((m) => m.VendorCandidateListComponent),
+            title: 'HRMS - Vendor Candidate List & Talent Bench'
+          },
             //Recruitment master
            {
             path: 'external-candidates-dashboard',
@@ -403,7 +516,7 @@ export const routes: Routes = [
           //from appraisal module Master
 
 	         { path: 'Rolewise-KRA-Import',
-              canActivate: [AuthGuard],
+            canActivate: [AuthGuard],
             loadComponent: () => import('./rolewise-kra-import/rolewise-kra-import.component').then( (m) => m.RolewiseKraImportComponent ),
             title: 'HRMS - emp-kpr'
            },
@@ -411,13 +524,64 @@ export const routes: Routes = [
         
         {
             path: 'Empwise-KRA-Import',
-              canActivate: [AuthGuard],
+            canActivate: [AuthGuard],
             loadComponent: () => import('./emp-kra-import/emp-kra-import.component').then( (m) => m.EmpKraImportComponent ),
             title: 'HRMS - emp-kra'
            },
+           {
+            path: 'vendor-report',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./reports/vendor-report/vendor-report.component').then((m) => m.VendorReportComponent),
+            title: 'HRMS - Vendor Report'
+          },
+          {
+            path: 'vendor-wise-report',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./reports/vendor-wise-report/vendor-wise-report.component').then((m) => m.VendorWiseReportComponent),
+            title: 'HRMS - Vendor Wise Report'
+          },
+          {
+            path: 'location-report',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./reports/location-report/location-report.component').then((m) => m.LocationReportComponent),
+            title: 'HRMS - Location Report'
+          },
+          {
+            path: 'location-wise-jobs-report',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./reports/location-wise-jobs-report/location-wise-jobs-report.component').then((m) => m.LocationWiseJobsReportComponent),
+            title: 'HRMS - Location Wise Jobs Report'
+          },
+          {
+            path: 'job-report',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./reports/job-report/job-report.component').then((m) => m.JobReportComponent),
+            title: 'HRMS - Jobs Report'
+          },
+          {
+            path: 'mrf-report',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./reports/mrf-report/mrf-report.component').then((m) => m.MrfReportComponent),
+            title: 'HRMS - MRF Report'
+          },
+          {
+            path: 'candidate-report',
+            canActivate: [AuthGuard],
+            loadComponent: () => import('./reports/candidate-report/candidate-report.component').then((m) => m.CandidateReportComponent),
+            title: 'HRMS - Candidate Report'
+          }
         
         ]
-      }
+      },
+
+      // Direct recruitment report route aliases
+      { path: 'candidate-report', redirectTo: 'recruitmentdashboard/candidate-report', pathMatch: 'full' },
+      { path: 'job-report', redirectTo: 'recruitmentdashboard/job-report', pathMatch: 'full' },
+      { path: 'mrf-report', redirectTo: 'recruitmentdashboard/mrf-report', pathMatch: 'full' },
+      { path: 'location-report', redirectTo: 'recruitmentdashboard/location-report', pathMatch: 'full' },
+      { path: 'location-wise-jobs-report', redirectTo: 'recruitmentdashboard/location-wise-jobs-report', pathMatch: 'full' },
+      { path: 'vendor-report', redirectTo: 'recruitmentdashboard/vendor-report', pathMatch: 'full' },
+      { path: 'vendor-wise-report', redirectTo: 'recruitmentdashboard/vendor-wise-report', pathMatch: 'full' }
     
     ]
   }

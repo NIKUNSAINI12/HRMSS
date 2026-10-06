@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using HRMSWebAPI.Helper;
 using HRMSWebAPI.Models;
 using System.Data;
@@ -81,6 +81,41 @@ namespace HRMSWebAPI.Repository
             {
                 Console.WriteLine("GetActiveModules Error: " + ex.Message);
                 return Enumerable.Empty<EmployeeModuleActive>();
+            }
+        }
+
+        public async Task<UserAccessRightsModel> GetUserAccessRightsAsync(string userId, int moduleId)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@userId",   userId,   DbType.String);
+                parameters.Add("@moduleId", moduleId, DbType.Byte);
+
+                // RS1: access flags, RS2: assigned location IDs
+                var results = DataBaseFactory.QueryMultipleSP<UserAccessFlagsDto, UserLocationDto>(
+                    "UM_SP_GetUserAccessRights",
+                    parameters,
+                    "GetUserAccessRightsAsync"
+                );
+
+                var flags = results.Item1.FirstOrDefault();
+                var locs  = results.Item2.Select(l => l.fk_locid).ToList();
+
+                return new UserAccessRightsModel
+                {
+                    L1_Access           = (flags?.L1_Access           ?? 0) == 1,
+                    L2_Access           = (flags?.L2_Access           ?? 0) == 1,
+                    L3_Access           = (flags?.L3_Access           ?? 0) == 1,
+                    CanRaiseRequisition = (flags?.CanRaiseRequisition ?? 0) == 1,
+                    CanEditManpower     = (flags?.CanEditManpower     ?? 0) == 1,
+                    AssignedLocationIds = locs
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GetUserAccessRights Error: " + ex.Message);
+                return new UserAccessRightsModel();
             }
         }
     }

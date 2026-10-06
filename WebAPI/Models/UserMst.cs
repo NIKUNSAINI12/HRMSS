@@ -1,4 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -39,6 +39,8 @@ namespace HRMSWebAPI.Models
         public string? fk_updDateID { get; set; }
         public byte[]? Timestamp { get; set; }
         public string? fk_companyId { get; set; }
+        public bool? isVendor { get; set; }
+        public string? fk_vendorId { get; set; }
     }
 
 

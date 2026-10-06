@@ -34,8 +34,12 @@ export class PageRightsComponent {
     ModuleList: { name: string, value: string }[] = [];
 
     //table variable
-    
     Selected: boolean = false;
+    allL1: boolean = false;
+    allL2: boolean = false;
+    allL3: boolean = false;
+    allRaiseReq: boolean = false;
+    allEditManpower: boolean = false;
 
    constructor(
       private fb: FormBuilder,
@@ -163,25 +167,32 @@ getUSerList(fieldName: string) {
     
    
   
- GetModulelist() {
-    // this.ngxUILoaderService.start(); // Start loader before API call
+  GetModulelist() {
     this.http.getModuelList().subscribe({
-        next: (res) => {
-            if (res.isSuccess && res.data) {
-              
-                this.ModuleList = res.data.map((leaveType: any) => ({
-                  name: leaveType.name,
-                    value: leaveType.value
-                }));
-            } else {
-                this.toastrService.error("Failed to load module list.");
+      next: (res) => {
+        if (res.isSuccess && res.data) {
+          this.ModuleList = res.data.map((m: any) => ({
+            name: (Number(m.value) === 5 || (m.name && m.name.toLowerCase().includes('recruitment')))
+              ? 'Recruitment Management (ATS Talent Suite)'
+              : m.name,
+            value: m.value
+          }));
+
+          const queryModId = this.route.snapshot.queryParams['moduleId'];
+          if (queryModId) {
+            const found = this.ModuleList.find(x => String(x.value) === String(queryModId));
+            if (found) {
+              this.Form.patchValue({ fk_moduleId: found.value });
             }
-        },
-        error: (err) => {
-            console.error("Error fetching module list:", err);
-            this.toastrService.error("Error fetching module.");
-            
+          }
+        } else {
+          this.toastrService.error("Failed to load module list.");
         }
+      },
+      error: (err) => {
+        console.error("Error fetching module list:", err);
+        this.toastrService.error("Error fetching module.");
+      }
     });
   }
 
@@ -211,14 +222,20 @@ getUSerList(fieldName: string) {
     
 
   // Build page rights list
+  const isRec = this.isRecruitmentModule();
   const uM_UserPageRights = this.webpages
     .filter(page => page.isSelected) // only selected rows
     .map(page => ({
-      fk_webpageId: page.pk_webpageId,  // Assuming API needs this property
-      allowAdd: true,
-      allowUpdate: true,
-      allowDelete: true,
-      allowView: true
+      fk_webpageId: page.pk_webpageId,
+      allowAdd: page.AllowAdd ?? true,
+      allowUpdate: page.AllowUpdate ?? true,
+      allowDelete: page.AllowDelete ?? true,
+      allowView: page.AllowView ?? true,
+      L1_Access: isRec && this.isApprovalPage(page) ? !!page.L1_Access : false,
+      L2_Access: isRec && this.isApprovalPage(page) ? !!page.L2_Access : false,
+      L3_Access: isRec && this.isApprovalPage(page) ? !!page.L3_Access : false,
+      CanRaiseRequisition: isRec && this.isRaiseReqPage(page) ? true : false,
+      CanEditManpower: isRec && this.isHeadcountPage(page) ? true : false
     }));
 
   if (!uM_UserPageRights.length) {
@@ -259,8 +276,62 @@ getUSerList(fieldName: string) {
   AllSelect(): void {
     this.webpages.forEach(item => (item.isSelected = this.Selected));
   }
- 
-    
+
+  toggleAllL1(): void {
+    this.webpages.forEach(item => {
+      item.L1_Access = this.allL1;
+      if (this.allL1) item.isSelected = true;
+    });
+  }
+
+  toggleAllL2(): void {
+    this.webpages.forEach(item => {
+      item.L2_Access = this.allL2;
+      if (this.allL2) item.isSelected = true;
+    });
+  }
+
+  toggleAllL3(): void {
+    this.webpages.forEach(item => {
+      item.L3_Access = this.allL3;
+      if (this.allL3) item.isSelected = true;
+    });
+  }
+
+
+
+  isRecruitmentModule(): boolean {
+    const mod = this.Form?.get('fk_moduleId')?.value;
+    return Number(mod) === 5;
+  }
+
+  isApprovalPage(page: any): boolean {
+    if (!this.isRecruitmentModule() || !page) return false;
+    const name = (page.menucaption || '').toLowerCase();
+    const path = (page.pagepath || '').toLowerCase();
+    return page.pk_webpageId === 9011 || name.includes('approval') || path.includes('job-management');
+  }
+
+  isRaiseReqPage(page: any): boolean {
+    if (!this.isRecruitmentModule() || !page) return false;
+    const name = (page.menucaption || '').toLowerCase();
+    const path = (page.pagepath || '').toLowerCase();
+    return page.pk_webpageId === 9010 || page.pk_webpageId === 9009 || page.pk_webpageId === 795 ||
+           name.includes('create mrf') || name.includes('create job') || name.includes('open new job') || path.includes('create-job-wizard');
+  }
+
+  isHeadcountPage(page: any): boolean {
+    if (!this.isRecruitmentModule() || !page) return false;
+    const name = (page.menucaption || '').toLowerCase();
+    const path = (page.pagepath || '').toLowerCase();
+    return page.pk_webpageId === 9012 || name.includes('headcount') || path.includes('location-manpower-headcount');
+  }
+
+  onRightChange(page: any): void {
+    if (page.L1_Access || page.L2_Access || page.L3_Access) {
+      page.isSelected = true;
+    }
+  }
 
   checkAndLoadWebPages() {
   const fk_userId = this.Form.get('fk_userId')?.value;
@@ -270,13 +341,20 @@ getUSerList(fieldName: string) {
     this.http.get_Webpage(fk_userId, fk_moduleId).subscribe({
       next: (res: any) => {
         if (res.isSuccess && res.data) {
-           console.log('dfg',res.data)
           this.webpages = res.data.map((item: any) => ({
-
             ...item,
-            isSelected: item.IsAssigned === 1
-           
+            isSelected: item.IsAssigned === 1,
+            AllowAdd: item.AllowAdd === 1 || item.AllowAdd === true,
+            AllowUpdate: item.AllowUpdate === 1 || item.AllowUpdate === true,
+            AllowDelete: item.AllowDelete === 1 || item.AllowDelete === true,
+            AllowView: item.AllowView === 1 || item.AllowView === true,
+            L1_Access: item.L1_Access === 1 || item.L1_Access === true,
+            L2_Access: item.L2_Access === 1 || item.L2_Access === true,
+            L3_Access: item.L3_Access === 1 || item.L3_Access === true,
+            CanRaiseRequisition: item.CanRaiseRequisition === 1 || item.CanRaiseRequisition === true,
+            CanEditManpower: item.CanEditManpower === 1 || item.CanEditManpower === true
           }));
+          this.Selected = this.webpages.length > 0 && this.webpages.every(w => w.isSelected);
         } else {
           this.webpages = [];
           this.toastrService.warning(res.message || 'No records found.');
@@ -287,10 +365,19 @@ getUSerList(fieldName: string) {
         this.toastrService.error('Failed to fetch web pages.');
       }
     });
+
+    // Also load assigned locations from GetUserAccessRights
+    this.http.getUserAccessRights(fk_userId, fk_moduleId).subscribe({
+      next: (res: any) => {
+        if (res?.isSuccess && res.data?.assignedLocationIds?.length) {
+          this.selectedLocations = res.data.assignedLocationIds.map((id: any) => String(id));
+          this.Form.patchValue({ fk_locid: this.selectedLocations });
+        }
+      },
+      error: () => {
+        // Non-blocking if no access rights yet
+      }
+    });
   }
 }
-  
-
-  
-
 }

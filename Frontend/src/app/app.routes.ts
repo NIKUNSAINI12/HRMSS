@@ -59,5 +59,17 @@ export const routes: Routes = [
       path: 'candidate-review/:key',
       component: CandidateReviewComponent
     },
+    // ✅ Public Walk-In Candidate Application Route - Public, no layout, QR Secured
+    {
+      path: 'public-apply/:qrToken',
+      loadComponent: () => import('./pages/public-apply/public-walkin-apply.component').then(m => m.PublicWalkinApplyComponent),
+      title: 'Spot Hiring & Walk-In Application'
+    },
+    {
+      path: 'public-apply',
+      loadComponent: () => import('./pages/public-apply/public-walkin-apply.component').then(m => m.PublicWalkinApplyComponent),
+      title: 'Spot Hiring & Walk-In Application'
+    }
  
 ];
+

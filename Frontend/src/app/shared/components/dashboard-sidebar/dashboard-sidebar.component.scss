@@ -37,5 +37,13 @@ background-color: #3080e8;
 overflow-x: auto;
 }
 
+:host ::ng-deep {
+  .main-sidebar .sidebar-menu li ul.dropdown-menu li a {
+    white-space: nowrap !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
 
 

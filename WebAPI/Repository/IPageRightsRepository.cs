@@ -1,4 +1,4 @@
-﻿using HRMSWebAPI.Models;
+using HRMSWebAPI.Models;
 
 namespace HRMSWebAPI.Repository
 {
@@ -11,5 +11,7 @@ namespace HRMSWebAPI.Repository
         Task<IEnumerable<UserFullMenuModel>> GetUserFullMenuAsync(string fk_userId);
 
         Task<IEnumerable<EmployeeModuleActive>> GetActiveModulesAsync();
+
+        Task<UserAccessRightsModel> GetUserAccessRightsAsync(string userId, int moduleId);
     }
 }

@@ -28,8 +28,8 @@
             
              <!--User name -->
               <div class="col"><label>User Name<span style="color: red;">*</span></label>
-                <ng-select id="year"  [items]="Userlist" bindLabel="name" bindValue="value"
-                 placeholder="--Select Year--"
+                <ng-select id="userSelect"  [items]="Userlist" bindLabel="name" bindValue="value"
+                 placeholder="--Select User--"
                 class="w-100"
                  formControlName="fk_userId"
                 ></ng-select>
@@ -81,8 +81,8 @@
     
                    <div class="col"><label>Modules Name<span style="color: red;">*</span></label>
             
-                <ng-select id="year" [items]="ModuleList" bindLabel="name" bindValue="value"
-                 placeholder="--Select Year--"
+                <ng-select id="moduleSelect" [items]="ModuleList" bindLabel="name" bindValue="value"
+                 placeholder="--Select Module--"
                 class="w-100"
                  formControlName="fk_moduleId"
                 ></ng-select>
@@ -119,26 +119,45 @@
                   <table class="table table-bordered">
                     <thead class="sticky-top table-secondary" style="background-color: rgb(250, 251, 251);top:-2">
                       <tr class="sticky-top">
-                          <th>Sr.</th>
-                        <th><input type="checkbox" [(ngModel)]="Selected" (change)="AllSelect()" /> &nbsp;All</th>
-        
-                      
+                        <th style="width: 45px;">Sr.</th>
+                        <th style="width: 70px;"><input type="checkbox" [(ngModel)]="Selected" (change)="AllSelect()" /> &nbsp;All</th>
                         <th>Menu Name</th>
                         <th>Description</th>
                         <th>Parent Menu</th>
-                        
+                        <ng-container *ngIf="isRecruitmentModule()">
+                          <th class="text-center" style="width: 100px;">L1 Approval</th>
+                          <th class="text-center" style="width: 100px;">L2 Approval</th>
+                          <th class="text-center" style="width: 100px;">L3 Approval</th>
+                        </ng-container>
                       </tr>
                     </thead>
                     <tbody>
                        <tr *ngFor="let page of webpages; let i = index">
-                         <td>{{ i + 1 }}</td>
+                        <td>{{ i + 1 }}</td>
                         <td><input type="checkbox" [(ngModel)]="page.isSelected" /></td>
-                       
-                        <td>{{ page.menucaption }}</td>
+                        <td class="fw-semibold">{{ page.menucaption }}</td>
                         <td>{{ page.pagedescription }}</td>
-                        <td>{{ page.ParentMenu }}</td>
-                      
-                       
+                        <td><span class="badge bg-light text-dark border">{{ page.ParentMenu }}</span></td>
+
+                        <ng-container *ngIf="isRecruitmentModule()">
+                          <!-- L1 Approval (Only for Approvals page) -->
+                          <td class="text-center">
+                            <input *ngIf="isApprovalPage(page)" type="checkbox" [(ngModel)]="page.L1_Access" (change)="onRightChange(page)" class="form-check-input" title="Grant Level 1 Operations Approval Access" />
+                            <span *ngIf="!isApprovalPage(page)" class="text-muted opacity-25">—</span>
+                          </td>
+
+                          <!-- L2 Approval (Only for Approvals page) -->
+                          <td class="text-center">
+                            <input *ngIf="isApprovalPage(page)" type="checkbox" [(ngModel)]="page.L2_Access" (change)="onRightChange(page)" class="form-check-input" title="Grant Level 2 Corporate HR Approval Access" />
+                            <span *ngIf="!isApprovalPage(page)" class="text-muted opacity-25">—</span>
+                          </td>
+
+                          <!-- L3 Approval (Only for Approvals page) -->
+                          <td class="text-center">
+                            <input *ngIf="isApprovalPage(page)" type="checkbox" [(ngModel)]="page.L3_Access" (change)="onRightChange(page)" class="form-check-input" title="Grant Level 3 HOD Final Approval Access" />
+                            <span *ngIf="!isApprovalPage(page)" class="text-muted opacity-25">—</span>
+                          </td>
+                        </ng-container>
                       </tr> 
                     </tbody>
                   </table>

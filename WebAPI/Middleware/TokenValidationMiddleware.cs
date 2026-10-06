@@ -1,4 +1,4 @@
-﻿
+
 using HRMSWebAPI.Helper;
 using HRMSWebAPI.Models;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -33,7 +33,9 @@ public class TokenValidationMiddleware
          "/api/v1/hrcandidatereview",
           "/chatHub", //Use for notificcation and live chat messages
            "/api/v1/webhooks", // Added code for webhook endpoints which use custom auth header tokens
-             "/api/location" // Location Tracker APIs
+             "/api/location", // Location Tracker APIs
+             "/api/v1/atsjobrequisition", // ATS Job Requisition & Workflow APIs
+             "/api/v1/atslifecycle" // ATS Full Lifecycle & Pipeline APIs
     };
 
 

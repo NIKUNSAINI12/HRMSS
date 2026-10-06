@@ -1,4 +1,5 @@
 @import 'ngx-toastr/toastr';
+@import "@ng-select/ng-select/themes/default.theme.css";
 
 
 // Safe Area / Notch Fix for Capacitor
@@ -7,6 +8,22 @@
   --sar: env(safe-area-inset-right);
   --sab: env(safe-area-inset-bottom);
   --sal: env(safe-area-inset-left);
+}
+body.modal-qr-open .main-content,
+.main-content:has(.qr-modal-backdrop) {
+  z-index: 99999999 !important;
+  position: relative !important;
+}
+
+body.modal-qr-open .navbar,
+body.modal-qr-open .navbar-bg,
+body.modal-qr-open .main-navbar,
+body.modal-qr-open .main-sidebar,
+.main-wrapper:has(.qr-modal-backdrop) .navbar,
+.main-wrapper:has(.qr-modal-backdrop) .navbar-bg,
+.main-wrapper:has(.qr-modal-backdrop) .main-navbar,
+.main-wrapper:has(.qr-modal-backdrop) .main-sidebar {
+  z-index: 10 !important;
 }
 
 

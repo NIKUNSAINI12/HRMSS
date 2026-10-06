@@ -11,6 +11,7 @@ namespace HRMSWebAPI.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class VendorServiceController : ControllerBase
     {
         private readonly IVendorServiceRepository vendorServiceRepository;
@@ -48,7 +49,7 @@ namespace HRMSWebAPI.Controllers
 
         [HttpPost("UploadExcel")]
         [Authorize]
-        public async Task<IActionResult> UploadExcelAsync([FromForm] Microsoft.AspNetCore.Http.IFormFile file, [FromForm] string? companyId = null, [FromForm] string? userId = null)
+        public async Task<IActionResult> UploadExcelAsync(IFormFile file, string? companyId = null, string? userId = null)
         {
             ModelResponse modelResponse = new ModelResponse();
             try

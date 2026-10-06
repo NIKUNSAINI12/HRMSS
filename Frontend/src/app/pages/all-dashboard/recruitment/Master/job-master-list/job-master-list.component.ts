@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import * as XLSX from 'xlsx';
 import { EncryptionService } from '../../../../../shared/services/encryption.service';
 import { JobMasterService } from '../../RecruitServices/job-master.service';
+import { AtsService } from '../../../../../shared/services/ats.service';
 
 @Component({
   selector: 'app-job-master-list',
@@ -22,8 +23,7 @@ export class JobMasterListComponent {
   pageIndex: number = 1;
   pageSize: number = 10;
   totalItems: number = 0;
-
-
+  assignedLocationIds: string[] = [];
 
   constructor(
     private jobMasterService: JobMasterService,
@@ -31,15 +31,63 @@ export class JobMasterListComponent {
     private loaderService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    public encryptionService: EncryptionService
+    public encryptionService: EncryptionService,
+    private atsService: AtsService
   ) {}
+
+  get userId(): string {
+    return sessionStorage.getItem('userId') || 
+           localStorage.getItem('userId') || 
+           sessionStorage.getItem('fk_userId') || 
+           localStorage.getItem('fk_userId') || '';
+  }
+
+  loadUserAccessRights(): void {
+    if (this.userId) {
+      this.atsService.getUserAccessRights(this.userId, 5).subscribe({
+        next: (res) => {
+          if (res?.isSuccess && res.data) {
+            this.assignedLocationIds = res.data.assignedLocationIds || res.data.AssignedLocationIds || [];
+            this.calculateStats();
+          }
+        },
+        error: () => {}
+      });
+    }
+  }
+
+  isLocationAllowed(job: any): boolean {
+    if (!this.assignedLocationIds || this.assignedLocationIds.length === 0) {
+      return true;
+    }
+    const locId = String(job.fk_locid || job.locId || job.locationId || '').trim();
+    const locName = String(job.forlocation || job.location || '').trim();
+
+    const cleanTargetId = locId.replace(/^GU-/i, '');
+    const cleanTargetName = locName.toLowerCase();
+
+    return this.assignedLocationIds.some(assigned => {
+      const assignedStr = String(assigned || '').trim();
+      const cleanAssigned = assignedStr.replace(/^GU-/i, '');
+      if (cleanAssigned && cleanTargetId && cleanAssigned.toLowerCase() === cleanTargetId.toLowerCase()) return true;
+      if (assignedStr.toLowerCase() === locId.toLowerCase()) return true;
+      if (cleanTargetName && (assignedStr.toLowerCase() === cleanTargetName || cleanAssigned.toLowerCase() === cleanTargetName)) return true;
+      return false;
+    });
+  }
+
+  get authorizedJobs(): any[] {
+    if (!this.assignedLocationIds || this.assignedLocationIds.length === 0) {
+      return this.jobMasterList;
+    }
+    return this.jobMasterList.filter(j => this.isLocationAllowed(j));
+  }
 
   ngOnInit(): void {
     this.loaderService.start();
-    
+    this.loadUserAccessRights();
     this.getAllJobs();
     this.loaderService.stop();
-
   }
 
   totalJobsCount: number = 0;
@@ -67,11 +115,12 @@ export class JobMasterListComponent {
   }
 
   calculateStats() {
-    this.totalJobsCount = this.jobMasterList.length;
+    const list = this.authorizedJobs;
+    this.totalJobsCount = list.length;
     let closed = 0;
     const now = new Date();
     
-    this.jobMasterList.forEach(job => {
+    list.forEach(job => {
       let isClosed = false;
       if (job.job_closed === 1 || job.job_closed === true || job.job_closed === 'Y' || job.job_closed === '1') {
         isClosed = true;
@@ -140,13 +189,14 @@ export class JobMasterListComponent {
 
 
 filteredData() {
+  const baseList = this.authorizedJobs;
   if (!this.searchText) {
-    return this.jobMasterList;
+    return baseList;
   }
 
   const searchTextLower = this.searchText.toLowerCase();
 
-  return this.jobMasterList.filter(data =>
+  return baseList.filter(data =>
     data.job_title?.toLowerCase().includes(searchTextLower) ||
     data.designation?.toLowerCase().includes(searchTextLower) ||
     data.no_of_post?.toString().toLowerCase().includes(searchTextLower) ||

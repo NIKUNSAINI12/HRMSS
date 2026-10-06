@@ -5,9 +5,9 @@
 export const environment = {
   production: true,
 
-  baseURL1: 'https://localhost:7142/api/v1',
-  baseURL: 'https://localhost:7142/api/v1',
-  chatHub : 'https://localhost:7142/ChatHub',
+  baseURL1: 'http://localhost:5128/api/v1',
+  baseURL: 'http://localhost:5128/api/v1',
+  chatHub: 'http://localhost:5128/ChatHub',
 
   // baseURL: 'https://hrmsapi.empowerlogics.com/api/v1',
   // baseURL1: 'https://hrmsapi.empowerlogics.com/api/v1',
@@ -31,6 +31,7 @@ export const environment = {
     ModuleList: '/General/ModuleList',
     get_Webpage: '/PageRights',
     add_pageRight: '/PageRights',
+    GetUserAccessRights: '/PageRights/GetUserAccessRights',
     validateCompanyCode: '/User/validateCompanyCode',
     GetLocationByOfficeType: '/User/GetLocationByOfficeType',
     HrmsLogin: '/User/login',
@@ -119,7 +120,7 @@ export const environment = {
 
   payroll: {
     IsLMVendorExpense: '/CompanyConfig/IsLMVendorExpense',
-       // Shift Roster
+    // Shift Roster
     ShiftRoster_GetAll: '/ShiftRoster/GetAll',
     ShiftRoster_GetById: '/ShiftRoster/GetById',
     ShiftRoster_Insert: '/ShiftRoster/Insert',
@@ -129,42 +130,42 @@ export const environment = {
     ShiftRoster_GetEmployees: '/ShiftRoster/GetEmployees',
     ShiftRoster_GetShifts: '/ShiftRoster/GetShifts',
 
-    
+
     SaveDailyAttendance: '/DailyAttendance/SaveAttendance',
     GetDailyAttendance: '/DailyAttendance/GetAttendance',
-     View_bill: '/ExportReport/ViewBillFormAsync',
- downloadViewBillReportlist: '/ExportReport/downloadViewBillReportlist',
-     updateattendance:'/city/updateattendance',
-       CTCConfig_insert: '/CTCConfig',
+    View_bill: '/ExportReport/ViewBillFormAsync',
+    downloadViewBillReportlist: '/ExportReport/downloadViewBillReportlist',
+    updateattendance: '/city/updateattendance',
+    CTCConfig_insert: '/CTCConfig',
     CTCConfig_getall: '/CTCConfig',
     CTCConfig_getbyId: '/CTCConfig',
     CTCConfig_update: '/CTCConfig',
     CTCConfig_delete: '/CTCConfig',
     CTCConfig_heads: '/CTCConfig/heads',
- GenerateESIChallan: '/ExportReport/GenerateESIChallan',
- ExportImportIncentive: '/ImportExcle/ExportImportIncentive',
- ExportincentiveHead: '/ImportExcle/exportincentive',
- ImportincentiveHead: '/ImportExcle/ImportIncentiveHead',
+    GenerateESIChallan: '/ExportReport/GenerateESIChallan',
+    ExportImportIncentive: '/ImportExcle/ExportImportIncentive',
+    ExportincentiveHead: '/ImportExcle/exportincentive',
+    ImportincentiveHead: '/ImportExcle/ImportIncentiveHead',
 
-GetIncentiveProcessList: '/EmployeeRentDetail/autoIncentiveProcess',
+    GetIncentiveProcessList: '/EmployeeRentDetail/autoIncentiveProcess',
     PostIncentiveProcess: '/EmployeeRentDetail/InsertautoIncentiveProcess',
     deleteIncentiveProcess: '/EmployeeRentDetail/deleteIncentiveProcess',
 
-downloadViewSalaryReportlistfor1: '/ExportReport/downloadViewSalaryReportlistforexporttype1',
+    downloadViewSalaryReportlistfor1: '/ExportReport/downloadViewSalaryReportlistforexporttype1',
 
 
-     fnflist:'/FNF/getfnflist',
+    fnflist: '/FNF/getfnflist',
 
-       Employee_GetAll_Ddlfor100: '/Employee/GetEmployeesForDropdownfor50',
+    Employee_GetAll_Ddlfor100: '/Employee/GetEmployeesForDropdownfor50',
 
-     GetLTAProcessList: '/EmployeeRentDetail/autoLTAProcess',
+    GetLTAProcessList: '/EmployeeRentDetail/autoLTAProcess',
     PostLTAProcess: '/EmployeeRentDetail/InsertautoLTAProcess',
     deleteLTAProcess: '/EmployeeRentDetail/deleteLTAProcess',
 
-    CitybyStateList:'/City/CitybyStateList',
-     User_image: '/CompanyConfig/images',
+    CitybyStateList: '/City/CitybyStateList',
+    User_image: '/CompanyConfig/images',
 
-   reimb_heads:'/Level/reimb-heads',
+    reimb_heads: '/Level/reimb-heads',
     //Added New BY Raj 06May2026
     add_clientmaster: '/ClientMaster',
     get_All_clientmaster: '/ClientMaster/GetAll',
@@ -187,7 +188,7 @@ downloadViewSalaryReportlistfor1: '/ExportReport/downloadViewSalaryReportlistfor
     ImportLocationMaster: '/ImportExcle/ImportLocationMaster',
     ImportClientMaster: '/ImportExcle/ImportClientMaster',
     ImportOutletMaster: '/ImportExcle/ImportOutletMaster',
-     ImportBranchMaster: '/ImportExcle/ImportBranchMaster',
+    ImportBranchMaster: '/ImportExcle/ImportBranchMaster',
 
 
 
@@ -679,9 +680,9 @@ downloadViewSalaryReportlistfor1: '/ExportReport/downloadViewSalaryReportlistfor
     get_All_companyparameter: '/CompanyConfig',
     getById_companyparameter: '/CompanyConfig',
     update_companyparameter: '/CompanyConfig',
-   
 
-     LeavetypeClient: '/LeaveTypeClient',
+
+    LeavetypeClient: '/LeaveTypeClient',
 
     ManualIncomeTax_Getall: '/ManualIncomeTax/GetAllData',
     ManualIncomeTax_Update: '/ManualIncomeTax',
@@ -833,7 +834,7 @@ downloadViewSalaryReportlistfor1: '/ExportReport/downloadViewSalaryReportlistfor
 
 
 
-      // Customer Rate Card
+    // Customer Rate Card
     customerRateCard_insert: '/CustomerRateCard/Insert',
     customerRateCard_update: '/CustomerRateCard/Update',
     customerRateCard_getAll: '/CustomerRateCard/GetAll',
@@ -1260,7 +1261,7 @@ downloadViewSalaryReportlistfor1: '/ExportReport/downloadViewSalaryReportlistfor
     GetEmployeesByVendor: '/VendorEmployeeDoc/GetEmployeesByVendor',
   },
 
-    vendor: {
+  vendor: {
     GetVendorDownloadVerificationList: '/Vendor/GetVendorDownloadVerificationList',
     VendorList: '/Vendor/GetAllVendors',
     GetVendorById: '/Vendor/GetVendorById',
@@ -1269,49 +1270,49 @@ downloadViewSalaryReportlistfor1: '/ExportReport/downloadViewSalaryReportlistfor
     DeleteVendor: '/Vendor/DeleteVendor',
     GetVendorAuditLogs: '/Vendor/GetVendorAuditLogs',
     UploadVendorExcel: '/Vendor/UploadVendorExcel',
-   VendorServiceGetLocationsByVendor: '/VendorService/GetLocationsByVendor',
-    VendorServiceUploadExcel: '/VendorService/UploadExcel', 
- 
-       SaveUploadFileHistory: '/UploadFileHistory/SaveHistory',
+    VendorServiceGetLocationsByVendor: '/VendorService/GetLocationsByVendor',
+    VendorServiceUploadExcel: '/VendorService/UploadExcel',
+
+    SaveUploadFileHistory: '/UploadFileHistory/SaveHistory',
     GetUploadFileHistory: '/UploadFileHistory/GetHistory',
     DownloadUploadFileHistory: '/UploadFileHistory/Download',
-    ViewUploadFileHistory: '/UploadFileHistory/View', 
+    ViewUploadFileHistory: '/UploadFileHistory/View',
 
-  GetLinkedFHRIDs: '/Vendor/GetLinkedFHRIDs',
+    GetLinkedFHRIDs: '/Vendor/GetLinkedFHRIDs',
     UploadRateCard: '/Vendor/UploadRateCard',
-    getVendorFHRIDHistory:'/Vendor/fhrid-history/',
-  
+    getVendorFHRIDHistory: '/Vendor/fhrid-history/',
+
     GetVendorDashboardSummary: '/Vendor/GetVendorDashboardSummary',
-     SaveExcelDocument: '/Vendor/SaveExcelDocument',
+    SaveExcelDocument: '/Vendor/SaveExcelDocument',
     GetVendorMasterUploadDocumentList: '/Vendor/GetVendorMasterUploadDocumentList',
     DownloadVendorMasterDocument: '/Vendor/DownloadVendorMasterDocument',
     GetModelListByClient: '/ClientMaster/GetModelListByClient',
-        GetVendorRateCards: '/Vendor/GetVendorRateCards',
+    GetVendorRateCards: '/Vendor/GetVendorRateCards',
     GetVendorRateCardHistory: '/Vendor/ratecard-history',
 
     GetAllBlockRateCard: '/AmazonDspBlockRateCard/GetAll',
-     GetByIdBlockRateCard: '/AmazonDspBlockRateCard/GetById',
-     InsertBlockRateCard: '/AmazonDspBlockRateCard/Insert',
-     UpdateBlockRateCard: '/AmazonDspBlockRateCard/Update',
-     UploadBlockRateCard:'/AmazonDspBlockRateCard/UploadBlockRateCard',
-     GetBlockRateCardExcelDocumentList: '/AmazonDspBlockRateCard/GetExcelDocumentList',
+    GetByIdBlockRateCard: '/AmazonDspBlockRateCard/GetById',
+    InsertBlockRateCard: '/AmazonDspBlockRateCard/Insert',
+    UpdateBlockRateCard: '/AmazonDspBlockRateCard/Update',
+    UploadBlockRateCard: '/AmazonDspBlockRateCard/UploadBlockRateCard',
+    GetBlockRateCardExcelDocumentList: '/AmazonDspBlockRateCard/GetExcelDocumentList',
     DownloadBlockRateCardExcelDocument: '/AmazonDspBlockRateCard/DownloadExcelDocument',
 
-GetAuditLogDocumentNames: '/Vendor/audit-log/document-names',
+    GetAuditLogDocumentNames: '/Vendor/audit-log/document-names',
     GetAuditLogs: '/Vendor/audit-log/list',
 
     //new
     GetRateCardUploadedFiles: '/Vendor/GetRateCardUploadedFiles',
     DownloadRateCardFile: '/Vendor/DownloadRateCardFile',
-UploadVendorFHRIDMappingExcel: '/Vendor/UploadVendorFHRIDMappingExcel',
+    UploadVendorFHRIDMappingExcel: '/Vendor/UploadVendorFHRIDMappingExcel',
     GetVendorFHRIDFiles: '/Vendor/GetVendorFHRIDFiles',
     GetVendorTransactionRanges: '/Vendor/TransactionRanges',
     SearchVendors: '/Vendor/SearchVendors',
     GetVendorTransactionList: '/Vendor/TransactionList',
     DownloadVendorFHRIDFile: '/Vendor/DownloadVendorFHRIDFile',
-    
-     GetVendorFHRIDMappingStats:'/Vendor/GetVendorFHRIDMappingStats',
-   GetVendorMappedUnmappedList: '/Vendor/GetVendorMappedUnmappedList',
+
+    GetVendorFHRIDMappingStats: '/Vendor/GetVendorFHRIDMappingStats',
+    GetVendorMappedUnmappedList: '/Vendor/GetVendorMappedUnmappedList',
 
     //vendor CJDARCL added code starts
     VendorServiceGetAll: '/VendorService/GetAll',
@@ -1324,24 +1325,24 @@ UploadVendorFHRIDMappingExcel: '/Vendor/UploadVendorFHRIDMappingExcel',
     VendorServiceGetClients: '/VendorService/GetClients',
     //vendor CJDARCL added code ends
   },
-//vendor CJDARCL added code starts
-    vendorLite: {
-    GetAll:           '/VendorLite/GetAll',
-    GetById:          '/VendorLite/GetById',
+  //vendor CJDARCL added code starts
+  vendorLite: {
+    GetAll: '/VendorLite/GetAll',
+    GetById: '/VendorLite/GetById',
     InsertVendorLite: '/VendorLite/InsertVendorLite',
     UpdateVendorLite: '/VendorLite/UpdateVendorLite',
-    UploadDocuments:  '/VendorLite/UploadVendorDocuments',
-    GetDocuments:     '/VendorLite/GetVendorDocuments',
-    DeleteDocument:   '/VendorLite/DeleteDocument',
+    UploadDocuments: '/VendorLite/UploadVendorDocuments',
+    GetDocuments: '/VendorLite/GetVendorDocuments',
+    DeleteDocument: '/VendorLite/DeleteDocument',
   },
   //vendor CJDARCL added code ends
-  
+
   //Employee
   Leave: {
 
 
-    
- LeaveTypeClientWise: '/LeaveTypeClient/LeaveTypeClientWise',
+
+    LeaveTypeClientWise: '/LeaveTypeClient/LeaveTypeClientWise',
 
     DeleteShortLeave: '/Emp_LeaveRequest/DeleteShortLeave',
     DeleteCompoffLeave: '/CompOffRequest/DeleteCompOffLeave',
@@ -1408,7 +1409,7 @@ UploadVendorFHRIDMappingExcel: '/Vendor/UploadVendorFHRIDMappingExcel',
   },
   Compensation: {
 
-     GetAll_CTCforAdmin: '/CTC/forAdmin',
+    GetAll_CTCforAdmin: '/CTC/forAdmin',
 
     GetAll_PrograssionDetail: '/PrograssionDetail',
     GetAll_CTC: '/CTC',
@@ -1498,7 +1499,7 @@ UploadVendorFHRIDMappingExcel: '/Vendor/UploadVendorFHRIDMappingExcel',
     DueClearenceMasterInsert: '/DueClearance',
     DueClearenceMasterUpdate: '/DueClearance',
 
-      SeparationRequestInsert: '/SeparationRequest',
+    SeparationRequestInsert: '/SeparationRequest',
     SeparationRequestGetAll: '/SeparationRequest',
     SeparationRequestGetById: '/SeparationRequest',
     SeparationRequestUpdate: '/SeparationRequest',
@@ -1515,9 +1516,9 @@ UploadVendorFHRIDMappingExcel: '/Vendor/UploadVendorFHRIDMappingExcel',
     SeparationRequestLetterData: '/SeparationRequest/letter-data',
     SeparationRequestRelievingLetter: '/SeparationRequest/RelievingLetter',
     SeparationRequestExperienceLetter: '/SeparationRequest/ExperienceLetter',
-   
 
-    ExitDashboard:'/ExitDashboard/GetExitDashboard',
+
+    ExitDashboard: '/ExitDashboard/GetExitDashboard',
     //DueClarance
     GetAll: '/DueClaranceUser',
     delete_ClaranceUser: '/DueClaranceUser',
@@ -1525,15 +1526,45 @@ UploadVendorFHRIDMappingExcel: '/Vendor/UploadVendorFHRIDMappingExcel',
     updateClearance: '/DueClaranceUser',
     getByIdClearanceUser: '/DueClaranceUser',
 
-     FnfSettlementGetDetail: '/FNF/GetDetail',
+    FnfSettlementGetDetail: '/FNF/GetDetail',
     FnfSettlementInsert: '/FNF',
     FnfSettlementView: '/FNF/View',
     SaveExitAuthority: '/exitformauthority',
 
   },
+  RecruitmentReports: {
+    // Job Report
+    JobReport_GetMasterData: '/JobReport/GetReportMasterData',
+    JobReport_Get: '/JobReport/GetJobReport',
+    JobReport_DownloadExcel: '/JobReport/DownloadJobReportExcel',
 
-   BranchMst:'/Branch',
-   dealerOutlet:'/DealerOutlet',
-   
+    // MRF Report
+    MrfReport_GetMasterData: '/MrfReport/GetReportMasterData',
+    MrfReport_Get: '/MrfReport/GetMrfReport',
+    MrfReport_DownloadExcel: '/MrfReport/DownloadMrfReportExcel',
+
+    // Candidate Report
+    CandidateReport_GetMasterData: '/CandidateReport/GetReportMasterData',
+    CandidateReport_Get: '/CandidateReport/GetCandidateReport',
+    CandidateReport_DownloadExcel: '/CandidateReport/DownloadCandidateReportExcel',
+
+    // Location Report
+    LocationReport_GetMasterData: '/LocationReport/GetReportMasterData',
+    LocationReport_Get: '/LocationReport/GetLocationReport',
+    LocationReport_GetLocationWiseJobs: '/LocationReport/GetLocationWiseJobsReport',
+    LocationReport_DownloadExcel: '/LocationReport/DownloadLocationReportExcel',
+    LocationReport_DownloadLocationWiseJobsExcel: '/LocationReport/DownloadLocationWiseJobsReportExcel',
+
+    // Vendor Report
+    VendorReport_GetMasterData: '/VendorReport/GetReportMasterData',
+    VendorReport_Get: '/VendorReport/GetVendorReport',
+    VendorReport_GetVendorWise: '/VendorReport/GetVendorWiseReport',
+    VendorReport_DownloadExcel: '/VendorReport/DownloadVendorReportExcel',
+    VendorReport_DownloadVendorWiseExcel: '/VendorReport/DownloadVendorWiseReportExcel'
+  },
+
+  BranchMst: '/Branch',
+  dealerOutlet: '/DealerOutlet',
+
 
 };
