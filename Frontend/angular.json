@@ -37,7 +37,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "node_modules/summernote/dist/summernote-bs4.min.css",
+              "src/assets/bundles/summernote/summernote-bs4.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
@@ -48,7 +48,7 @@
             "scripts": [
                 "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
                 "node_modules/html2pdf.js/dist/html2pdf.bundle.min.js",
-                "node_modules/summernote/dist/summernote-bs4.min.js"
+                "src/assets/bundles/summernote/summernote-bs4.js"
                 
 
             ],

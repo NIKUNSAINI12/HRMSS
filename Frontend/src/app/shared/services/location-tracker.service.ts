@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Capacitor, CapacitorHttp, registerPlugin } from '@capacitor/core';
 import { Geolocation } from '@capacitor/geolocation';
-import { LocalNotifications } from '@capacitor/local-notifications';
 
 export interface BackgroundGeolocationPlugin {
   addWatcher(
@@ -232,6 +231,12 @@ export class LocationTrackerService {
   }
 
   private handlePosition(lat: number, lng: number, accuracy: number, userId: string, isBackground: boolean, deviceInfo: string) {
+    // Avoid posting invalid / empty GPS coordinates
+    if (!lat || !lng || (Math.abs(lat) < 0.0001 && Math.abs(lng) < 0.0001)) {
+      this.log('Skipping API post: GPS fix unacquired (0,0).');
+      return;
+    }
+
     this.currentLocation$.next({ lat, lng, accuracy });
 
     const payload: LocationPayload = {
@@ -250,12 +255,17 @@ export class LocationTrackerService {
 
   private async postToDotNetApi(payload: LocationPayload) {
     const startTime = performance.now();
+    const token = sessionStorage.getItem('accessToken') || localStorage.getItem('accessToken');
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
 
     if (this.isNative) {
       try {
         const response = await CapacitorHttp.post({
           url: this.apiUrl,
-          headers: { 'Content-Type': 'application/json' },
+          headers,
           data: payload
         });
         const elapsed = Math.round(performance.now() - startTime);
@@ -275,7 +285,7 @@ export class LocationTrackerService {
         this.log(`[Native HTTP Error] ${err?.message || err} (Target: ${this.apiUrl})`);
       }
     } else {
-      this.http.post(this.apiUrl, payload).subscribe({
+      this.http.post(this.apiUrl, payload, { headers }).subscribe({
         next: (res: any) => {
           const elapsed = Math.round(performance.now() - startTime);
           this.log(`[POST 201] Lat:${payload.latitude.toFixed(4)}, Lng:${payload.longitude.toFixed(4)} (${elapsed}ms)`);
