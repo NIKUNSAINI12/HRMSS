@@ -1,0 +1,182 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-header bg-blue">
+        <div class="row w-100">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <h4 class="">{{ Isedit ? 'Update Customer Rate Card' : 'Customer Rate Card' }}</h4>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 d-flex align-items-center justify-content-md-end">
+            <button class="btn btnheader" routerLink="/dash/user/userdashboard/customerRateCard_list">Back</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body mt-4">
+        <form [formGroup]="rateCardForm">
+          <div class="row row-cols-1 row-cols-md-3">
+
+            <!-- Customer -->
+            <div class="col">
+              <label>Customer<span style="color: red;">*</span></label>
+              <div class="form-group">
+                <ng-select [items]="CustomerList" bindLabel="name" bindValue="value" formControlName="CustomerId"
+                  placeholder="--Select Customer--" class="w-100">
+                </ng-select>
+                <span *ngIf="submitted && rateCardForm.controls['CustomerId'].invalid" class="text-danger mt-1"
+                  style="font-size: 12px;">
+                  Please select Customer.
+                </span>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="col">
+              <label>Location<span style="color: red;">*</span></label>
+              <div class="form-group">
+                <ng-select [items]="LocationList" bindLabel="name" bindValue="value" formControlName="LocationId"
+                  placeholder="--Select Location--" class="w-100">
+                </ng-select>
+                <span *ngIf="submitted && rateCardForm.controls['LocationId'].invalid" class="text-danger mt-1"
+                  style="font-size: 12px;">
+                  Please select Location.
+                </span>
+              </div>
+            </div>
+
+            <!-- Service Type -->
+            <div class="col">
+              <label>Service Type<span style="color: red;">*</span></label>
+              <div class="form-group">
+                <ng-select [items]="ServiceTypeList" bindLabel="name" bindValue="value" formControlName="ServiceTypeId"
+                  placeholder="--Select Service Type--" class="w-100">
+                </ng-select>
+                <span *ngIf="submitted && rateCardForm.controls['ServiceTypeId'].invalid" class="text-danger mt-1"
+                  style="font-size: 12px;">
+                  Please select Service Type.
+                </span>
+              </div>
+            </div>
+
+            <!-- Category -->
+            <div class="col">
+              <label>Category<span style="color: red;">*</span></label>
+              <div class="form-group">
+                <ng-select [items]="CategoryList" bindLabel="name" bindValue="value" formControlName="CategoryId"
+                  placeholder="--Select Category--" class="w-100">
+                </ng-select>
+                <span *ngIf="submitted && rateCardForm.controls['CategoryId'].invalid" class="text-danger mt-1"
+                  style="font-size: 12px;">
+                  Please select Category.
+                </span>
+              </div>
+            </div>
+
+            <!-- Work Duration -->
+            <div class="col">
+              <label>Work Duration<span style="color: red;">*</span></label>
+              <div class="form-group">
+                <ng-select [items]="WorkDurationList" bindLabel="name" bindValue="value" formControlName="WorkDuration"
+                  placeholder="--Select Work Duration--" class="w-100">
+                </ng-select>
+                <span *ngIf="submitted && rateCardForm.controls['WorkDuration'].invalid" class="text-danger mt-1"
+                  style="font-size: 12px;">
+                  Please select Work Duration.
+                </span>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <!-- Header -->
+          <div class="row mt-3 d-flex align-items-center mb-2 ">
+            <div class="col-9">
+              <p class="text-primary fw-bold">Salary Structure (Earning Heads)</p>
+            </div>
+            <div class="col-3 text-end">
+              <button type="button" class="btn btn-danger btn-sm " (click)="getHeads()">
+                Refresh Heads
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Heads Structure - Two Columns -->
+          <div class="row" formArrayName="earningHeads">
+
+            <!-- Left Column: Even indexed heads (0,2,4...) -->
+            <div class="col-md-6">
+              <ng-container *ngFor="let head of earningHeadsList.controls; let i = index">
+                <div *ngIf="i % 2 === 0" [formGroupName]="i" class="mb-2 d-flex align-items-center">
+                  <div class="col-6">
+                    <label class="fw-semibold">{{head.value.shortDesc}}</label>
+                  </div>
+                  <div class="col-6 form-group mb-0">
+                    <input type="text" class="form-control" formControlName="amount" placeholder="0.00"
+                      (keypress)="restrictInputDecimal($event)">
+                    <span *ngIf="submitted && head.get('amount')?.invalid" class="text-danger mt-1"
+                      style="font-size: 12px;">
+                      Amount is required.
+                    </span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+            <!-- Right Column: Odd indexed heads (1,3,5...) -->
+            <div class="col-md-6">
+              <ng-container *ngFor="let head of earningHeadsList.controls; let i = index">
+                <div *ngIf="i % 2 !== 0" [formGroupName]="i" class="mb-2 d-flex align-items-center">
+                  <div class="col-6">
+                    <label class="fw-semibold">{{head.value.shortDesc}}</label>
+                  </div>
+                  <div class="col-6 form-group mb-0">
+                    <input type="text" class="form-control" formControlName="amount" placeholder="0.00"
+                      (keypress)="restrictInputDecimal($event)">
+                    <span *ngIf="submitted && head.get('amount')?.invalid" class="text-danger mt-1"
+                      style="font-size: 12px;">
+                      Amount is required.
+                    </span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+          </div>
+
+          <!-- Total Row -->
+          <div class="row mt-2" *ngIf="earningHeadsList.controls.length > 0">
+            <div class="col-md-6 offset-md-6">
+              <div class="d-flex align-items-center">
+                <div class="col-6">
+                  <label class="fw-bold text-success">Total : </label>
+                </div>
+                <div class="col-6">
+                  <label class="fw-bold fs-6 text-success">{{ totalEarningCount | number: '1.2-2' }}</label>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="earningHeadsList.controls.length === 0" class="text-muted mt-2">
+            No earning heads available.
+          </div>
+
+          <div class="row mt-4">
+            <div class="col d-flex align-items-end justify-content-end">
+              <button type="submit" class="btn btn-primary mx-1" (click)="onSubmit()">
+                {{ Isedit ? 'Update' : 'Save' }}
+              </button>
+              <button type="reset" class="btn btn-outline-dark mx-1" (click)="clearForm()">
+                Reset
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

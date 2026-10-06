@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <!-- Heading Section -->
+     
+
+
+      <div class="card-header py-2">
+        <div class="row w-100">
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xxl-4 d-flex align-items-center justify-content-between">
+            <h4>List of Users</h4>
+           
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xxl-4 d-flex align-items-center justify-content-center">
+            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" />
+          </div>
+          
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xxl-4 d-flex align-items-center justify-content-md-end ms-auto gap-2">
+            <button class="btn btnheader" routerLink="/dash/user/userdashboard/user-master">
+                Add
+              </button>
+                <button class="btn btn-light" (click)="exportToExcel()">
+              Download
+            </button>
+
+          </div>
+          
+        </div>
+    </div>
+
+      <!-- Table Section -->
+      <div class="card-body p-0">
+        <div class="table-responsive table-invoice">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Sr.</th>
+                <th>Login Id</th>
+                <th>Employee Name</th>
+                <th>Role</th>
+                <th>Active</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of filteredData() | paginate: { itemsPerPage: pageSize, currentPage: pageIndex, totalItems: totalItems }; let i = index">
+                <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+                <td>{{ data.loginname }}</td>
+                <td>{{ data.empname }}</td>
+                <td>{{ data.roleName }}</td>
+                <td>{{ data.activeStatus }}</td>
+                <td>
+                  <button class="btn" (click)="editUser(encryptionService.encryptText(data.pk_userId))">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </button>
+                  <button class="btn" (click)="deleteUser(data.pk_userId)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

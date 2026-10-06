@@ -1,0 +1,774 @@
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="card">
+            <!-- Card Header -->
+            <div class="card-header bg-blue">
+              <div class="row w-100">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <h4 class="">Aadhaar Verification</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body mt-2">
+        <div *ngIf="isViewMode && aadhaarData">
+
+    <!-- Basic Details -->
+    <div class="row g-3">
+      <div class="col-sm-6 col-md-3">
+        <small class="text-dark d-block">Aadhaar No</small>
+        <strong>{{ aadhaarData.aadhaarNo }}</strong>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <small class="text-dark d-block">Name</small>
+        <strong>{{ aadhaarData.aadhaarName }}</strong>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <small class="text-dark d-block">Date of Birth</small>
+        <strong>{{ aadhaarData.aadhaarDob | date : "dd MMM yyyy" }}</strong>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <small class="text-dark d-block">State</small>
+        <strong>{{ aadhaarData.stateName || aadhaarData.stateId || 'N/A' }}</strong>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <small class="text-dark d-block">City</small>
+        <strong>{{ aadhaarData.cityName || aadhaarData.cityId || 'N/A' }}</strong>
+      </div>
+      <div class="col-md-9">
+        <small class="text-dark d-block">Address</small>
+        <strong>{{ aadhaarData.aadhaarAddress }}</strong>
+      </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <!-- Images -->
+    <div class="row g-3">
+      <div class="col-sm-6 col-md-3" *ngIf="aadhaarData.aadhaarFront">
+        <div class="card h-100">
+          <div class="card-header py-1 px-2 bg-light">
+            <small class="fw-semibold">Aadhaar Front</small>
+          </div>
+          <img
+            [src]="aadhaarData.aadhaarFront"
+            alt="Aadhaar Front"
+            class="card-img-bottom aadhaar-thumb"
+            (click)="openImagePreview(aadhaarData.aadhaarFront, 'Aadhaar Front')"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-3" *ngIf="aadhaarData.aadhaarBack">
+        <div class="card h-100">
+          <div class="card-header py-1 px-2 bg-light">
+            <small class="fw-semibold">Aadhaar Back</small>
+          </div>
+          <img
+            [src]="aadhaarData.aadhaarBack"
+            alt="Aadhaar Back"
+            class="card-img-bottom aadhaar-thumb"
+            (click)="openImagePreview(aadhaarData.aadhaarBack, 'Aadhaar Back')"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-3" *ngIf="aadhaarData.fatherAadhaarFront">
+        <div class="card h-100">
+          <div class="card-header py-1 px-2 bg-light">
+            <small class="fw-semibold">Father's Aadhaar Front</small>
+          </div>
+          <img
+            [src]="aadhaarData.fatherAadhaarFront"
+            alt="Father Aadhaar Front"
+            class="card-img-bottom aadhaar-thumb"
+            (click)="openImagePreview(aadhaarData.fatherAadhaarFront, 'Father\'s Aadhaar Front')"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-3" *ngIf="aadhaarData.fatherAadhaarBack">
+        <div class="card h-100">
+          <div class="card-header py-1 px-2 bg-light">
+            <small class="fw-semibold">Father's Aadhaar Back</small>
+          </div>
+          <img
+            [src]="aadhaarData.fatherAadhaarBack"
+            alt="Father Aadhaar Back"
+            class="card-img-bottom aadhaar-thumb"
+            (click)="openImagePreview(aadhaarData.fatherAadhaarBack, 'Father\'s Aadhaar Back')"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <button type="button" class="btn btn-warning" (click)="editAadhaar()">
+        <i class="fas fa-edit me-1"></i> Edit Aadhaar Details
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Enlarge Image Modal (put this once, outside the *ngIf block, anywhere in your template) -->
+  <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <p class="modal-title mb-0 text-primary fw-semibold">{{ previewImageTitle }}</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center p-2">
+          <img [src]="previewImageSrc" class="img-fluid" alt="Preview" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+              <form
+                *ngIf="!isViewMode"
+                [formGroup]="aadhaarForm"
+                (ngSubmit)="OnSubmit()"
+              >
+            <div class="row">
+
+    <!-- Aadhaar Number -->
+    <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-3">
+      <label>Aadhaar No.</label>
+
+      <div class="form-group flex-grow-1">
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-id-card"></i>
+          </span>
+
+          <input
+            formControlName="AadhaarNo"
+            type="text"
+            class="form-control"
+            mask="0000 0000 0000"
+            [dropSpecialCharacters]="false"
+            (blur)="checkAadhaarDuplicate()"
+          />
+        </div>
+
+        <!-- Aadhaar Validation -->
+    <div *ngIf="(submitted || validate['AadhaarNo'].touched) && validate['AadhaarNo'].errors">
+          <!-- Required -->
+          <div
+            *ngIf="validate['AadhaarNo'].errors['required']"
+            class="text-danger"
+          >
+            Aadhaar No is required.
+          </div>
+
+          <!-- Length -->
+          <div
+            *ngIf="
+              validate['AadhaarNo'].errors['minlength'] ||
+              validate['AadhaarNo'].errors['maxlength']
+            "
+            class="text-danger"
+          >
+            Aadhaar No must be exactly 12 digits.
+          </div>
+
+          <!-- Duplicate -->
+          <div
+            *ngIf="validate['AadhaarNo'].errors['duplicate']"
+            class="text-danger"
+          >
+            Aadhaar No already exists. Please enter another Aadhaar No.
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Verify Button -->
+    <div
+      *ngIf="isAadhaarVerificationRequired"
+      class="col-sm-12 col-md-2 col-lg-1 col-xxl-1"
+    >
+      <div class="col-sm-12 col-md-2 col-lg-1 col-xxl-1">
+
+        <button
+          type="button"
+          (click)="OTPAadhaar()"
+          class="btn btn-primary mt-lg-4 mb-1"
+          [disabled]="
+            !aadhaarForm.get('AadhaarNo')?.value ||
+            IsverifyAddhar ||
+            aadhaarForm.get('AadhaarNo')?.hasError('duplicate')
+          "
+        >
+          Verify
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- Aadhaar Name -->
+    <div class="col-sm-12 col-md-5 col-lg-4 col-xxl-4">
+      <label>Name (As on Aadhaar Card)</label>
+
+      <div class="form-group">
+        <div class="input-group">
+
+          <span class="input-group-text">
+            <i class="fas fa-user"></i>
+          </span>
+
+          <input
+            type="text"
+            class="form-control"
+            formControlName="AadhaarName"
+            [readonly]="isAadhaarVerificationRequired"
+          />
+
+        </div>
+
+        <div *ngIf="submitted && validate['AadhaarName'].errors">
+
+          <div
+            *ngIf="validate['AadhaarName'].errors['required']"
+            class="text-danger"
+          >
+            Aadhaar Name is required.
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Aadhaar Address -->
+    <div class="col-sm-12 col-md-6 col-lg-4">
+
+      <label>Address (As Shown on Aadhaar Card)</label>
+
+      <div class="form-group">
+
+        <div class="input-group">
+
+          <span class="input-group-text">
+            <i class="fas fa-map-marker-alt"></i>
+          </span>
+
+          <input
+            type="text"
+            class="form-control"
+            formControlName="AadhaarAddress"
+            [readonly]="isAadhaarVerificationRequired"
+          />
+
+        </div>
+
+        <div
+          *ngIf="submitted && validate['AadhaarAddress'].errors"
+        >
+
+          <div
+            *ngIf="validate['AadhaarAddress'].errors['required']"
+            class="text-danger"
+          >
+            Aadhaar Address is required.
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+                <div class="row mt-lg-2">
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
+                    <label>Date of Birth (As Shown on Aadhaar Card)</label>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-text"
+                          ><i class="fas fa-calendar-alt"></i
+                        ></span>
+                        <input
+                          type="date"
+                          class="form-control"
+                          formControlName="AadhaarDob"
+                          placeholder="YYYY/MM/DD"
+                          [readonly]="isAadhaarVerificationRequired"
+                        />
+                      </div>
+                      <div *ngIf="submitted && validate['AadhaarDob'].errors">
+                        <div
+                          *ngIf="validate['AadhaarDob'].errors['required']"
+                          class="text-danger"
+                        >
+                          Date of Birth is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
+                    <label>Upload Image (Front page)</label>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-text"
+                          ><i class="fas fa-image fa-lg"></i
+                        ></span>
+                        <input
+                          type="file"
+                          #frontFileInput
+                          (change)="onFileSelected($event, 'AadhaarFrontFile')"
+                          class="d-none"
+                        />
+                        <input
+                          type="text"
+                          class="form-control"
+                          [value]="fileName['AadhaarFrontFile'] || ''"
+                          readonly
+                        />
+                        <button
+                          class="browse btn btn-primary px-4"
+                          type="button"
+                          (click)="frontFileInput.click()"
+                          [disabled]="isScanningPerFile['AadhaarFrontFile']"
+                        >
+                          <i class="fas fa-image"></i>
+                        </button>
+                      </div>
+
+                      <!-- Front OCR Scanning State -->
+                      <div *ngIf="isScanningPerFile['AadhaarFrontFile']" class="d-flex align-items-center gap-2 mt-2 text-primary">
+                        <div class="spinner-border spinner-border-sm" role="status"></div>
+                        <small class="fw-bold">Scanning Aadhaar Front with OCR...</small>
+                      </div>
+
+                      <!-- Front OCR Error Message -->
+                      <div *ngIf="ocrError['AadhaarFrontFile']" class="text-danger small mt-1 fw-semibold">
+                        <i class="fas fa-exclamation-triangle me-1"></i> {{ ocrError['AadhaarFrontFile'] }}
+                      </div>
+
+                      <!-- Front OCR Success Message -->
+                      <div *ngIf="companyConfig?.aadhaarOcr && !isScanningPerFile['AadhaarFrontFile'] && !ocrError['AadhaarFrontFile'] && aadhaarForm.get('AadhaarNo')?.value && fileName['AadhaarFrontFile']" class="text-success small mt-1 fw-semibold">
+                        <i class="fas fa-check-circle me-1"></i> Front scanned successfully. Please verify details.
+                      </div>
+
+                      <div
+                        *ngIf="submitted && validate['AadhaarFrontFile'].errors"
+                      >
+                        <div
+                          *ngIf="validate['AadhaarFrontFile'].errors['required']"
+                          class="text-danger"
+                        >
+                          Aadhaar Front Image is required.
+                        </div>
+                      </div>
+
+                      <!-- Aadhaar Front Preview -->
+                      <div class="col-sm-12 col-md-6 col-lg-3 mt-2">
+                        <img
+                          *ngIf="previewAadhaarFront || originalAadhaarFrontUrl"
+                          [src]="previewAadhaarFront || originalAadhaarFrontUrl"
+                          alt="Aadhaar Front Image"
+                          class="border rounded adhar-image"
+                          width="300px"
+                          height="150px"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
+                    <label>Upload Image (Back page)</label>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-text"
+                          ><i class="fas fa-image fa-lg"></i
+                        ></span>
+                        <input
+                          type="file"
+                          #backFileInput
+                          (change)="onFileSelected($event, 'AadhaarBackFile')"
+                          class="d-none"
+                        />
+                        <input
+                          type="text"
+                          class="form-control"
+                          [value]="fileName['AadhaarBackFile'] || ''"
+                          readonly
+                        />
+                        <button
+                          class="browse btn btn-primary px-4"
+                          type="button"
+                          (click)="backFileInput.click()"
+                          [disabled]="isScanningPerFile['AadhaarBackFile']"
+                        >
+                          <i class="fas fa-image"></i>
+                        </button>
+                      </div>
+
+                      <!-- Back OCR Scanning State -->
+                      <div *ngIf="isScanningPerFile['AadhaarBackFile']" class="d-flex align-items-center gap-2 mt-2 text-primary">
+                        <div class="spinner-border spinner-border-sm" role="status"></div>
+                        <small class="fw-bold">Scanning Aadhaar Back with OCR...</small>
+                      </div>
+
+                      <!-- Back OCR Error Message -->
+                      <div *ngIf="ocrError['AadhaarBackFile']" class="text-danger small mt-1 fw-semibold">
+                        <i class="fas fa-exclamation-triangle me-1"></i> {{ ocrError['AadhaarBackFile'] }}
+                      </div>
+
+                      <!-- Back OCR Success Message -->
+                      <div *ngIf="companyConfig?.aadhaarOcr && !isScanningPerFile['AadhaarBackFile'] && !ocrError['AadhaarBackFile'] && aadhaarForm.get('AadhaarAddress')?.value && fileName['AadhaarBackFile']" class="text-success small mt-1 fw-semibold">
+                        <i class="fas fa-check-circle me-1"></i> Back scanned successfully. Please verify address.
+                      </div>
+
+                      <div
+                        *ngIf="submitted && validate['AadhaarBackFile'].errors"
+                      >
+                        <div
+                          *ngIf="validate['AadhaarBackFile'].errors['required']"
+                          class="text-danger"
+                        >
+                          Aadhaar Back Image is required.
+                        </div>
+                      </div>
+
+                      <!-- Aadhaar Back Preview -->
+                      <div class="mt-2 col-sm-12 col-md-6 col-lg-3">
+                        <img
+                          *ngIf="previewAadhaarBack || originalAadhaarBackUrl"
+                          [src]="previewAadhaarBack || originalAadhaarBackUrl"
+                          alt="Aadhaar Back Image"
+                          width="300"
+                          height="150"
+                          class="border rounded adhar-image"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- State and City Row -->
+                <div class="row mt-2">
+                  <!-- State Dropdown -->
+                  <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label>State <span class="text-danger">*</span></label>
+                    <div class="form-group">
+                      <ng-select
+                        id="aadhaar_state"
+                        class="custom-ng-select"
+                        placeholder="Select State"
+                        formControlName="StateId"
+                        [clearable]="true"
+                        (change)="onStateChange($event)"
+                      >
+                        <ng-option *ngFor="let state of statList" [value]="state.value">
+                          {{ state.name }}
+                        </ng-option>
+                      </ng-select>
+                      <div *ngIf="submitted && validate['StateId'].errors" class="text-danger small mt-1">
+                        State is required.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- City Dropdown -->
+                  <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label>City</label>
+                    <div class="form-group">
+                      <ng-select
+                        id="aadhaar_city"
+                        class="custom-ng-select"
+                        placeholder="Select City"
+                        formControlName="CityId"
+                        [clearable]="true"
+                        [disabled]="!aadhaarForm.get('StateId')?.value"
+                      >
+                        <ng-option *ngFor="let city of cityList" [value]="city.value">
+                          {{ city.name }}
+                        </ng-option>
+                      </ng-select>
+                      <div *ngIf="submitted && validate['CityId'].errors" class="text-danger small mt-1">
+                        City is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Father's Aadhaar Card Section -->
+                <!-- Father's Aadhaar Card Section -->
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <p class="fw-semibold text-primary border-bottom pb-2">
+                      <i class="fas fa-id-card me-1"></i> Father's Aadhaar Card <span class="text-danger">*</span>
+                    </p>
+                  </div>
+
+                  <!-- Father Aadhaar Front -->
+                  <div class="col-sm-12 col-md-6 col-lg-4">
+                    <label>Father's Aadhaar Front <span class="text-danger">*</span></label>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-image fa-lg"></i></span>
+                        <input
+                          type="file"
+                          #fatherFrontFileInput
+                          (change)="onFileSelected($event, 'FatherAadhaarFrontFile')"
+                          class="d-none"
+                          accept="image/jpeg,image/jpg,image/png,application/pdf"
+                        />
+                        <input
+                          type="text"
+                          class="form-control"
+                          [value]="fileName['FatherAadhaarFrontFile'] || ''"
+                          readonly
+                          placeholder="Choose Father's Aadhaar Front"
+                        />
+                        <button
+                          class="browse btn btn-primary px-4"
+                          type="button"
+                          (click)="fatherFrontFileInput.click()"
+                          [disabled]="isScanningPerFile['FatherAadhaarFrontFile']"
+                        >
+                          <i class="fas fa-image"></i>
+                        </button>
+                      </div>
+                      <small class="text-muted">Allowed: JPG, PNG, PDF (Max 5MB)</small>
+
+                      <div
+                        *ngIf="submitted && validate['FatherAadhaarFrontFile'].errors"
+                        class="text-danger small mt-1"
+                      >
+                        <div *ngIf="validate['FatherAadhaarFrontFile'].errors['required']">
+                          Father's Aadhaar Front image is required.
+                        </div>
+                      </div>
+
+                      <!-- Father Aadhaar Front OCR Scanning State -->
+                      <div *ngIf="isScanningPerFile['FatherAadhaarFrontFile']" class="d-flex align-items-center gap-2 mt-2 text-primary">
+                        <div class="spinner-border spinner-border-sm" role="status"></div>
+                        <small class="fw-bold">Scanning Father's Aadhaar Front with OCR...</small>
+                      </div>
+
+                      <!-- Father Aadhaar Front OCR Error -->
+                      <div *ngIf="ocrError['FatherAadhaarFrontFile']" class="text-danger small mt-1 fw-semibold">
+                        <i class="fas fa-exclamation-triangle me-1"></i> {{ ocrError['FatherAadhaarFrontFile'] }}
+                      </div>
+
+                      <!-- Father Aadhaar Front OCR Success -->
+                      <div *ngIf="companyConfig?.aadhaarOcr && !isScanningPerFile['FatherAadhaarFrontFile'] && !ocrError['FatherAadhaarFrontFile'] && fileName['FatherAadhaarFrontFile']" class="text-success small mt-1 fw-semibold">
+                        <i class="fas fa-check-circle me-1"></i> Father's Aadhaar Front scanned successfully.
+                      </div>
+
+                      <!-- Father Aadhaar Front Preview -->
+                      <div class="mt-2" *ngIf="previewFatherAadhaarFront">
+                        <img
+                          [src]="previewFatherAadhaarFront"
+                          alt="Father Aadhaar Front Preview"
+                          class="border rounded"
+                          width="300px"
+                          height="150px"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Father Aadhaar Back -->
+                  <div class="col-sm-12 col-md-6 col-lg-4">
+                    <label>Father's Aadhaar Back <span class="text-danger">*</span></label>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-image fa-lg"></i></span>
+                        <input
+                          type="file"
+                          #fatherBackFileInput
+                          (change)="onFileSelected($event, 'FatherAadhaarBackFile')"
+                          class="d-none"
+                          accept="image/jpeg,image/jpg,image/png,application/pdf"
+                        />
+                        <input
+                          type="text"
+                          class="form-control"
+                          [value]="fileName['FatherAadhaarBackFile'] || ''"
+                          readonly
+                          placeholder="Choose Father's Aadhaar Back"
+                        />
+                        <button
+                          class="browse btn btn-primary px-4"
+                          type="button"
+                          (click)="fatherBackFileInput.click()"
+                          [disabled]="isScanningPerFile['FatherAadhaarBackFile']"
+                        >
+                          <i class="fas fa-image"></i>
+                        </button>
+                      </div>
+                      <small class="text-muted">Allowed: JPG, PNG, PDF (Max 5MB)</small>
+
+                      <div
+                        *ngIf="submitted && validate['FatherAadhaarBackFile'].errors"
+                        class="text-danger small mt-1"
+                      >
+                        <div *ngIf="validate['FatherAadhaarBackFile'].errors['required']">
+                          Father's Aadhaar Back image is required.
+                        </div>
+                      </div>
+
+                      <!-- Father Aadhaar Back OCR Scanning State -->
+                      <div *ngIf="isScanningPerFile['FatherAadhaarBackFile']" class="d-flex align-items-center gap-2 mt-2 text-primary">
+                        <div class="spinner-border spinner-border-sm" role="status"></div>
+                        <small class="fw-bold">Scanning Father's Aadhaar Back with OCR...</small>
+                      </div>
+
+                      <!-- Father Aadhaar Back OCR Error -->
+                      <div *ngIf="ocrError['FatherAadhaarBackFile']" class="text-danger small mt-1 fw-semibold">
+                        <i class="fas fa-exclamation-triangle me-1"></i> {{ ocrError['FatherAadhaarBackFile'] }}
+                      </div>
+
+                      <!-- Father Aadhaar Back OCR Success -->
+                      <div *ngIf="companyConfig?.aadhaarOcr && !isScanningPerFile['FatherAadhaarBackFile'] && !ocrError['FatherAadhaarBackFile'] && fileName['FatherAadhaarBackFile']" class="text-success small mt-1 fw-semibold">
+                        <i class="fas fa-check-circle me-1"></i> Father's Aadhaar Back scanned successfully.
+                      </div>
+
+                      <!-- Father Aadhaar Back Preview -->
+                      <div class="mt-2" *ngIf="previewFatherAadhaarBack">
+                        <img
+                          [src]="previewFatherAadhaarBack"
+                          alt="Father Aadhaar Back Preview"
+                          class="border rounded"
+                          width="300px"
+                          height="150px"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-0 col-md-10 col-lg-11"></div>
+                  <div class="col-sm-12 col-md-2 col-lg-1">
+                    <div class="form-group shadow-none justify-content-end">
+                      <button
+                        type="submit"
+                        class="btn btn-primary mt-2 gap-2 px-3"
+                        [disabled]="isScanning"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-sm-0 col-md-0 col-lg-0"></div>
+                </div>
+              </form>
+
+              <div
+                class="modal fade"
+                id="otpModal"
+                #otpModal
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-body py-2">
+                      <div class="modal-header p-0">
+                        <p class="modal-title m-0">Verify OTP</p>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                          #otpModal
+                        ></button>
+                      </div>
+
+                      <div class="card" style="box-shadow: none">
+                        <p class="fw-semibold lh-base pt-1">
+                          Please enter the OTP sent to your registered mobile
+                          number linked with your Aadhaar card to verify your
+                          identity
+                        </p>
+
+                        <div
+                          id="otp"
+                          class="inputs d-flex flex-row justify-content-center mt-2"
+                        >
+                          <input
+                            class="mx-1 my-2 text-center form-control rounded"
+                            type="text"
+                            maxlength="1"
+                            [(ngModel)]="otp[0]"
+                            (keyup)="onKeyUp($event, 0)"
+                            style="width: 40px"
+                          />
+                          <input
+                            class="mx-1 my-2 text-center form-control rounded"
+                            type="text"
+                            maxlength="1"
+                            [(ngModel)]="otp[1]"
+                            (keyup)="onKeyUp($event, 1)"
+                            style="width: 40px"
+                          />
+                          <input
+                            class="mx-1 my-2 text-center form-control rounded"
+                            type="text"
+                            maxlength="1"
+                            [(ngModel)]="otp[2]"
+                            (keyup)="onKeyUp($event, 2)"
+                            style="width: 40px"
+                          />
+                          <input
+                            class="mx-1 my-2 text-center form-control rounded"
+                            type="text"
+                            maxlength="1"
+                            [(ngModel)]="otp[3]"
+                            (keyup)="onKeyUp($event, 3)"
+                            style="width: 40px"
+                          />
+                          <input
+                            class="mx-1 my-2 text-center form-control rounded"
+                            type="text"
+                            maxlength="1"
+                            [(ngModel)]="otp[4]"
+                            (keyup)="onKeyUp($event, 4)"
+                            style="width: 40px"
+                          />
+                          <input
+                            class="mx-1 my-2 text-center form-control rounded"
+                            type="text"
+                            maxlength="1"
+                            [(ngModel)]="otp[5]"
+                            (keyup)="onKeyUp($event, 5)"
+                            style="width: 40px"
+                          />
+                        </div>
+                        <div
+                          class="mt-4 d-flex align-items-center justify-content-center"
+                        >
+                          <button
+                            class="btn btn-primary"
+                            (click)="SubmitOtp()"
+                            [disabled]="!isOtpComplete()"
+                          >
+                            Validate
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+

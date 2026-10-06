@@ -1,0 +1,323 @@
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 ccol-md-12 col-lg-12">
+        <div class="card">
+          <!-- Card Header -->
+          <div class="card-header bg-blue">
+            <div class="row w-100">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h4 class="">PAN Verification</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="row pt-2">
+              <!-- VIEW MODE -->
+              <div *ngIf="isViewMode && panData">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>PAN No:</label>
+                    <p>
+                      <strong>{{ panData.panNo }}</strong>
+                    </p>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label>Name:</label>
+                    <p>
+                      <strong>{{ panData.panName }}</strong>
+                    </p>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label>Date of Birth:</label>
+                    <p>
+                      <strong>{{
+                        panData.panDob | date : "dd MMM yyyy"
+                      }}</strong>
+                    </p>
+                  </div>
+
+                  <!-- <div class="col-md-4">
+      <label>PAN Card Image:</label><br />
+      <button class="btn btn-sm btn-primary" (click)="downloadImage(panData.panCard)">
+        View
+      </button>
+    </div> -->
+                  <div class="col-md-4">
+                    <label>PAN Card Image:</label><br />
+                    <img
+                      [src]="panData.panCard"
+                      alt="PAN Card"
+                      class="img-thumbnail mb-2"
+                      style="width: 150px; height: auto; cursor: pointer"
+                    />
+                  </div>
+
+                  <div class="col-12 mt-3">
+                    <button type="button" class="btn btn-warning" (click)="editPan()">
+                      <i class="fas fa-edit me-1"></i> Edit PAN Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FORM MODE -->
+              <form
+                *ngIf="!isViewMode"
+                [formGroup]="panForm"
+                (ngSubmit)="OnSubmit()"
+              >
+                <div class="row">
+                <!-- PAN Number -->
+<div class="col-sm-12 col-md-5 col-lg-3 col-xxl-3">
+  <label>PAN No.</label>
+
+  <div class="form-group w-100">
+    <div class="input-group">
+      <span class="input-group-text">
+        <i class="fas fa-id-card"></i>
+      </span>
+
+      <input
+        formControlName="PANNo"
+        type="text"
+        class="form-control"
+        mask="AAAAA9999A"
+        [dropSpecialCharacters]="false"
+        style="text-transform: uppercase"
+        (input)="onPANInput($event)"
+        (blur)="checkPANAvailability(panForm.get('PANNo')?.value)"
+      />
+    </div>
+
+    <!-- PAN Validation -->
+    <div
+      *ngIf="
+        (submitted || validate['PANNo'].touched) &&
+        validate['PANNo'].errors
+      "
+      class="col-12"
+    >
+      <!-- Required -->
+      <div
+        *ngIf="validate['PANNo'].errors['required']"
+        class="text-danger"
+      >
+        PAN No is required.
+      </div>
+
+      <!-- Duplicate -->
+      <div
+        *ngIf="validate['PANNo'].errors['duplicate']"
+        class="text-danger"
+      >
+        {{ validate['PANNo'].errors['duplicate'] }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Verify PAN Button -->
+<div
+  *ngIf="isPanVerificationRequired"
+  class="col-sm-12 col-md-2 col-lg-1 col-xxl-1"
+>
+  <button
+    type="button"
+    (click)="verifyPAN()"
+    class="btn btn-primary mt-lg-4 mb-1 d-flex align-items-center justify-content-center"
+    [disabled]="
+      !panForm.get('PANNo')?.value ||
+      isVerified ||
+      isVerifying ||
+      panForm.get('PANNo')?.errors?.['duplicate']
+    "
+  >
+    <span *ngIf="!isVerifying">
+      Verify
+    </span>
+
+    <span *ngIf="isVerifying">
+      <span class="spinner-border spinner-border-sm me-2"></span>
+    </span>
+  </button>
+</div>
+
+                  <!--  -->
+
+                  <!-- PAN Name -->
+                  <div class="col-sm-12 col-md-5 col-lg-4 col-xxl-4">
+                    <label>Name (As Shown on PAN Card)</label>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-text"
+                          ><i class="fas fa-user"></i
+                        ></span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="PANName"
+                          [readonly]="isPanVerificationRequired"
+                        />
+                      </div>
+                      <div
+                        *ngIf="submitted && validate['PANName'].errors"
+                        class="col-12"
+                      >
+                        <div
+                          *ngIf="validate['PANName'].errors['required']"
+                          class="text-danger"
+                        >
+                          Name is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Date of Birth -->
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
+                    <label>Date of Birth (As Shown on PAN Card)</label>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-text"
+                          ><i class="fas fa-calendar-alt"></i
+                        ></span>
+                        <input
+                          type="date"
+                          class="form-control"
+                          placeholder="YYYY/MM/DD"
+                          formControlName="PANDob"
+                          [readonly]="isPanVerificationRequired"
+                        />
+                      </div>
+                      <div
+                        *ngIf="submitted && validate['PANDob'].errors"
+                        class="col-12"
+                      >
+                        <div
+                          *ngIf="validate['PANDob'].errors['required']"
+                          class="text-danger"
+                        >
+                          Dob is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-1">
+                  <!-- Upload PAN Card Image -->
+                  <div class="col-sm-12 col-md-6 col-lg-6 col-xxl-6">
+                    <label for="PanCard">Upload Image (PAN Card)</label>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-text"
+                          ><i class="fas fa-image fa-lg"></i
+                        ></span>
+                        <input
+                          type="file"
+                          #fileInput
+                          (change)="onFileSelected($event, 'PanCardFile')"
+                          class="d-none"
+                        />
+
+                        <!-- <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Upload Image"
+                          [value]="fileName || ''"
+                          readonly
+                        /> -->
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Upload Image"
+                          [value]="fileName || ''"
+                          readonly
+                        />
+                        <button
+                          class="browse btn btn-primary px-4"
+                          type="button"
+                          (click)="fileInput.click()"
+                          [disabled]="isScanning"
+                        >
+                          <i class="fas fa-image"></i>
+                        </button>
+                      </div>
+
+                      <!-- OCR Scanning State -->
+                      <div *ngIf="isScanning" class="d-flex align-items-center gap-2 mt-2 text-primary">
+                        <div class="spinner-border spinner-border-sm" role="status"></div>
+                        <small class="fw-bold">Scanning PAN card with OCR...</small>
+                      </div>
+
+                      <!-- OCR Error Message -->
+                      <div *ngIf="ocrError" class="text-danger small mt-1 fw-semibold">
+                        <i class="fas fa-exclamation-triangle me-1"></i> {{ ocrError }}
+                      </div>
+
+                      <!-- OCR Success Message -->
+                      <div *ngIf="companyConfig?.panOcr && !isScanning && !ocrError && panForm.get('PANNo')?.value && fileName" class="text-success small mt-1 fw-semibold">
+                        <i class="fas fa-check-circle me-1"></i> OCR scan complete. Please verify the filled details.
+                      </div>
+
+                      <div *ngIf="submitted && validate['PanCardFile'].errors">
+                        <div
+                          *ngIf="validate['PanCardFile'].errors['required']"
+                          class="text-danger"
+                        >
+                          PAN Card Image is required.
+                        </div>
+                      </div>
+
+                      <div
+                    *ngIf="previewPanImage || originalPanUrl"
+                    class="mt-2"
+                  >
+                    <label class="d-block mb-2">{{
+                      previewPanImage
+                        ? "New Image Preview:"
+                        : "Current Image:"
+                    }}</label>
+                    <img
+                      [src]="previewPanImage || originalPanUrl"
+                      alt="Passbook Preview"
+                      class="img-thumbnail"
+                      style="
+                        width: 300px;
+                        height: 170px;
+                        object-fit: contain;
+                        border-radius: 8px;
+                      "
+                    />
+                  </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-0 col-md-10 col-lg-10"></div>
+                  <div class="col-sm-12 col-md-2 col-lg-2">
+                    <div class="form-group shadow-none">
+                      <button
+                        type="submit"
+                        class="btn btn-primary mt-2 gap-2 d-grid d-md-block px-5"
+                        [disabled]="isScanning"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-sm-0 col-md-0 col-lg-0"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

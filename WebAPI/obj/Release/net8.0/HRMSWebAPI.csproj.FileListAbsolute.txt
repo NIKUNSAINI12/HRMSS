@@ -1,0 +1,602 @@
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\appsettings.Development.json
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\appsettings.json
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.runtime.json
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.endpoints.json
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\HRMSWebAPI.exe
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\HRMSWebAPI.deps.json
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\HRMSWebAPI.runtimeconfig.json
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Dapper.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Microsoft.Bcl.TimeProvider.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Microsoft.OpenApi.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\BouncyCastle.Crypto.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\itextsharp.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\System.Data.SqlClient.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\System.Drawing.Common.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\UAParser.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\sni.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\sni.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\sni.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.AssemblyReference.cache
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfoInputs.cache
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfo.cs
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.CoreCompileInputs.cache
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\scopedcss\bundle\HRMSWebAPI.styles.css
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\staticwebassets.build.json
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\staticwebassets.development.json
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\staticwebassets.build.endpoints.json
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\staticwebassets.upToDateCheck.txt
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.Up2Date
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\refint\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\HRMSWebAPI.genruntimeconfig.cache
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\ref\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\ClosedXML.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\ClosedXML.Parser.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.Framework.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\ExcelNumberFormat.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\RBush.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\SixLabors.Fonts.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\System.IO.Packaging.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Newtonsoft.Json.dll
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\rpswa.dswa.cache.json
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\rjimswa.dswa.cache.json
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\rjsmrazor.dswa.cache.json
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
+D:\Solutions\NG Project\Hrms\WebAPI\obj\Release\net8.0\staticwebassets.build.json.cache
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\appsettings.Development.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\appsettings.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.endpoints.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.runtime.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\HRMSWebAPI.exe
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\HRMSWebAPI.deps.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\HRMSWebAPI.runtimeconfig.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\HRMSWebAPI.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\HRMSWebAPI.pdb
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\ClosedXML.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\ClosedXML.Parser.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Dapper.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.Framework.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\ExcelNumberFormat.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Microsoft.Bcl.TimeProvider.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Microsoft.OpenApi.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Newtonsoft.Json.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\BouncyCastle.Crypto.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\itextsharp.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\RBush.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\SixLabors.Fonts.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\System.Data.SqlClient.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\System.Drawing.Common.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\System.IO.Packaging.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\UAParser.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\sni.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\sni.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\sni.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.AssemblyReference.cache
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\rpswa.dswa.cache.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfoInputs.cache
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfo.cs
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.CoreCompileInputs.cache
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\rjimswa.dswa.cache.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\rjsmrazor.dswa.cache.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\scopedcss\bundle\HRMSWebAPI.styles.css
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\staticwebassets.build.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\staticwebassets.build.json.cache
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\staticwebassets.development.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\staticwebassets.build.endpoints.json
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\staticwebassets.upToDateCheck.txt
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.Up2Date
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\refint\HRMSWebAPI.dll
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.pdb
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\HRMSWebAPI.genruntimeconfig.cache
+D:\VISHWANATH SIR LATEST\HRMS\WebAPI\obj\Release\net8.0\ref\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\BitMiracle.LibTiff.NET.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\HarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\SkiaSharp.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\SkiaSharp.HarfBuzz.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.Compression.Portable.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.DocIO.Portable.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.DocIORenderer.Portable.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.Licensing.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.Markdown.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.MetafileRenderer.Portable.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.OfficeChart.Portable.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Imaging.Portable.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Portable.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\Syncfusion.SkiaSharpHelper.Portable.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\osx\native\libSkiaSharp.dylib
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
+D:\Solutions\NG Project\Hrms\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libSkiaSharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\appsettings.Development.json
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\appsettings.json
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\dotnet-tools.json
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.runtime.json
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.endpoints.json
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.exe
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.deps.json
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.runtimeconfig.json
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\BitMiracle.LibTiff.NET.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\BouncyCastle.Crypto.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\ClosedXML.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\ClosedXML.Parser.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Dapper.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.Framework.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\ExcelNumberFormat.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\HarfBuzzSharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Microsoft.Bcl.TimeProvider.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Microsoft.OpenApi.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Newtonsoft.Json.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\itextsharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\RBush.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\SixLabors.Fonts.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\SkiaSharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\SkiaSharp.HarfBuzz.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Compression.Portable.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.DocIO.Portable.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.DocIORenderer.Portable.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Licensing.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Markdown.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.MetafileRenderer.Portable.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.OfficeChart.Portable.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Imaging.Portable.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Portable.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.SkiaSharpHelper.Portable.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\System.Data.SqlClient.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\System.Drawing.Common.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\System.IO.Packaging.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\UAParser.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\sni.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\sni.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\sni.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\osx\native\libSkiaSharp.dylib
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libSkiaSharp.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\HrBook\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.AssemblyReference.cache
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\rpswa.dswa.cache.json
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfoInputs.cache
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfo.cs
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.CoreCompileInputs.cache
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\rjimswa.dswa.cache.json
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\rjsmrazor.dswa.cache.json
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\scopedcss\bundle\HRMSWebAPI.styles.css
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.build.json
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.build.json.cache
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.development.json
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.build.endpoints.json
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\swae.build.ex.cache
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.upToDateCheck.txt
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.Up2Date
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\refint\HRMSWebAPI.dll
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.genruntimeconfig.cache
+D:\Solutions\HrBook\WebAPI\obj\Release\net8.0\ref\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\appsettings.Development.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\appsettings.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\dotnet-tools.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.runtime.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.endpoints.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.exe
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.deps.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.runtimeconfig.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\BitMiracle.LibTiff.NET.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\BouncyCastle.Crypto.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\ClosedXML.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\ClosedXML.Parser.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Dapper.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.Framework.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\ExcelNumberFormat.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\HarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Microsoft.Bcl.TimeProvider.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Microsoft.OpenApi.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Newtonsoft.Json.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\itextsharp.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\RBush.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\SixLabors.Fonts.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\SkiaSharp.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\SkiaSharp.HarfBuzz.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Compression.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.DocIO.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.DocIORenderer.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Licensing.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Markdown.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.MetafileRenderer.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.OfficeChart.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Imaging.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\Syncfusion.SkiaSharpHelper.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\System.Data.SqlClient.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\System.Drawing.Common.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\System.IO.Packaging.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\UAParser.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\sni.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\sni.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\sni.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\osx\native\libSkiaSharp.dylib
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libSkiaSharp.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.AssemblyReference.cache
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\rpswa.dswa.cache.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfoInputs.cache
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfo.cs
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.CoreCompileInputs.cache
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\rjimswa.dswa.cache.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\rjsmrazor.dswa.cache.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\scopedcss\bundle\HRMSWebAPI.styles.css
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.build.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.build.json.cache
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.development.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.build.endpoints.json
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\staticwebassets.upToDateCheck.txt
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.Up2Date
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\refint\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\HRMSWebAPI.genruntimeconfig.cache
+D:\Solutions\NG Project\Hrms\Common\HrBook\WebAPI\obj\Release\net8.0\ref\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\appsettings.Development.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\appsettings.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\dotnet-tools.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.runtime.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.endpoints.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\HRMSWebAPI.exe
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\HRMSWebAPI.deps.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\HRMSWebAPI.runtimeconfig.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\BitMiracle.LibTiff.NET.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\BouncyCastle.Crypto.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\ClosedXML.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\ClosedXML.Parser.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Dapper.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.Framework.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\ExcelNumberFormat.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\HarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Microsoft.Bcl.TimeProvider.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Microsoft.OpenApi.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Newtonsoft.Json.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\itextsharp.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\RBush.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\SixLabors.Fonts.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\SkiaSharp.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\SkiaSharp.HarfBuzz.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.Compression.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.DocIO.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.DocIORenderer.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.Licensing.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.Markdown.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.MetafileRenderer.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.OfficeChart.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Imaging.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\Syncfusion.SkiaSharpHelper.Portable.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\System.Data.SqlClient.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\System.Drawing.Common.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\System.IO.Packaging.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\UAParser.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\sni.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\sni.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\sni.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\osx\native\libSkiaSharp.dylib
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libSkiaSharp.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.AssemblyReference.cache
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\rpswa.dswa.cache.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfoInputs.cache
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfo.cs
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.CoreCompileInputs.cache
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\rjimswa.dswa.cache.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\rjsmrazor.dswa.cache.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\scopedcss\bundle\HRMSWebAPI.styles.css
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\staticwebassets.build.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\staticwebassets.build.json.cache
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\staticwebassets.development.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\staticwebassets.build.endpoints.json
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\staticwebassets.upToDateCheck.txt
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.Up2Date
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\refint\HRMSWebAPI.dll
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\HRMSWebAPI.genruntimeconfig.cache
+D:\Solutions\NG Project\Hrms\Common\WebAPI\obj\Release\net8.0\ref\HRMSWebAPI.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\appsettings.Development.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\dotnet-tools.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\appsettings.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.runtime.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.endpoints.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\HRMSWebAPI.exe
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\HRMSWebAPI.deps.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\HRMSWebAPI.runtimeconfig.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\BitMiracle.LibTiff.NET.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\BouncyCastle.Crypto.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\ClosedXML.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\ClosedXML.Parser.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Dapper.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.Framework.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\ExcelNumberFormat.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\HarfBuzzSharp.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Microsoft.Bcl.TimeProvider.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Microsoft.OpenApi.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Newtonsoft.Json.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\itextsharp.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\RBush.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\SixLabors.Fonts.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\SkiaSharp.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\SkiaSharp.HarfBuzz.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.Compression.Portable.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.DocIO.Portable.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.DocIORenderer.Portable.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.Licensing.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.Markdown.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.MetafileRenderer.Portable.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.OfficeChart.Portable.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Imaging.Portable.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Portable.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\Syncfusion.SkiaSharpHelper.Portable.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\System.Data.SqlClient.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\System.Drawing.Common.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\System.IO.Packaging.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\UAParser.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\sni.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\sni.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\sni.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\osx\native\libSkiaSharp.dylib
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libSkiaSharp.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.AssemblyReference.cache
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\rpswa.dswa.cache.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfoInputs.cache
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfo.cs
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.CoreCompileInputs.cache
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\rjimswa.dswa.cache.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\rjsmrazor.dswa.cache.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\scopedcss\bundle\HRMSWebAPI.styles.css
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\staticwebassets.build.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\staticwebassets.build.json.cache
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\staticwebassets.development.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\staticwebassets.build.endpoints.json
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\swae.build.ex.cache
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\staticwebassets.upToDateCheck.txt
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.Up2Date
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\refint\HRMSWebAPI.dll
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.pdb
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\HRMSWebAPI.genruntimeconfig.cache
+D:\Solutions\HRBOOK_11_09_2026_19_11\HRBOOK_11_09_2026_19_11\WebAPI\obj\Release\net8.0\ref\HRMSWebAPI.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\appsettings.Development.json
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\dotnet-tools.json
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.endpoints.json
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\appsettings.json
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\HRMSWebAPI.staticwebassets.runtime.json
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\HRMSWebAPI.exe
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\HRMSWebAPI.deps.json
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\HRMSWebAPI.runtimeconfig.json
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\HRMSWebAPI.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\HRMSWebAPI.pdb
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\BitMiracle.LibTiff.NET.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\BouncyCastle.Crypto.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\ClosedXML.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\ClosedXML.Parser.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Dapper.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\DocumentFormat.OpenXml.Framework.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\ExcelNumberFormat.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\HarfBuzzSharp.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Microsoft.Bcl.TimeProvider.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Microsoft.OpenApi.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Newtonsoft.Json.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\itextsharp.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\RBush.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\SixLabors.Fonts.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\SkiaSharp.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\SkiaSharp.HarfBuzz.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.Compression.Portable.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.DocIO.Portable.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.DocIORenderer.Portable.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.Licensing.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.Markdown.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.MetafileRenderer.Portable.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.OfficeChart.Portable.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Imaging.Portable.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.Pdf.Portable.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\Syncfusion.SkiaSharpHelper.Portable.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\System.Data.SqlClient.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\System.Drawing.Common.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\System.IO.Packaging.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\UAParser.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\sni.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\sni.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\sni.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\osx\native\libSkiaSharp.dylib
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win-x86\native\libSkiaSharp.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\HRBOOK_VENDOR\WebAPI\bin\Release\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.AssemblyReference.cache
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\rpswa.dswa.cache.json
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfoInputs.cache
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.AssemblyInfo.cs
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.CoreCompileInputs.cache
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\rjimswa.dswa.cache.json
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\rjsmrazor.dswa.cache.json
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\scopedcss\bundle\HRMSWebAPI.styles.css
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\staticwebassets.build.json
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\staticwebassets.build.json.cache
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\staticwebassets.development.json
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\staticwebassets.build.endpoints.json
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\swae.build.ex.cache
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\staticwebassets.upToDateCheck.txt
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.csproj.Up2Date
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.dll
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\refint\HRMSWebAPI.dll
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.pdb
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\HRMSWebAPI.genruntimeconfig.cache
+D:\HRBOOK_VENDOR\WebAPI\obj\Release\net8.0\ref\HRMSWebAPI.dll
