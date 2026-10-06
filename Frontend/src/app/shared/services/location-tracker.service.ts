@@ -69,13 +69,8 @@ export class LocationTrackerService {
 
   public async checkAndRequestPermissions(): Promise<boolean> {
     try {
-      this.log('Requesting Location & Notification Permissions...');
-      
-      // 1. Request Android Notification Permission (POST_NOTIFICATIONS)
-      const notifPerm = await LocalNotifications.requestPermissions();
-      this.log(`Notification Permission: [${notifPerm.display}]`);
-
-      // 2. Request Location Permission (ACCESS_FINE_LOCATION & BACKGROUND)
+      this.log('Requesting Location Permissions...');
+      // Request Location Permission (ACCESS_FINE_LOCATION & BACKGROUND)
       const locPerm = await Geolocation.requestPermissions();
       this.permissionState$.next(locPerm.location);
       this.log(`Location Permission: [${locPerm.location}]`);
@@ -93,7 +88,6 @@ export class LocationTrackerService {
 
     if (mode === 'native' || this.isNative) {
       await this.checkAndRequestPermissions();
-      await this.showPersistentNotification();
       await this.startNativeBackgroundTracking(userId);
     } else if (mode === 'simulator') {
       this.timerId = setInterval(() => this.tickSimulator(userId), intervalMs);
@@ -123,36 +117,7 @@ export class LocationTrackerService {
       this.timerId = null;
     }
 
-    await this.removePersistentNotification();
     this.log('Tracking stopped.');
-  }
-
-  private async showPersistentNotification() {
-    if (!this.isNative) return;
-    try {
-      await LocalNotifications.schedule({
-        notifications: [
-          {
-            title: '📍 GPS Background Tracker Running',
-            body: 'Continuously sending location updates to .NET API',
-            id: 9999,
-            ongoing: true, // Makes notification persistent & non-dismissable in Android status bar!
-            autoCancel: false,
-            smallIcon: 'ic_launcher'
-          }
-        ]
-      });
-      this.log('🔔 Persistent Status Bar Notification Triggered (Ongoing)');
-    } catch (err: any) {
-      this.log(`Notification Schedule Error: ${err?.message || err}`);
-    }
-  }
-
-  private async removePersistentNotification() {
-    if (!this.isNative) return;
-    try {
-      await LocalNotifications.cancel({ notifications: [{ id: 9999 }] });
-    } catch (e) {}
   }
 
   private async startNativeBackgroundTracking(userId: string) {

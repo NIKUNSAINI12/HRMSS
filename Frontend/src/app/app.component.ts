@@ -59,6 +59,8 @@ export class AppComponent implements OnInit {
           } else {
             this.router.navigate(['/dash/employee-dashboard']);
           }
+        }
+
         // Auto-start Native Background Location Tracking if employee session is present
         const activeUserId = 
           sessionStorage.getItem('UserId') || 
